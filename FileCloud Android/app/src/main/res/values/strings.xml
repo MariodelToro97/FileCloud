@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FileCloud</string>
+    <string name="Bienvenido">Bienvenido</string>
+    <string name="Huella">Ingrese su huella digital</string>
+    <string name="imgHuella">Imagen de huella digital</string>
+    <string name="inicioSesion">Iniciar sesión</string>
+    <string name="registrar">Registrarse</string>
+    <string name="linea">_________________________________________</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="repContra">Confirmar contraseña</string>
+    <string name="bienvenidoFile">Bienvenido a FileCloud</string>
+    <string name="documentoEle">Documentos a elegir</string>
+    <string name="cerrarSes">Cerrar Sesión</string>
+    <string name="cargarDocu">Cargar documento</string>
+    <string name="docuCarga">Documentos cargados</string>
+    <string name="solicitud">Solicitudes</string>
+    <string name="regresar">Regresar</string>
+    <string name="listaSol">Listado de solicitudes</string>
+    <string name="rellenoCampos">Favor de rellenar los campos que se solicitan a continuación</string>
+</resources>
