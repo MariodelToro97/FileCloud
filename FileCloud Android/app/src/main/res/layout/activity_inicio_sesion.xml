@@ -28,7 +28,7 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/usuario"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,32 +51,35 @@
 
     <Button
         android:id="@+id/iniciarSesionP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/inicioSesion"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/editText5"
+        app:layout_constraintVertical_bias="0.502" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/Cancelar"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/cancelar"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/iniciarSesionP"
-        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText5"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.502" />
 </android.support.constraint.ConstraintLayout>

@@ -12,11 +12,19 @@
     <string name="repContra">Confirmar contraseña</string>
     <string name="bienvenidoFile">Bienvenido a FileCloud</string>
     <string name="documentoEle">Documentos a elegir</string>
+    <string name="nombre">Nombre(s)</string>
+    <string name="apellidoP">Apellido Paterno</string>
+    <string name="apellidoM">Apellido Materno</string>
     <string name="cerrarSes">Cerrar Sesión</string>
     <string name="cargarDocu">Cargar documento</string>
     <string name="docuCarga">Documentos cargados</string>
     <string name="solicitud">Solicitudes</string>
     <string name="regresar">Regresar</string>
+    <string name="tipoUsuario">Ingresar el tipo de usuario que eres</string>
+    <string name="nuevoIng">Nuevo ingreso</string>
+    <string name="numControl">Número de matrícula</string>
+    <string name="alumno">Alumno inscrito</string>
     <string name="listaSol">Listado de solicitudes</string>
+    <string name="ingresarHuella">Ingresar huella digital</string>
     <string name="rellenoCampos">Favor de rellenar los campos que se solicitan a continuación</string>
 </resources>

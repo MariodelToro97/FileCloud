@@ -8,26 +8,28 @@
 
     <Button
         android:id="@+id/cancelarRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="36dp"
         android:text="@string/cancelar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/registrarse"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <Button
         android:id="@+id/registrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/registrar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <TextView
         android:id="@+id/textView3"
@@ -50,77 +52,200 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/rellenoCampos"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="393dp"
-        android:layout_height="516dp"
+        android:layout_width="374dp"
+        android:layout_height="474dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/cancelarRegistro"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5">
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.074">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/editText3"
-                android:layout_width="wrap_content"
+                android:id="@+id/editText"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="68dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:autofillHints="@string/usuario"
+                android:ems="10"
+                android:hint="@string/usuario"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText8" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:autofillHints="@string/repContra"
+                android:ems="10"
+                android:hint="@string/contraseña"
+                android:inputType="textPassword"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
                 android:autofillHints="@string/contraseña"
                 android:ems="10"
                 android:hint="@string/repContra"
                 android:inputType="textPassword"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+            <Button
+                android:id="@+id/ingresoHuella"
+                android:layout_width="280dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/ingresarHuella"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText2"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/PT_numeroMatricula" />
 
             <EditText
-                android:id="@+id/editText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/editText6"
+                android:layout_width="280dp"
+                android:layout_height="44dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="68dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:ems="10"
-                android:hint="@string/contraseña"
-                android:autofillHints="@string/repContra"
-                android:inputType="textPassword"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="@string/usuario"
-                android:autofillHints="@string/usuario"
+                android:hint="@string/nombre"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.462"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText7"
+                android:layout_width="280dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/apellidoP"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.434"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+
+            <EditText
+                android:id="@+id/editText8"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/apellidoM"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText7" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/tipoUsuario"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="160dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+                <RadioButton
+                    android:id="@+id/RB_nuevoIngreso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/nuevoIng"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/RB_alumnoInscrito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/alumno"
+                    android:textSize="18sp" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/PT_numeroMatricula"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/numControl"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
