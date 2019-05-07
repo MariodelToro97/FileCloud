@@ -27,4 +27,7 @@
     <string name="listaSol">Listado de solicitudes</string>
     <string name="ingresarHuella">Ingresar huella digital</string>
     <string name="rellenoCampos">Favor de rellenar los campos que se solicitan a continuación</string>
+    <string name="noCoincidden">Las contraseñas insertadas no coinciden</string>
+    <string name="userExist">El usuario ingresado ya existe en la base de datos</string>
+    <string name="errorBD">Error en la lectura de la base de datos</string>
 </resources>

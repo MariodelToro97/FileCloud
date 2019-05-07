@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "928044416241",
+    "firebase_url": "https://filecloud-c4da4.firebaseio.com",
+    "project_id": "filecloud-c4da4",
+    "storage_bucket": "filecloud-c4da4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928044416241:android:70760d21b1f26307",
+        "android_client_info": {
+          "package_name": "com.example.filecloud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928044416241-k8s4gh3c30db27l1gcns6nj7l23oq87i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.filecloud",
+            "certificate_hash": "52f0737d6dddbe2bab1e91f9ec1614695543b997"
+          }
+        },
+        {
+          "client_id": "928044416241-3mpjffje2jqndaqf5rmj0qpi7sh2mg63.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmA--pfhNzaHgZkk2Msqgp1qOWlVTjc4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928044416241-3mpjffje2jqndaqf5rmj0qpi7sh2mg63.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
