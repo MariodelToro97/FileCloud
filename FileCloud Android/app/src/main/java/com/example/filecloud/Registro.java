@@ -3,10 +3,12 @@ package com.example.filecloud;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,14 +17,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Registro extends AppCompatActivity {
 
     private Button btnCancelar;
     private Button btnRegistro;
     private RadioButton rbNuevoIngreso;
     private RadioButton rbAlumnoInscrito;
-    private EditText editNumeroMatricula;
     private EditText User;
+    private RadioGroup rbgrupo;
     private EditText nombre, apellidoPaterno, apelllidoMaterno, contrasena, confirmContrasena;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -37,8 +43,8 @@ public class Registro extends AppCompatActivity {
         btnRegistro = findViewById(R.id.registrarse);
         rbAlumnoInscrito = findViewById(R.id.RB_alumnoInscrito);
         rbNuevoIngreso = findViewById(R.id.RB_nuevoIngreso);
+        rbgrupo = findViewById(R.id.radioGroup);
 
-        editNumeroMatricula = findViewById(R.id.PT_numeroMatricula);
         nombre = findViewById(R.id.nombreText);
         apellidoPaterno = findViewById(R.id.paternoText);
         apelllidoMaterno = findViewById(R.id.maternoText);
@@ -49,45 +55,36 @@ public class Registro extends AppCompatActivity {
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String name = nombre.getText().toString();
+                String materno = apelllidoMaterno.getText().toString();
+                String paterno = apellidoPaterno.getText().toString();
+                String usuario = User.getText().toString();
+                String contra = contrasena.getText().toString();
+                String confirmCon = confirmContrasena.getText().toString();
 
-                myRef = database.getReference("Users/"+User.getText().toString()+"/Usuario");
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        String value = dataSnapshot.getValue(String.class);
+                if (usuario.isEmpty() || contra.isEmpty() || confirmCon.isEmpty() || name.isEmpty() || materno.isEmpty() || paterno.isEmpty()){
+                    Toast.makeText(getApplicationContext(), R.string.vacio, Toast.LENGTH_LONG).show();
+                } else {
+                    if (contrasena.getText().toString().equals(confirmContrasena.getText().toString())) {
 
-                        if (!value.equalsIgnoreCase(User.getText().toString())) {
-                            if (contrasena.getText().toString().equals(confirmContrasena.getText().toString())) {
-                                // Write a message to the database
-                                String reference = "Users/" + User.getText().toString();
-                                myRef = database.getReference(reference + "/Nombre");
-                                myRef.setValue(nombre.getText().toString());
-                                myRef = database.getReference(reference + "/apellidoPaterno");
-                                myRef.setValue(apellidoPaterno.getText().toString());
-                                myRef = database.getReference(reference + "/apellidoMaterno");
-                                myRef.setValue(apelllidoMaterno.getText().toString());
-                                myRef = database.getReference(reference + "/Password");
-                                myRef.setValue(contrasena.getText().toString());
-                                myRef = database.getReference(reference + "/Usuario");
-                                myRef.setValue(User.getText().toString());
-                                Intent registro = new Intent(Registro.this, inicioSesion.class);
-                                startActivity(registro);
-                                finish();
-                            } else {
-                                Toast.makeText(getApplicationContext(), R.string.noCoincidden, Toast.LENGTH_LONG).show();
+                        myRef = database.getReference("Users/" + User.getText().toString() + "/Usuario");
+                        myRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                String value = dataSnapshot.getValue(String.class);
+                                insertar(value);
                             }
-                        } else {
-                            Toast.makeText(getApplicationContext(), R.string.userExist, Toast.LENGTH_SHORT).show();
-                        }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+                                // Failed to read value
+                                Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(getApplicationContext(), R.string.noCoincidden, Toast.LENGTH_LONG).show();
                     }
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        Toast.makeText(getApplicationContext(),R.string.errorBD,Toast.LENGTH_LONG).show();
-                    }
-                });
+                }
             }
         });
 
@@ -103,8 +100,69 @@ public class Registro extends AppCompatActivity {
         rbAlumnoInscrito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                User.setHint(R.string.numControl);
+                User.setVisibility(View.VISIBLE);
+                contrasena.setVisibility(View.VISIBLE);
+                confirmContrasena.setVisibility(View.VISIBLE);
             }
         });
+
+        rbNuevoIngreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User.setHint(R.string.usuario);
+                User.setVisibility(View.VISIBLE);
+                contrasena.setVisibility(View.VISIBLE);
+                confirmContrasena.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    boolean insertado = true;
+
+    public void insertar(String value){
+        int tipoUser = -1;
+        String cadena = User.getHint().toString();
+
+        if (value == null && insertado) {
+            // Write a message to the database
+            String reference = "Users/" + User.getText().toString();
+            myRef = database.getReference(reference + "/Nombre");
+            myRef.setValue(nombre.getText().toString());
+            myRef = database.getReference(reference + "/apellidoPaterno");
+            myRef.setValue(apellidoPaterno.getText().toString());
+            myRef = database.getReference(reference + "/apellidoMaterno");
+            myRef.setValue(apelllidoMaterno.getText().toString());
+            myRef = database.getReference(reference + "/Password");
+            myRef.setValue(contrasena.getText().toString());
+            myRef = database.getReference(reference + "/Usuario");
+            myRef.setValue(User.getText().toString());
+
+            if (rbNuevoIngreso.isChecked() && !rbAlumnoInscrito.isChecked()) {
+                tipoUser = 1;
+            } else {
+                if (!rbNuevoIngreso.isChecked() && rbAlumnoInscrito.isChecked())
+                    tipoUser = 2;
+            }
+
+            myRef = database.getReference(reference + "/tipoUsuario");
+            myRef.setValue(tipoUser);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            Date date = new Date();
+            String fecha = dateFormat.format(date);
+
+            myRef = database.getReference(reference + "/fechaRegistro");
+            myRef.setValue(fecha);
+
+            insertado = false;
+
+            Toast.makeText(getApplicationContext(), R.string.insertadoUser, Toast.LENGTH_LONG).show();
+            Intent registro = new Intent(Registro.this, inicioSesion.class);
+            startActivity(registro);
+            finish();
+        } else if (insertado){
+            Toast.makeText(getApplicationContext(), R.string.userExist, Toast.LENGTH_SHORT).show();
+        }
     }
 }

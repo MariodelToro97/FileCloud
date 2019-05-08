@@ -8,6 +8,7 @@
     <string name="linea">_________________________________________</string>
     <string name="cancelar">Cancelar</string>
     <string name="usuario">Usuario</string>
+    <string name="insertadoUser">Usuario ingresado de forma correcta</string>
     <string name="contraseña">Contraseña</string>
     <string name="repContra">Confirmar contraseña</string>
     <string name="bienvenidoFile">Bienvenido a FileCloud</string>
@@ -30,4 +31,5 @@
     <string name="noCoincidden">Las contraseñas insertadas no coinciden</string>
     <string name="userExist">El usuario ingresado ya existe en la base de datos</string>
     <string name="errorBD">Error en la lectura de la base de datos</string>
+    <string name="vacio">Dejó campos vacios</string>
 </resources>
