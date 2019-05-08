@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class splashFileCloud extends Activity {
 
@@ -26,7 +27,9 @@ public class splashFileCloud extends Activity {
                 if (cantidad > 0){
                     if (c.moveToFirst()){
                         documentosElegir documento = new documentosElegir();
-                        documento.fijarUsuario(c.getString(0));
+                        documento.setUSUARIO(c.getString(0));
+
+                        Toast.makeText(getApplicationContext(), "Bienvenido de nuevo "+c.getString(0), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(splashFileCloud.this, documentosElegir.class);
                         startActivity(intent);
@@ -39,6 +42,6 @@ public class splashFileCloud extends Activity {
                     finish();
                 }
             }
-        },5000);
+        },4000);
     }
 }

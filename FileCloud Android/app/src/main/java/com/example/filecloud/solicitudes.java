@@ -8,7 +8,6 @@ import android.widget.Button;
 
 public class solicitudes extends AppCompatActivity {
 
-
     private Button Regresar;
 
     @Override

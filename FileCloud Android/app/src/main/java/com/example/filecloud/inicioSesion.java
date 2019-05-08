@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class inicioSesion extends AppCompatActivity {
 
     private Button btnCancelar;
-    private  Button btnIniciarSesion;
+    private Button btnIniciarSesion;
     private EditText Usuario, Password;
     private RadioButton rbRecuerdame;
 
@@ -115,6 +115,7 @@ public class inicioSesion extends AppCompatActivity {
 
         BDUser bdUser = new BDUser(this, "personasBD", null, 1);
         SQLiteDatabase db = bdUser.getWritableDatabase();
+        documentosElegir documento = new documentosElegir();
 
         if (value.equals(pass) && contra){
 
@@ -129,13 +130,14 @@ public class inicioSesion extends AppCompatActivity {
                     if (i > 0) {
                         Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
 
+                        documento.setUSUARIO(user);
+
                         Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
                         startActivity(iniciar);
                         finish();
                     }
                 } else {
-                    documentosElegir documento = new documentosElegir();
-                    documento.fijarUsuario(user);
+                    documento.setUSUARIO(user);
                     Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
                     startActivity(iniciar);
                     finish();

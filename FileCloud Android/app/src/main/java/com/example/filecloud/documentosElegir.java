@@ -25,7 +25,18 @@ public class documentosElegir extends AppCompatActivity {
     private int VALOR_RETORNO = 1;
     private StorageReference storageRef;
 
-    String USUARIO = "";
+    String USUARIO;
+
+    public documentosElegir() {
+    }
+
+    public String getUSUARIO() {
+        return USUARIO;
+    }
+
+    public void setUSUARIO(String USUARIO) {
+        this.USUARIO = USUARIO;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +52,7 @@ public class documentosElegir extends AppCompatActivity {
         btnCargarDocumento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), getUSUARIO(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
                 startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
@@ -109,9 +121,5 @@ public class documentosElegir extends AppCompatActivity {
             startActivity(cerrarSesion);
             finish();
         }
-    }
-
-    public void fijarUsuario(String user){
-        USUARIO = user;
     }
 }
