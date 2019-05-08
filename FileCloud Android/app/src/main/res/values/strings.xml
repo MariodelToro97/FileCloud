@@ -41,4 +41,7 @@
     <string name="cargaCompleta">Carga del documento completada</string>
     <string name="errorDocumento">Ha ocurrido un error en la carga del documento</string>
     <string name="cerrarSesion">Se ha cerrado sesión de forma correcta</string>
+    <string name="confirmCeraar">¿Está seguro de que desea cerrar sesión?</string>
+    <string name="si">Si</string>
+    <string name="no">No</string>
 </resources>

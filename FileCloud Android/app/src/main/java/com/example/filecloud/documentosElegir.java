@@ -1,9 +1,11 @@
 package com.example.filecloud;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -98,17 +100,36 @@ public class documentosElegir extends AppCompatActivity {
     }
 
     public void cerrarSesion(){
-        BDUser bdUser = new BDUser(this, "personasBD", null, 1);
-        SQLiteDatabase db = bdUser.getWritableDatabase();
+        final BDUser bdUser = new BDUser(this, "personasBD", null, 1);
 
-        if (db != null) {
-            db.execSQL("DELETE FROM Usuario");
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage(R.string.confirmCeraar);
+        alert.setTitle(R.string.cerrarSes);
+        alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-            Toast.makeText(getApplicationContext(), R.string.cerrarSesion, Toast.LENGTH_SHORT).show();
+                SQLiteDatabase db = bdUser.getWritableDatabase();
 
-            Intent cerrarSesion = new Intent(documentosElegir.this, MainActivity.class);
-            startActivity(cerrarSesion);
-            finish();
-        }
+                if (db != null) {
+                    db.execSQL("DELETE FROM Usuario");
+
+                    Toast.makeText(getApplicationContext(), R.string.cerrarSesion, Toast.LENGTH_SHORT).show();
+
+                    Intent cerrarSesion = new Intent(documentosElegir.this, MainActivity.class);
+                    startActivity(cerrarSesion);
+                    finish();
+                }
+            }
+        });
+        alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
     }
 }
