@@ -43,6 +43,9 @@
     <string name="cerrarSesion">Se ha cerrado sesión de forma correcta</string>
     <string name="confirmCeraar">¿Está seguro de que desea cerrar sesión?</string>
     <string name="si">Si</string>
+    <string name="ok">Ok</string>
     <string name="no">No</string>
+    <string name="cancel">Cancelar</string>
     <string name="email">Correo</string>
+    <string name="seleccionFile">Selecciona que archivo vas a subir</string>
 </resources>

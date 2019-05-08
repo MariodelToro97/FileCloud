@@ -18,6 +18,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+
 public class documentosElegir extends AppCompatActivity {
 
     private Button btnCerrarSesion;
@@ -45,9 +47,7 @@ public class documentosElegir extends AppCompatActivity {
         btnCargarDocumento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("application/pdf");
-                startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+                seleccionListaDocumentos();
             }
         });
 
@@ -80,7 +80,7 @@ public class documentosElegir extends AppCompatActivity {
             Uri file = data.getData(); //obtener el uri content
 
             //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-            StorageReference riversRef = storageRef.child(USUARIO+"/");
+            StorageReference riversRef = storageRef.child(USUARIO+"/"+ARCHIVO);
 
             riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -131,5 +131,43 @@ public class documentosElegir extends AppCompatActivity {
 
         AlertDialog dialog = alert.create();
         dialog.show();
+    }
+
+    String ARCHIVO;
+
+    public void seleccionListaDocumentos() {
+        final CharSequence[] items = {"Acta de Nacimiento", "CURP", "Certificado", "Recibo de pago"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.seleccionFile);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "El documento que subirás es " + items[i], Toast.LENGTH_SHORT).show();
+                switch (i) {
+                    case 0:
+                        ARCHIVO = "ACTA";
+                        break;
+
+                    case 1:
+                        ARCHIVO = "CURP";
+                        break;
+
+                    case 2:
+                        ARCHIVO = "CERTIFICADO";
+                        break;
+
+                    case 3:
+                        ARCHIVO = "RECIBO";
+                        break;
+                }
+                dialogInterface.cancel();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/pdf");
+                startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+            }
+        });
+        AlertDialog a = builder.create();
+        a.show();
     }
 }
