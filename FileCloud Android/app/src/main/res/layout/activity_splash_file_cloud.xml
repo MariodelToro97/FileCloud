@@ -14,6 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/logofilecloud"
         android:contentDescription="@string/logo"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
