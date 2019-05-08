@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FileCloud</string>
     <string name="Bienvenido">Bienvenido</string>
-    <string name="Huella">Ingrese su huella digital</string>
+    <string name="Huella">Seleccione una opción</string>
     <string name="imgHuella">Imagen de huella digital</string>
     <string name="inicioSesion">Iniciar sesión</string>
     <string name="registrar">Registrarse</string>
@@ -32,4 +32,7 @@
     <string name="userExist">El usuario ingresado ya existe en la base de datos</string>
     <string name="errorBD">Error en la lectura de la base de datos</string>
     <string name="vacio">Dejó campos vacios</string>
+    <string name="noExisteUsuario">El usuario insertado no existe en la base de datos</string>
+    <string name="contraIncorrecta">La contraseña ingresada es incorrecta</string>
+    <string name="InicioCorrecto">Inicio de Sesión correcto</string>
 </resources>

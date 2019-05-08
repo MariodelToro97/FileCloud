@@ -122,7 +122,6 @@ public class Registro extends AppCompatActivity {
 
     public void insertar(String value){
         int tipoUser = -1;
-        String cadena = User.getHint().toString();
 
         if (value == null && insertado) {
             // Write a message to the database
