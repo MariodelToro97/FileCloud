@@ -115,7 +115,7 @@ public class inicioSesion extends AppCompatActivity {
 
         BDUser bdUser = new BDUser(this, "personasBD", null, 1);
         SQLiteDatabase db = bdUser.getWritableDatabase();
-        documentosElegir documento = new documentosElegir();
+        Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
 
         if (value.equals(pass) && contra){
 
@@ -130,15 +130,14 @@ public class inicioSesion extends AppCompatActivity {
                     if (i > 0) {
                         Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
 
-                        documento.setUSUARIO(user);
-
-                        Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
+                        iniciar.putExtra("USUARIO", user);
                         startActivity(iniciar);
                         finish();
                     }
                 } else {
-                    documento.setUSUARIO(user);
-                    Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
+                    Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
+
+                    iniciar.putExtra("USUARIO", user);
                     startActivity(iniciar);
                     finish();
                 }

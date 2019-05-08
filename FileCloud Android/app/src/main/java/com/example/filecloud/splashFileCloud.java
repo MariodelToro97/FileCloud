@@ -25,13 +25,11 @@ public class splashFileCloud extends Activity {
                 int cantidad = c.getCount();
 
                 if (cantidad > 0){
-                    if (c.moveToFirst()){
-                        documentosElegir documento = new documentosElegir();
-                        documento.setUSUARIO(c.getString(0));
-
+                    if (c.moveToFirst()) {
                         Toast.makeText(getApplicationContext(), "Bienvenido de nuevo "+c.getString(0), Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(splashFileCloud.this, documentosElegir.class);
+                        intent.putExtra("USUARIO", c.getString(0));
                         startActivity(intent);
                         finish();
                     }

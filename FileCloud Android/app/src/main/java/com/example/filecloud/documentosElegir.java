@@ -27,17 +27,6 @@ public class documentosElegir extends AppCompatActivity {
 
     String USUARIO;
 
-    public documentosElegir() {
-    }
-
-    public String getUSUARIO() {
-        return USUARIO;
-    }
-
-    public void setUSUARIO(String USUARIO) {
-        this.USUARIO = USUARIO;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +38,11 @@ public class documentosElegir extends AppCompatActivity {
 
         storageRef = FirebaseStorage.getInstance().getReference();
 
+        USUARIO = getIntent().getStringExtra("USUARIO");
+
         btnCargarDocumento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), getUSUARIO(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
                 startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
@@ -63,6 +53,7 @@ public class documentosElegir extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent solicitudes = new Intent(documentosElegir.this, solicitudes.class);
+                solicitudes.putExtra("USUARIO", USUARIO);
                 startActivity(solicitudes);
             }
         });
@@ -92,7 +83,6 @@ public class documentosElegir extends AppCompatActivity {
             riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            // Get a URL to the uploaded content
                             //Uri downloadUrl = taskSnapshot.getDownloadUrl();
                             Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
                         }
@@ -104,7 +94,6 @@ public class documentosElegir extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
                         }
                     });
-            //Toast.makeText(getApplicationContext(), , Toast.LENGTH_SHORT).show();
         }
     }
 
