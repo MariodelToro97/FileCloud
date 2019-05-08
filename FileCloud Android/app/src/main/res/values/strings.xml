@@ -44,4 +44,5 @@
     <string name="confirmCeraar">¿Está seguro de que desea cerrar sesión?</string>
     <string name="si">Si</string>
     <string name="no">No</string>
+    <string name="email">Correo</string>
 </resources>

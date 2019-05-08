@@ -29,7 +29,7 @@ public class Registro extends AppCompatActivity {
     private RadioButton rbAlumnoInscrito;
     private EditText User;
     private RadioGroup rbgrupo;
-    private EditText nombre, apellidoPaterno, apelllidoMaterno, contrasena, confirmContrasena;
+    private EditText nombre, apellidoPaterno, apelllidoMaterno, contrasena, confirmContrasena, correo;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -51,6 +51,7 @@ public class Registro extends AppCompatActivity {
         contrasena = findViewById(R.id.contrasenaText);
         confirmContrasena = findViewById(R.id.confirmContrasenaText);
         User = findViewById(R.id.userText);
+        correo = findViewById(R.id.emailText);
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +62,9 @@ public class Registro extends AppCompatActivity {
                 String usuario = User.getText().toString();
                 String contra = contrasena.getText().toString();
                 String confirmCon = confirmContrasena.getText().toString();
+                String email = correo.getText().toString();
 
-                if (usuario.isEmpty() || contra.isEmpty() || confirmCon.isEmpty() || name.isEmpty() || materno.isEmpty() || paterno.isEmpty()){
+                if (usuario.isEmpty() || contra.isEmpty() || confirmCon.isEmpty() || name.isEmpty() || materno.isEmpty() || paterno.isEmpty() || email.isEmpty()){
                     Toast.makeText(getApplicationContext(), R.string.vacio, Toast.LENGTH_LONG).show();
                 } else {
                     if (contrasena.getText().toString().equals(confirmContrasena.getText().toString())) {
@@ -136,6 +138,8 @@ public class Registro extends AppCompatActivity {
             myRef.setValue(contrasena.getText().toString());
             myRef = database.getReference(reference + "/Usuario");
             myRef.setValue(User.getText().toString());
+            myRef = database.getReference(reference + "/Correo");
+            myRef.setValue(correo.getText().toString());
 
             if (rbNuevoIngreso.isChecked() && !rbAlumnoInscrito.isChecked()) {
                 tipoUser = 1;
