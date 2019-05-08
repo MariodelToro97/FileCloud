@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">FileCloud</string>
+    <string name="logo">Logo FileCloud</string>
+    <string name="recuerdame">Recuérdame</string>
     <string name="Bienvenido">Bienvenido</string>
     <string name="Huella">Seleccione una opción</string>
     <string name="imgHuella">Imagen de huella digital</string>
@@ -35,4 +37,8 @@
     <string name="noExisteUsuario">El usuario insertado no existe en la base de datos</string>
     <string name="contraIncorrecta">La contraseña ingresada es incorrecta</string>
     <string name="InicioCorrecto">Inicio de Sesión correcto</string>
+    <string name="cancelado">Proceso Cancelado</string>
+    <string name="cargaCompleta">Carga del documento completada</string>
+    <string name="errorDocumento">Ha ocurrido un error en la carga del documento</string>
+    <string name="cerrarSesion">Se ha cerrado sesión de forma correcta</string>
 </resources>

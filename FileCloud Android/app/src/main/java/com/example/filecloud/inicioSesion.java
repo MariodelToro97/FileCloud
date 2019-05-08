@@ -1,11 +1,14 @@
 package com.example.filecloud;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +22,7 @@ public class inicioSesion extends AppCompatActivity {
     private Button btnCancelar;
     private  Button btnIniciarSesion;
     private EditText Usuario, Password;
+    private RadioButton rbRecuerdame;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -33,6 +37,8 @@ public class inicioSesion extends AppCompatActivity {
 
         Usuario = findViewById(R.id.userSesion);
         Password = findViewById(R.id.passwordSesion);
+
+        rbRecuerdame = findViewById(R.id.rememberme);
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +89,6 @@ public class inicioSesion extends AppCompatActivity {
 
         if (value != null){
             if (value.equals(user) && usuario) {
-
                 myRef = database.getReference("Users/" + user + "/Password");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -106,15 +111,36 @@ public class inicioSesion extends AppCompatActivity {
 
     public void obtenerContra(String value) {
         String pass = Password.getText().toString();
+        String user = Usuario.getText().toString();
+
+        BDUser bdUser = new BDUser(this, "personasBD", null, 1);
+        SQLiteDatabase db = bdUser.getWritableDatabase();
 
         if (value.equals(pass) && contra){
 
+            if (db != null){
 
-            Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
+                if (rbRecuerdame.isChecked()) {
+                    ContentValues registronuevo = new ContentValues();
+                    registronuevo.put("Nombre", user);
 
-            Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
-            startActivity(iniciar);
-            finish();
+                    long i = db.insert("Usuario", null, registronuevo);
+
+                    if (i > 0) {
+                        Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
+
+                        Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
+                        startActivity(iniciar);
+                        finish();
+                    }
+                } else {
+                    documentosElegir documento = new documentosElegir();
+                    documento.fijarUsuario(user);
+                    Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
+                    startActivity(iniciar);
+                    finish();
+                }
+            }
 
         } else if (contra){
             Toast.makeText(getApplicationContext(), R.string.contraIncorrecta, Toast.LENGTH_SHORT).show();
