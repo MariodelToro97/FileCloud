@@ -9,16 +9,26 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class documentosElegir extends AppCompatActivity {
 
@@ -27,7 +37,11 @@ public class documentosElegir extends AppCompatActivity {
     private Button btnCargarDocumento;
 
     private int VALOR_RETORNO = 1;
+
     private StorageReference storageRef;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef;
 
     String USUARIO;
 
@@ -66,6 +80,41 @@ public class documentosElegir extends AppCompatActivity {
                 cerrarSesion();
             }
         });
+
+        listDocumentos();
+    }
+
+    public void listDocumentos(){
+        myRef = database.getReference("DOCUMENTS/"+USUARIO);
+        //final ArrayList<String> files = new ArrayList<>();
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    String[] files = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];
+
+                    int i = 0;
+
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        files[i] = ds.getKey();
+                        i++;
+                    }
+
+                /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.list_content, files);
+                ListView lista = findViewById(R.id.listDocument);
+
+                lista.setAdapter(adapter);*/
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -82,7 +131,7 @@ public class documentosElegir extends AppCompatActivity {
             //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
             StorageReference riversRef = storageRef.child(USUARIO+"/"+ARCHIVO);
 
-            riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            /*riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             //Uri downloadUrl = taskSnapshot.getDownloadUrl();
@@ -95,7 +144,19 @@ public class documentosElegir extends AppCompatActivity {
                             // Handle unsuccessful uploads
                             Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    });*/
+
+            String reference = "DOCUMENTS/" + USUARIO;
+            myRef = database.getReference(reference + "/" + ARCHIVO);
+            myRef.setValue("1");
+
+            myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            Date date = new Date();
+            String fecha = dateFormat.format(date);
+
+            myRef.setValue(fecha);
         }
     }
 
