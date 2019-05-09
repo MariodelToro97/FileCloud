@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +38,10 @@ public class documentosElegir extends AppCompatActivity {
     private Button btnSolicitudes;
     private Button btnCargarDocumento;
 
+    private documentoAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private ArrayList<Documentos> mDocumentosList = new ArrayList<>();
+
     private int VALOR_RETORNO = 1;
 
     private StorageReference storageRef;
@@ -53,6 +59,9 @@ public class documentosElegir extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.CerrarSesion);
         btnSolicitudes = findViewById(R.id.solicitudes);
         btnCargarDocumento = findViewById(R.id.cargarDocumentos);
+        mRecyclerView = findViewById(R.id.recyclerList);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -93,20 +102,25 @@ public class documentosElegir extends AppCompatActivity {
 
                 if (dataSnapshot.exists()) {
                     String[] files = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];
+                    String[] fechas = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];
 
-                    int i = 0;
+                    mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        files[i] = ds.getKey();
-                        i++;
+                        mDocumentosList.add(new Documentos(ds.getKey(), ds.child("FechaCarga").getValue().toString()));
+                        //files[i] = ds.getKey();
+                        //fechas[i] = ds.child("FechaCarga").getValue().toString();
+                        //i++;
                     }
+
+                    mAdapter = new documentoAdapter(mDocumentosList, R.layout.documentos);
+                    mRecyclerView.setAdapter(mAdapter);
 
                 /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.list_content, files);
                 ListView lista = findViewById(R.id.listDocument);
 
                 lista.setAdapter(adapter);*/
                 }
-
             }
 
             @Override
