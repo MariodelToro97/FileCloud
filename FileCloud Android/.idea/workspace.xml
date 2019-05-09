@@ -68,12 +68,7 @@
     <last-search-timestamp>1557154374530</last-search-timestamp>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab06bc4-4d55-49cb-bc40-a7ffc9085804" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fab06bc4-4d55-49cb-bc40-a7ffc9085804" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,13 +87,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="103" column="126" selection-start-line="103" selection-start-column="126" selection-end-line="103" selection-end-column="126" />
+            <state relative-caret-position="216">
+              <caret line="98" column="72" lean-forward="true" selection-start-line="98" selection-start-column="72" selection-end-line="98" selection-end-column="72" />
               <folding>
                 <element signature="e#1957#2120#0" expanded="true" />
                 <element signature="e#2119#2120#0" expanded="true" />
-                <element signature="e#3395#3403#0" expanded="true" />
-                <element signature="e#3243#3259#0" expanded="true" />
+                <element signature="e#3925#3941#0" expanded="true" />
                 <element signature="e#5584#5606#0" expanded="true" />
                 <element signature="e#5632#5650#0" expanded="true" />
                 <element signature="e#5685#5696#0" expanded="true" />
@@ -373,7 +367,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32872504" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.32872504" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32872504" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32872504" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5015129" side_tool="true" weight="0.32565284" />
@@ -569,15 +563,23 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-28/android.jar!/android/widget/ArrayAdapter.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#4056#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="103" column="126" selection-start-line="103" selection-start-column="126" selection-end-line="103" selection-end-column="126" />
+        <state relative-caret-position="216">
+          <caret line="98" column="72" lean-forward="true" selection-start-line="98" selection-start-column="72" selection-end-line="98" selection-end-column="72" />
           <folding>
             <element signature="e#1957#2120#0" expanded="true" />
             <element signature="e#2119#2120#0" expanded="true" />
-            <element signature="e#3395#3403#0" expanded="true" />
-            <element signature="e#3243#3259#0" expanded="true" />
+            <element signature="e#3925#3941#0" expanded="true" />
             <element signature="e#5584#5606#0" expanded="true" />
             <element signature="e#5632#5650#0" expanded="true" />
             <element signature="e#5685#5696#0" expanded="true" />
