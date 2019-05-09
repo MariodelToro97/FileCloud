@@ -31,7 +31,7 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
         Documentos documento = documentoLista.get(index);
 
         viewHolder.nombre.setText(documento.getNombre());
-        viewHolder.fecha.setText(documento.getFecha());
+        viewHolder.fecha.setText("Fecha de carga: " + documento.getFecha());
     }
 
     @Override

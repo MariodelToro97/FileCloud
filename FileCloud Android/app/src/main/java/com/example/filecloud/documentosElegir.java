@@ -4,20 +4,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
+
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +34,8 @@ public class documentosElegir extends AppCompatActivity {
     private Button btnCerrarSesion;
     private Button btnSolicitudes;
     private Button btnCargarDocumento;
+    private Button btnEditarDocumento;
+    private Button btnEliminarDocumento;
 
     private documentoAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -50,6 +49,7 @@ public class documentosElegir extends AppCompatActivity {
     DatabaseReference myRef;
 
     String USUARIO;
+    String ARCHIVO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,9 @@ public class documentosElegir extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.CerrarSesion);
         btnSolicitudes = findViewById(R.id.solicitudes);
         btnCargarDocumento = findViewById(R.id.cargarDocumentos);
+        btnEditarDocumento = findViewById(R.id.editarRecycler);
+        btnEliminarDocumento = findViewById(R.id.deleteRecycler);
+
         mRecyclerView = findViewById(R.id.recyclerList);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -93,6 +96,16 @@ public class documentosElegir extends AppCompatActivity {
         listDocumentos();
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+
+        Toast.makeText(getApplicationContext(), "Se presionó " + index, Toast.LENGTH_SHORT);
+
+        return super.onContextItemSelected(item);
+    }
+
     public void listDocumentos(){
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
         //final ArrayList<String> files = new ArrayList<>();
@@ -101,8 +114,8 @@ public class documentosElegir extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
-                    String[] files = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];
-                    String[] fechas = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];
+                    /*String[] files = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];
+                    String[] fechas = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];*/
 
                     mDocumentosList.clear();
 
@@ -115,11 +128,6 @@ public class documentosElegir extends AppCompatActivity {
 
                     mAdapter = new documentoAdapter(mDocumentosList, R.layout.documentos);
                     mRecyclerView.setAdapter(mAdapter);
-
-                /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.list_content, files);
-                ListView lista = findViewById(R.id.listDocument);
-
-                lista.setAdapter(adapter);*/
                 }
             }
 
@@ -171,6 +179,8 @@ public class documentosElegir extends AppCompatActivity {
             String fecha = dateFormat.format(date);
 
             myRef.setValue(fecha);
+
+            listDocumentos();
         }
     }
 
@@ -207,8 +217,6 @@ public class documentosElegir extends AppCompatActivity {
         AlertDialog dialog = alert.create();
         dialog.show();
     }
-
-    String ARCHIVO;
 
     public void seleccionListaDocumentos() {
         final CharSequence[] items = {"Acta de Nacimiento", "CURP", "Certificado", "Recibo de pago"};

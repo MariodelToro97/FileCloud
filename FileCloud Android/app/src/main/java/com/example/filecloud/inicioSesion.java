@@ -89,6 +89,7 @@ public class inicioSesion extends AppCompatActivity {
 
         if (value != null){
             if (value.equals(user) && usuario) {
+                usuario = false;
                 myRef = database.getReference("Users/" + user + "/Password");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -105,46 +106,80 @@ public class inicioSesion extends AppCompatActivity {
                 });
             }
         } else if (usuario){
+            contra = true;
+            usuario = true;
             Toast.makeText(getApplicationContext(), R.string.noExisteUsuario, Toast.LENGTH_SHORT).show();
+            Usuario.setText("");
+            Password.setText("");
+            rbRecuerdame.setChecked(false);
+            Usuario.requestFocus();
         }
     }
 
     public void obtenerContra(String value) {
         String pass = Password.getText().toString();
-        String user = Usuario.getText().toString();
+        final String user = Usuario.getText().toString();
 
         BDUser bdUser = new BDUser(this, "personasBD", null, 1);
-        SQLiteDatabase db = bdUser.getWritableDatabase();
-        Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
+        final SQLiteDatabase db = bdUser.getWritableDatabase();
+        final Intent iniciar = new Intent(inicioSesion.this, documentosElegir.class);
 
         if (value.equals(pass) && contra){
+            contra = false;
+            myRef = database.getReference("Users/" + user + "/tipoUsuario");
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    int value = dataSnapshot.getValue(Integer.class);
 
-            if (db != null){
+                    if (value == 0){
+                        Toast.makeText(getApplicationContext(), R.string.admin, Toast.LENGTH_LONG).show();
+                        Usuario.setText("");
+                        Password.setText("");
+                        rbRecuerdame.setChecked(false);
+                        Usuario.requestFocus();
+                        contra = true;
+                        usuario = true;
+                    } else {
+                        if (db != null){
 
-                if (rbRecuerdame.isChecked()) {
-                    ContentValues registronuevo = new ContentValues();
-                    registronuevo.put("Nombre", user);
+                            if (rbRecuerdame.isChecked()) {
+                                ContentValues registronuevo = new ContentValues();
+                                registronuevo.put("Nombre", user);
 
-                    long i = db.insert("Usuario", null, registronuevo);
+                                long i = db.insert("Usuario", null, registronuevo);
 
-                    if (i > 0) {
-                        Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
+                                if (i > 0) {
+                                    Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
 
-                        iniciar.putExtra("USUARIO", user);
-                        startActivity(iniciar);
-                        finish();
+                                    iniciar.putExtra("USUARIO", user);
+                                    startActivity(iniciar);
+                                    finish();
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
+
+                                iniciar.putExtra("USUARIO", user);
+                                startActivity(iniciar);
+                                finish();
+                            }
+                        }
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
-
-                    iniciar.putExtra("USUARIO", user);
-                    startActivity(iniciar);
-                    finish();
                 }
-            }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                }
+            });
 
         } else if (contra){
+            contra = true;
+            usuario = true;
             Toast.makeText(getApplicationContext(), R.string.contraIncorrecta, Toast.LENGTH_SHORT).show();
+            Password.setText("");
+            Password.requestFocus();
         }
     }
 }
