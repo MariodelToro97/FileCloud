@@ -1,5 +1,7 @@
 package com.example.filecloud;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,9 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 
 import android.widget.Toast;
@@ -34,8 +35,7 @@ public class documentosElegir extends AppCompatActivity {
     private Button btnCerrarSesion;
     private Button btnSolicitudes;
     private Button btnCargarDocumento;
-    private Button btnEditarDocumento;
-    private Button btnEliminarDocumento;
+
 
     private documentoAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -59,8 +59,6 @@ public class documentosElegir extends AppCompatActivity {
         btnCerrarSesion = findViewById(R.id.CerrarSesion);
         btnSolicitudes = findViewById(R.id.solicitudes);
         btnCargarDocumento = findViewById(R.id.cargarDocumentos);
-        btnEditarDocumento = findViewById(R.id.editarRecycler);
-        btnEliminarDocumento = findViewById(R.id.deleteRecycler);
 
         mRecyclerView = findViewById(R.id.recyclerList);
 
@@ -96,16 +94,6 @@ public class documentosElegir extends AppCompatActivity {
         listDocumentos();
     }
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int index = info.position;
-
-        Toast.makeText(getApplicationContext(), "Se presionó " + index, Toast.LENGTH_SHORT);
-
-        return super.onContextItemSelected(item);
-    }
-
     public void listDocumentos(){
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
         //final ArrayList<String> files = new ArrayList<>();
@@ -114,16 +102,11 @@ public class documentosElegir extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
-                    /*String[] files = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];
-                    String[] fechas = new String[Integer.parseInt(Long.toString(dataSnapshot.getChildrenCount()))];*/
 
                     mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        mDocumentosList.add(new Documentos(ds.getKey(), ds.child("FechaCarga").getValue().toString()));
-                        //files[i] = ds.getKey();
-                        //fechas[i] = ds.child("FechaCarga").getValue().toString();
-                        //i++;
+                        mDocumentosList.add(new Documentos(ds.getKey(), ds.child("FechaCarga").getValue().toString(), USUARIO));
                     }
 
                     mAdapter = new documentoAdapter(mDocumentosList, R.layout.documentos);
@@ -148,40 +131,59 @@ public class documentosElegir extends AppCompatActivity {
         }
         if ((resultCode == RESULT_OK) && (requestCode == VALOR_RETORNO)) {
             //Procesar el resultado
-            Uri file = data.getData(); //obtener el uri content
+            Documentos docX = new Documentos(ARCHIVO);
+            ARCHIVO = docX.getARCHIVO();
 
-            //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-            StorageReference riversRef = storageRef.child(USUARIO+"/"+ARCHIVO);
+            Toast.makeText(getApplicationContext(), "VALOR NULLL " + ARCHIVO, Toast.LENGTH_SHORT).show();
+            //Log.e("VALOR NULL", data.getStringExtra("HOLA"));
+            if (ARCHIVO != null) {
 
-            /*riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                            Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle unsuccessful uploads
-                            Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
-                        }
-                    });*/
+                Uri file = data.getData(); //obtener el uri content
 
-            String reference = "DOCUMENTS/" + USUARIO;
-            myRef = database.getReference(reference + "/" + ARCHIVO);
-            myRef.setValue("1");
+                //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
+                StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
 
-            myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
+        /*riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
+                    }
+                });*/
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-            Date date = new Date();
-            String fecha = dateFormat.format(date);
+                String reference = "DOCUMENTS/" + USUARIO;
+                myRef = database.getReference(reference + "/" + ARCHIVO);
+                myRef.setValue("1");
 
-            myRef.setValue(fecha);
+                myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                Date date = new Date();
+                String fecha = dateFormat.format(date);
+
+                myRef.setValue(fecha);
+            } else {
+
+            }
 
             listDocumentos();
         }
+    }
+
+    public void editarDocumento(String documento, Context context){
+        Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
+        ARCHIVO = documento;
+
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/pdf");
+        ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
     }
 
     public void cerrarSesion(){
@@ -245,6 +247,10 @@ public class documentosElegir extends AppCompatActivity {
                         break;
                 }
                 dialogInterface.cancel();
+
+                Documentos docX = new Documentos(ARCHIVO);
+                docX.setARCHIVO(ARCHIVO);
+
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
                 startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);

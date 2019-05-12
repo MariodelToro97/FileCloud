@@ -2,15 +2,36 @@ package com.example.filecloud;
 
 public class Documentos {
 
-    private String Nombre, Fecha;
+    private String Nombre, Fecha, Usuario, ARCHIVO;
 
     public Documentos(){
 
     }
 
-    public Documentos(String nombre, String fecha) {
+    public String getUsuario() {
+        return Usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        Usuario = usuario;
+    }
+
+    public Documentos(String nombre, String fecha, String usuario) {
         Nombre = nombre;
         Fecha = fecha;
+        Usuario = usuario;
+    }
+
+    public String getARCHIVO() {
+        return ARCHIVO;
+    }
+
+    public void setARCHIVO(String ARCHIVO) {
+        this.ARCHIVO = ARCHIVO;
+    }
+
+    public Documentos (String ARCHIVO) {
+        this.ARCHIVO = ARCHIVO;
     }
 
     public String getNombre() {
