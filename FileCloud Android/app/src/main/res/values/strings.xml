@@ -56,4 +56,6 @@
     <string name="borrarDocumento">Borrar Documento</string>
     <string name="confirmDeleteFile">¿Está seguro de eliminar el documento?</string>
     <string name="atender">Atender Solicitud</string>
+    <string name="noInternet">En este momento el dispositivo no tiene Internet, lo invitamos a conectar su dispositivo a la red</string>
+    <string name="titleNoInternte">Sin conexión a Internet</string>
 </resources>
