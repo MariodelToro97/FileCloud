@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import android.widget.Button;
 
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -143,7 +147,7 @@ public class documentosElegir extends AppCompatActivity {
                 //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
                 StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
 
-        /*riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         //Uri downloadUrl = taskSnapshot.getDownloadUrl();
@@ -156,7 +160,7 @@ public class documentosElegir extends AppCompatActivity {
                         // Handle unsuccessful uploads
                         Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
                     }
-                });*/
+                });
 
                 String reference = "DOCUMENTS/" + USUARIO;
                 myRef = database.getReference(reference + "/" + ARCHIVO);
@@ -175,6 +179,31 @@ public class documentosElegir extends AppCompatActivity {
 
             listDocumentos();
         }
+    }
+
+    public void eliminarDocumento(final String usuario, final String documento, final Context context){
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setMessage(R.string.confirmDeleteFile);
+        alert.setTitle(R.string.borrarDocumento);
+        alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                eliminarDocumento eliminarDocumento = new eliminarDocumento();
+                eliminarDocumento.eliminar(usuario, documento, context);
+                listDocumentos();
+            }
+        });
+        alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
+
     }
 
     public void editarDocumento(String documento, Context context){

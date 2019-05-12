@@ -53,4 +53,6 @@
     <string name="email">Correo</string>
     <string name="seleccionFile">Selecciona que archivo vas a subir</string>
     <string name="deleteFile">Archivo borrado con éxito</string>
+    <string name="borrarDocumento">Borrar Documento</string>
+    <string name="confirmDeleteFile">¿Está seguro de eliminar el documento?</string>
 </resources>

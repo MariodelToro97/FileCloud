@@ -75,15 +75,16 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
 
         @Override
         public void onClick(View view) {
+            documentosElegir elegir = new documentosElegir();
             switch (view.getId()){
                 case  R.id.editarRecycler:
-                    documentosElegir elegir = new documentosElegir();
+
                     elegir.editarDocumento(nombre.getText().toString(), context);
                     break;
 
                 case R.id.deleteRecycler:
-                    eliminarDocumento eliminarDocumento = new eliminarDocumento();
-                    eliminarDocumento.eliminar(usuario.getText().toString(), nombre.getText().toString(), context);
+                    elegir.eliminarDocumento(usuario.getText().toString(), nombre.getText().toString(), context);
+
                     break;
             }
         }
