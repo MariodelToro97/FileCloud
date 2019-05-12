@@ -100,6 +100,14 @@ public class documentosElegir extends AppCompatActivity {
             }
         });
 
+        // Seteamos los colores que se usarán a lo largo de la animación
+        refreshLayout.setColorSchemeResources(
+                R.color.s1,
+                R.color.s2,
+                R.color.s3,
+                R.color.s4
+        );
+
         // Iniciar la tarea asíncrona al revelar el indicador
         refreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
@@ -111,7 +119,7 @@ public class documentosElegir extends AppCompatActivity {
                             public void run() {
                                refreshLayout.setRefreshing(false);
                             }
-                        }, 3000);
+                        }, 4000);
                     }
                 }
         );
