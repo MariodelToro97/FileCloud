@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/swipeRefreshLayout2"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -35,17 +35,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="395dp"
-        android:layout_height="486dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout2"
+        android:layout_width="388dp"
+        android:layout_height="366dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="395dp"
+            android:layout_height="486dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <TextView
         android:id="@+id/textView10"
