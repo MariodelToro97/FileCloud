@@ -44,9 +44,9 @@ public class eliminarDocumento extends AppCompatActivity {
         DatabaseReference currentUserBD = mDatabase.child(user+"/"+documento);
         currentUserBD.removeValue();
 
-        Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
         documentosElegir doc = new documentosElegir();
         doc.listDocumentos();
-    }
 
+        Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
+    }
 }

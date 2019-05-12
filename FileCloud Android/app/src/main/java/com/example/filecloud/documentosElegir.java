@@ -6,7 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +43,7 @@ public class documentosElegir extends AppCompatActivity {
     private Button btnSolicitudes;
     private Button btnCargarDocumento;
 
+    private SwipeRefreshLayout refreshLayout;
 
     private documentoAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -65,6 +69,7 @@ public class documentosElegir extends AppCompatActivity {
         btnCargarDocumento = findViewById(R.id.cargarDocumentos);
 
         mRecyclerView = findViewById(R.id.recyclerList);
+        refreshLayout = findViewById(R.id.swipeRefreshLayout);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -94,6 +99,22 @@ public class documentosElegir extends AppCompatActivity {
                 cerrarSesion();
             }
         });
+
+        // Iniciar la tarea asíncrona al revelar el indicador
+        refreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        listDocumentos();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                               refreshLayout.setRefreshing(false);
+                            }
+                        }, 3000);
+                    }
+                }
+        );
 
         listDocumentos();
     }
@@ -191,7 +212,6 @@ public class documentosElegir extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 eliminarDocumento eliminarDocumento = new eliminarDocumento();
                 eliminarDocumento.eliminar(usuario, documento, context);
-                listDocumentos();
             }
         });
         alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -203,7 +223,6 @@ public class documentosElegir extends AppCompatActivity {
 
         AlertDialog dialog = alert.create();
         dialog.show();
-
     }
 
     public void editarDocumento(String documento, Context context){

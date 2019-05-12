@@ -84,7 +84,6 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
 
                 case R.id.deleteRecycler:
                     elegir.eliminarDocumento(usuario.getText().toString(), nombre.getText().toString(), context);
-
                     break;
             }
         }
