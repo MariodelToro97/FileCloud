@@ -55,4 +55,5 @@
     <string name="deleteFile">Archivo borrado con éxito</string>
     <string name="borrarDocumento">Borrar Documento</string>
     <string name="confirmDeleteFile">¿Está seguro de eliminar el documento?</string>
+    <string name="atender">Atender Solicitud</string>
 </resources>

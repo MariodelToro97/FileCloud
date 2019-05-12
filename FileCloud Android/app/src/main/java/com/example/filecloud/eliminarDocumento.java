@@ -28,7 +28,6 @@ public class eliminarDocumento extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 // File deleted successfully
                 eliminarDos(context, user, documento);
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
