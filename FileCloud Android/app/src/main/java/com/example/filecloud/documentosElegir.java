@@ -129,7 +129,6 @@ public class documentosElegir extends AppCompatActivity {
 
     public void listDocumentos(){
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
-        //final ArrayList<String> files = new ArrayList<>();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -167,8 +166,6 @@ public class documentosElegir extends AppCompatActivity {
             Documentos docX = new Documentos(ARCHIVO);
             ARCHIVO = docX.getARCHIVO();
 
-            Toast.makeText(getApplicationContext(), "VALOR NULLL " + ARCHIVO, Toast.LENGTH_SHORT).show();
-            //Log.e("VALOR NULL", data.getStringExtra("HOLA"));
             if (ARCHIVO != null) {
 
                 Uri file = data.getData(); //obtener el uri content

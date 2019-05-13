@@ -50,7 +50,7 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView nombre, fecha, usuario;
+        private TextView nombre, fecha, usuario, estado;
         public View view;
         private Button btnEditarDocumento;
         private Button btnEliminarDocumento;
