@@ -68,21 +68,7 @@
     <last-search-timestamp>1557154374530</last-search-timestamp>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab06bc4-4d55-49cb-bc40-a7ffc9085804" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud WEB/FileCloud_lara/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud WEB/FileCloud_lara/public/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud WEB/FileCloud_lara/public/web.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud WEB/FileCloud_lara/resources/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud WEB/FileCloud_lara/resources/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud WEB/FileCloud_lara/webpack.mix.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud Web/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud Web/public/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud Web/public/web.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud Web/resources/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud Web/resources/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FileCloud Web/webpack.mix.js" beforeDir="false" />
-    </list>
+    <list default="true" id="fab06bc4-4d55-49cb-bc40-a7ffc9085804" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +139,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudes.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="143" column="87" lean-forward="true" selection-start-line="143" selection-start-column="87" selection-end-line="143" selection-end-column="87" />
+              <caret line="143" column="87" selection-start-line="143" selection-start-column="87" selection-end-line="143" selection-end-column="87" />
             </state>
           </provider>
         </entry>
@@ -228,7 +214,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="775" />
@@ -370,7 +356,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" weight="0.13313162" />
@@ -386,7 +373,7 @@
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32872504" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32872504" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5015129" side_tool="true" weight="0.32565284" />
-      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.49848714" weight="0.32565284" />
+      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.49848714" visible="true" weight="0.32104453" />
       <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" weight="0.32872504" />
       <window_info anchor="bottom" id="Run" order="7" weight="0.32872504" />
       <window_info anchor="bottom" id="Debug" order="8" />
@@ -471,12 +458,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/BDUser.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -498,16 +485,16 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_file_cloud.xml">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="564">
           <caret line="176" column="16" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="52" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml" />
     <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-28/android.jar!/android/widget/ArrayAdapter.class">
@@ -541,16 +528,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/eliminarDocumento.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -591,12 +578,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -606,12 +593,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/documentos.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Documentos.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -670,25 +657,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_solicitudes.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="986">
           <caret line="58" column="68" selection-start-line="58" selection-start-column="68" selection-end-line="58" selection-end-column="68" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/solicitudes.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="1156">
           <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="143" column="87" lean-forward="true" selection-start-line="143" selection-start-column="87" selection-end-line="143" selection-end-column="87" />
+          <caret line="143" column="87" selection-start-line="143" selection-start-column="87" selection-end-line="143" selection-end-column="87" />
         </state>
       </provider>
     </entry>
