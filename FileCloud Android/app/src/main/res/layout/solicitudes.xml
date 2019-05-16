@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="190dp">
+
+    <TextView
+        android:id="@+id/txtNombreDocumento"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="31dp"
+        android:text="Nombre Documento"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="105dp"
+        android:layout_height="126dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="278dp"
+        android:background="@drawable/solicitudes"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/solicitudes" />
+
+    <TextView
+        android:id="@+id/txtFechaSolicitud"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNombreDocumento"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="31dp"
+        android:text="Fecha"
+        android:textAlignment="center"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txtNombreSolicitudes"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtFechaSolicitud"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="31dp"
+        android:text="Nombre Solicitante"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/btnAtenderSolicitud"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="214dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/txtNombreSolicitudes"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="19dp"
+        android:background="@color/r4"
+        android:shadowRadius="15"
+        android:text="@string/atender"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txtUsuarioReceptor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/txtEstadoSolicitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="0dp"
+        android:text="TextView"
+        android:visibility="invisible" />
+</RelativeLayout>
