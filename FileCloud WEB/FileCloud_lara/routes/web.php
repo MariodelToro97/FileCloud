@@ -12,9 +12,22 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/historialRequisiciones', 'HistorialRequisicionController@index');
+
+Route::get('/phpfirebase_sdk','FirebaseController@index');
+
+Route::post('/RegistrarAdmin','FirebaseController@InsertAdmin');
+
+Route::post('/Requisicion','FirebaseController@InsertReq');
+
+Route::get('/phpfirebase','FirebaseController@getDataReq');
+
+Route::get('/getDocuments','FirebaseController@getDataDocuments');
+
