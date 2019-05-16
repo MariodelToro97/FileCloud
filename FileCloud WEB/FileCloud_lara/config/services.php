@@ -44,4 +44,12 @@ return [
         ],
     ],
 
+    'firebase' => [
+        'api_key' => 'api_key', // Only used for JS integration
+        'auth_domain' => 'auth_domain', // Only used for JS integration
+        'database_url' => 'https://filecloud-bcc76.firebaseio.com/',
+        'secret' => 'secret',
+        'storage_bucket' => '', // Only used for JS integration
+    ],
+
 ];
