@@ -40,13 +40,16 @@
       </tr>
     </thead>
     <tbody>
+    
+    <h2></h2>
       <tr>
         <th scope="row">1</th>
-        <td>Acta de nacimiento</td>
+        <td></td>
         <td></td>
         <td></td>
         <td><a href="#">Descargar</a></td>
       </tr>
+    
       <tr>
         <th scope="row">2</th>
         <td>CURP</td>
