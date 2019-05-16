@@ -43,19 +43,17 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
-<!--                             @if (Route::has('register'))
+                            @if (Route::has('register'))
                            <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                                 </li>
-                            @endif -->
+                            @endif
                         @else
                             <li class="nav-item-active">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar Administrador') }}</a>
+                                <a class="nav-link" href="#agregarAdmin" data-toggle="modal" data-target="#agregarAdmin" data-toggle="tooltip" data-placement="bottom" title="Crear">Registrar administrativo</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="#modalRequisicion" data-toggle="modal" data-target="#modalRequisicion" data-toggle="tooltip" data-placement="bottom" title="Crear">Solicitar
-                                    Documentos
-                                </a>
+                                <a class="nav-link" href="#modalRequisicion" data-toggle="modal" data-target="#modalRequisicion" data-toggle="tooltip" data-placement="bottom" title="Registrar">Solicitar documentos</a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{URL::to('/historialRequisiciones')}}" data-toggle="tooltip" data-placement="bottom" title="Solicitud de documentos">
