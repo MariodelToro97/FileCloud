@@ -62,12 +62,10 @@ class FirebaseController extends Controller
         ]);
     }
 
-    
-
     public function InsertAdmin(AdminRequest $request){
         $data = request()->all();
         $Referece = 'Users/'.$data['username'];
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'DatabaseFirebase.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->create();
@@ -76,12 +74,11 @@ class FirebaseController extends Controller
                 'Usuario' => $data['username'] ,
                 'Password' => $data['password'],
                 'Nombre' => $data['firstName'].' '.$data['lastName'].' '.$data['secondLastName'],
-                'ApellidoPaterno' => $data['lastName'],
-                'ApellidoMaterno' => $data['secondLastName'],
+                'apellidoPaterno' => $data['lastName'],
+                'apellidoMaterno' => $data['secondLastName'],
                 'Correo' => $data['email'],
                 'Telefono' => $data['address'],
-                'fechaRegistro' => date("d").'/'.date("m").'/'.date("Y"),
-                'horaRegistro' => date("G").':'.date("i").':'.date("s"), 
+                'fechaRegistro' => date("d").'-'.date("m").'-'.date("Y"),
                 'TipoUsuario' => '0'
             ]);
          
@@ -89,29 +86,45 @@ class FirebaseController extends Controller
     }
 
     public function InsertReq(RequisicionRequest $request){
-        $fecha = getdate();
         $data = request()->all();
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'DatabaseFirebase.json');
+        if($data['documento']="1"){
+            $dataReference = 'Requisiciones/'.$data['user'].'/ACTA';
+        
+        }
+        if($data['documento']="2"){
+            $dataReference = 'Requisiciones/'.$data['user'].'/CURP';
+        }
+
+        if($data['documento']="3"){
+            $dataReference = 'Requisiciones/'.$data['user'].'/CERTIFICADO';
+        }
+        
+        if($data['documento']="4"){
+            $dataReference = 'Requisiciones/'.$data['user'].'/RECIBO';
+        }
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
         ->withServiceAccount($serviceAccount)
         ->withDatabaseUri('https://filecloud-c4da4.firebaseio.com/')
         ->create();
         $database = $firebase->getDatabase();
-        $database->getReference('Requisiciones/'.$data['user'])->set([
+        $database->getReference($dataReference)->set([
         'Usuario' => $data['user'],   
         'Mensaje' => $data['message-text'],
-        'Fecha' => date("d").'/'.date("m").'/'.date("Y"),
+        'Fecha' => date("d").'-'.date("m").'-'.date("Y"),
         'Hora' => date("G").':'.date("i").':'.date("s"),
         'UsuarioCreador' => $data['creator-message']
         ]);
+        
+        echo($dataReference.' '. 'recibí esto: '.$data['documento']);
 
-        return redirect('/home');
+        /* return redirect('/home'); */
 
     }
 
     public function getDataReq(){
         /* $data = request()->all(); */
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'DatabaseFirebase.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
         ->withServiceAccount($serviceAccount)
         ->withDatabaseUri('https://filecloud-c4da4.firebaseio.com/')
@@ -125,7 +138,7 @@ class FirebaseController extends Controller
 
     public function getDataDocuments(){
         $data = request()->all();
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'DatabaseFirebase.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
         ->withServiceAccount($serviceAccount)
         ->withDatabaseUri('https://filecloud-c4da4.firebaseio.com/')

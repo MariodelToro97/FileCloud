@@ -107,6 +107,16 @@
             <textarea class="form-control shadow p-3 mb-5 bg-white rounded" id="message-text" name="message-text" required ></textarea>
             <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
           </div>
+          <div class="form-group" >
+          <label for="documento">Elija el documento que desea solicitar</label>
+          <select class="form-control" name="documento" id="documento">
+            <option value="0" selected>Seleccionar...</option>
+            <option value="1">Acta de nacimiento</option>
+            <option value="2">CURP</option>
+            <option value="3">Certificado de calificaciones</option>
+            <option value="4">Recibo de pago</option>
+          </select>
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             <button type="submit" class="btn btn-success">Enviar requisición</button>
