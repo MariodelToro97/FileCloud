@@ -1,12 +1,14 @@
 package com.example.filecloud;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -23,12 +25,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -163,21 +167,34 @@ public class documentosElegir extends AppCompatActivity {
         }
         if ((resultCode == RESULT_OK) && (requestCode == VALOR_RETORNO)) {
             //Procesar el resultado
+            final ProgressDialog progressDialog = new ProgressDialog(documentosElegir.this);
+
             Documentos docX = new Documentos(ARCHIVO);
             ARCHIVO = docX.getARCHIVO();
 
             if (ARCHIVO != null) {
-
                 Uri file = data.getData(); //obtener el uri content
 
                 //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-                StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
+                final StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
 
-        riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                progressDialog.setTitle("Carga Documento");
+                progressDialog.setMessage("Proceso de carga de documento");
+                progressDialog.show();
+
+                riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
+                    storageRef.child(USUARIO + "/" + ARCHIVO).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            // Got the download URL for 'users/me/profile.png'
+                            myRef = database.getReference("DOCUMENTS/" + USUARIO + "/" + ARCHIVO + "/urlDocumento");
+                            myRef.setValue(uri.toString());
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -189,18 +206,66 @@ public class documentosElegir extends AppCompatActivity {
                 });
 
                 String reference = "DOCUMENTS/" + USUARIO;
-                myRef = database.getReference(reference + "/" + ARCHIVO);
-                myRef.setValue("1");
-
                 myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                 Date date = new Date();
                 String fecha = dateFormat.format(date);
-
                 myRef.setValue(fecha);
-            } else {
 
+            } else {
+                BDUser sql = new BDUser(this, "personasBD", null, 1);
+                SQLiteDatabase db = sql.getReadableDatabase();
+
+                if (db != null) {
+                    Cursor c = db.rawQuery("SELECT * FROM Documentos", null);
+
+                    int i = 0;
+
+                    if (c.moveToFirst()) {
+                        do {
+                            ARCHIVO = c.getString(0);
+                        } while (c.moveToNext());
+                    }
+                }
+
+                Uri file = data.getData(); //obtener el uri content
+
+                //final Task<Uri>[] downloadUrl = new Task[1];
+                final String[] downloadUrl = new String[1];
+                String val;
+
+                //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
+                final StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
+
+                riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        downloadUrl[0] = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                        Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle unsuccessful uploads
+                                Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                String reference = "DOCUMENTS/" + USUARIO;
+                myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                Date date = new Date();
+                String fecha = dateFormat.format(date);
+                myRef.setValue(fecha);
+                val = downloadUrl[0];
+
+                myRef = database.getReference(reference + "/" + ARCHIVO + "/urlDocumento");
+                myRef.setValue(val);
+
+                db.execSQL("DELETE FROM Documentos");
             }
 
             listDocumentos();
@@ -231,12 +296,23 @@ public class documentosElegir extends AppCompatActivity {
     }
 
     public void editarDocumento(String documento, Context context){
-        Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
-        ARCHIVO = documento;
+        BDUser bdUser = new BDUser(this, "personasBD", null, 1);
+        final SQLiteDatabase db = bdUser.getWritableDatabase();
 
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("application/pdf");
-        ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+        if (db != null) {
+            Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
+
+            ContentValues editFile = new ContentValues();
+            editFile.put("Nombre", documento);
+
+            long i = db.insert("Documentos", null, editFile);
+
+            if (i > 0) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/pdf");
+                ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+            }
+        }
     }
 
     public void cerrarSesion(){

@@ -94,7 +94,7 @@ public class solicitudes extends AppCompatActivity {
     }
 
     public void listDocumentos(){
-        myRef = database.getReference("Solicitudes/"+USUARIO);
+        myRef = database.getReference("Requisiciones/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -104,7 +104,7 @@ public class solicitudes extends AppCompatActivity {
                     mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        mDocumentosList.add(new SolicitudesClass(ds.child("Requisito").getValue().toString(), USUARIO, ds.child("Documento").getValue().toString(), ds.child("Fecha").getValue().toString(), Integer.parseInt(ds.child("Estado").getValue().toString())));
+                        mDocumentosList.add(new SolicitudesClass(ds.child("UsuarioCreador").getValue().toString(), USUARIO, ds.child("Documento").getValue().toString(), ds.child("Fecha").getValue().toString(), Integer.parseInt(ds.child("Estado").getValue().toString())));
                     }
 
                     mAdapter = new solicitudesAdapter(R.layout.solicitudes, mDocumentosList);
@@ -129,7 +129,7 @@ public class solicitudes extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_CANCELED) {
+        /*if (resultCode == RESULT_CANCELED) {
             //Cancelado por el usuario
             Toast.makeText(getApplicationContext(), R.string.cancelado, Toast.LENGTH_SHORT).show();
         }
@@ -159,6 +159,6 @@ public class solicitudes extends AppCompatActivity {
                         });
 
             listDocumentos();
-        }
+        }*/
     }
 }
