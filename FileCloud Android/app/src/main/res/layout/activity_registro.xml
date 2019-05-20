@@ -132,8 +132,9 @@
                 android:text="@string/tipoUsuario"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailText" />
+                app:layout_constraintTop_toBottomOf="@+id/editText" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -221,7 +222,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/contrasenaText" />
 
             <EditText
-                android:id="@+id/emailText"
+                android:id="@+id/phone"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -232,8 +233,24 @@
                 android:inputType="textEmailAddress"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.487"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/maternoText" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:hint="@string/phone"
+                android:inputType="number"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

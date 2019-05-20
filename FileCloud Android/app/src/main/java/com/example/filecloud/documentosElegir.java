@@ -167,51 +167,16 @@ public class documentosElegir extends AppCompatActivity {
         }
         if ((resultCode == RESULT_OK) && (requestCode == VALOR_RETORNO)) {
             //Procesar el resultado
-            final ProgressDialog progressDialog = new ProgressDialog(documentosElegir.this);
 
             Documentos docX = new Documentos(ARCHIVO);
             ARCHIVO = docX.getARCHIVO();
 
+            Uri file = data.getData(); //obtener el uri content
+
             if (ARCHIVO != null) {
-                Uri file = data.getData(); //obtener el uri content
 
                 //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-                final StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
-
-                progressDialog.setTitle("Carga Documento");
-                progressDialog.setMessage("Proceso de carga de documento");
-                progressDialog.show();
-
-                riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    storageRef.child(USUARIO + "/" + ARCHIVO).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            // Got the download URL for 'users/me/profile.png'
-                            myRef = database.getReference("DOCUMENTS/" + USUARIO + "/" + ARCHIVO + "/urlDocumento");
-                            myRef.setValue(uri.toString());
-                            progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                String reference = "DOCUMENTS/" + USUARIO;
-                myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                Date date = new Date();
-                String fecha = dateFormat.format(date);
-                myRef.setValue(fecha);
+                cargarDocumentoProcess(file);
 
             } else {
                 BDUser sql = new BDUser(this, "personasBD", null, 1);
@@ -229,47 +194,53 @@ public class documentosElegir extends AppCompatActivity {
                     }
                 }
 
-                Uri file = data.getData(); //obtener el uri content
-
-                //final Task<Uri>[] downloadUrl = new Task[1];
-                final String[] downloadUrl = new String[1];
-                String val;
-
                 //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-                final StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
-
-                riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        downloadUrl[0] = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                        Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                // Handle unsuccessful uploads
-                                Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                String reference = "DOCUMENTS/" + USUARIO;
-                myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                Date date = new Date();
-                String fecha = dateFormat.format(date);
-                myRef.setValue(fecha);
-                val = downloadUrl[0];
-
-                myRef = database.getReference(reference + "/" + ARCHIVO + "/urlDocumento");
-                myRef.setValue(val);
+                cargarDocumentoProcess(file);
 
                 db.execSQL("DELETE FROM Documentos");
             }
 
             listDocumentos();
         }
+    }
+
+    public void cargarDocumentoProcess(Uri file){
+        final StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
+        final ProgressDialog progressDialog = new ProgressDialog(documentosElegir.this);
+
+        progressDialog.setTitle(R.string.loadFile);
+        progressDialog.setMessage("Espere un momento, se está realizando la carga de su documento");
+        progressDialog.show();
+
+        riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            storageRef.child(USUARIO + "/" + ARCHIVO).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    // Got the download URL for 'users/me/profile.png'
+                    myRef = database.getReference("DOCUMENTS/" + USUARIO + "/" + ARCHIVO + "/urlDocumento");
+                    myRef.setValue(uri.toString());
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
+                }
+            });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        String reference = "DOCUMENTS/" + USUARIO;
+        myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        Date date = new Date();
+        String fecha = dateFormat.format(date);
+        myRef.setValue(fecha);
     }
 
     public void eliminarDocumento(final String usuario, final String documento, final Context context){
@@ -296,7 +267,7 @@ public class documentosElegir extends AppCompatActivity {
     }
 
     public void editarDocumento(String documento, Context context){
-        BDUser bdUser = new BDUser(this, "personasBD", null, 1);
+        BDUser bdUser = new BDUser(context, "personasBD", null, 1);
         final SQLiteDatabase db = bdUser.getWritableDatabase();
 
         if (db != null) {

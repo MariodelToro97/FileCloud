@@ -3,7 +3,6 @@ package com.example.filecloud;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +26,7 @@ public class Registro extends AppCompatActivity {
     private Button btnRegistro;
     private RadioButton rbNuevoIngreso;
     private RadioButton rbAlumnoInscrito;
-    private EditText User;
+    private EditText User, Telefono;
     private RadioGroup rbgrupo;
     private EditText nombre, apellidoPaterno, apelllidoMaterno, contrasena, confirmContrasena, correo;
 
@@ -51,7 +50,8 @@ public class Registro extends AppCompatActivity {
         contrasena = findViewById(R.id.contrasenaText);
         confirmContrasena = findViewById(R.id.confirmContrasenaText);
         User = findViewById(R.id.userText);
-        correo = findViewById(R.id.emailText);
+        correo = findViewById(R.id.phone);
+        Telefono = findViewById(R.id.phone);
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +63,9 @@ public class Registro extends AppCompatActivity {
                 String contra = contrasena.getText().toString();
                 String confirmCon = confirmContrasena.getText().toString();
                 String email = correo.getText().toString();
+                String tel = Telefono.getText().toString();
 
-                if (usuario.isEmpty() || contra.isEmpty() || confirmCon.isEmpty() || name.isEmpty() || materno.isEmpty() || paterno.isEmpty() || email.isEmpty()){
+                if (usuario.isEmpty() || contra.isEmpty() || confirmCon.isEmpty() || name.isEmpty() || materno.isEmpty() || paterno.isEmpty() || email.isEmpty() || tel.isEmpty()){
                     Toast.makeText(getApplicationContext(), R.string.vacio, Toast.LENGTH_LONG).show();
                 } else {
                     if (contrasena.getText().toString().equals(confirmContrasena.getText().toString())) {
@@ -157,6 +158,9 @@ public class Registro extends AppCompatActivity {
 
             myRef = database.getReference(reference + "/fechaRegistro");
             myRef.setValue(fecha);
+
+            myRef = database.getReference(reference + "/Telefono");
+            myRef.setValue(Telefono.getText().toString());
 
             insertado = false;
 

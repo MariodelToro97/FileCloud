@@ -78,7 +78,6 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
             documentosElegir elegir = new documentosElegir();
             switch (view.getId()){
                 case  R.id.editarRecycler:
-
                     elegir.editarDocumento(nombre.getText().toString(), context);
                     break;
 

@@ -58,4 +58,7 @@
     <string name="atender">Atender Solicitud</string>
     <string name="noInternet">En este momento el dispositivo no tiene Internet, lo invitamos a conectar su dispositivo a la red</string>
     <string name="titleNoInternte">Sin conexión a Internet</string>
+    <string name="loadFile">Carga de Documentos</string>
+    <string name="messageLoadFile">Espere un momento, se está realizando la carga de su documento</string>
+    <string name="phone">Teléfono</string>
 </resources>
