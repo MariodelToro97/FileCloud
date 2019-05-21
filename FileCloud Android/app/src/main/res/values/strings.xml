@@ -61,4 +61,6 @@
     <string name="loadFile">Carga de Documentos</string>
     <string name="messageLoadFile">Espere un momento, se está realizando la carga de su documento</string>
     <string name="phone">Teléfono</string>
+    <string name="confirmEditFile">Editar Documento</string>
+    <string name="alertEditFile">¿Está seguro de editar el documento?</string>
 </resources>

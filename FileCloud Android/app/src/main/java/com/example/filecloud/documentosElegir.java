@@ -266,25 +266,42 @@ public class documentosElegir extends AppCompatActivity {
         dialog.show();
     }
 
-    public void editarDocumento(String documento, Context context){
-        BDUser bdUser = new BDUser(context, "personasBD", null, 1);
-        final SQLiteDatabase db = bdUser.getWritableDatabase();
+    public void editarDocumento(final String documento, final Context context){
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setMessage(R.string.alertEditFile);
+        alert.setTitle(R.string.confirmEditFile);
+        alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                BDUser bdUser = new BDUser(context, "personasBD", null, 1);
+                final SQLiteDatabase db = bdUser.getWritableDatabase();
 
-        if (db != null) {
-            db.execSQL("DELETE FROM Documentos");
-            Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
+                if (db != null) {
+                    db.execSQL("DELETE FROM Documentos");
+                    Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
 
-            ContentValues editFile = new ContentValues();
-            editFile.put("Nombre", documento);
+                    ContentValues editFile = new ContentValues();
+                    editFile.put("Nombre", documento);
 
-            long i = db.insert("Documentos", null, editFile);
+                    long h = db.insert("Documentos", null, editFile);
 
-            if (i > 0) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("application/pdf");
-                ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+                    if (h > 0) {
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("application/pdf");
+                        ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+                    }
+                }
             }
-        }
+        });
+        alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
     }
 
     public void cerrarSesion(){
