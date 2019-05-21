@@ -36,6 +36,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -67,6 +68,7 @@ public class documentosElegir extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentos_elegir);
+        //ARCHIVO = null;
 
         btnCerrarSesion = findViewById(R.id.CerrarSesion);
         btnSolicitudes = findViewById(R.id.solicitudes);
@@ -129,6 +131,10 @@ public class documentosElegir extends AppCompatActivity {
         );
 
         listDocumentos();
+
+        BDUser sql = new BDUser(this, "personasBD", null, 1);
+        SQLiteDatabase db = sql.getReadableDatabase();
+        db.execSQL("DELETE FROM Documentos");
     }
 
     public void listDocumentos(){
@@ -168,43 +174,36 @@ public class documentosElegir extends AppCompatActivity {
         if ((resultCode == RESULT_OK) && (requestCode == VALOR_RETORNO)) {
             //Procesar el resultado
 
-            Documentos docX = new Documentos(ARCHIVO);
-            ARCHIVO = docX.getARCHIVO();
+            BDUser sql = new BDUser(this, "personasBD", null, 1);
+            final SQLiteDatabase db = sql.getReadableDatabase();
 
-            Uri file = data.getData(); //obtener el uri content
+            if (db != null) {
+                Cursor c = db.rawQuery("SELECT * FROM Documentos", null);
 
-            if (ARCHIVO != null) {
+                int i = c.getCount();
 
-                //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-                cargarDocumentoProcess(file);
+                if (i == 0) {
+                    //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
+                    Uri file = data.getData(); //obtener el uri content
+                    //Uri file = Uri.fromFile(new File(path));
+                    cargarDocumentoProcess(file, db);
 
-            } else {
-                BDUser sql = new BDUser(this, "personasBD", null, 1);
-                SQLiteDatabase db = sql.getReadableDatabase();
-
-                if (db != null) {
-                    Cursor c = db.rawQuery("SELECT * FROM Documentos", null);
-
-                    int i = 0;
-
+                } else {
                     if (c.moveToFirst()) {
                         do {
                             ARCHIVO = c.getString(0);
                         } while (c.moveToNext());
                     }
+                    Uri file = data.getData(); //obtener el uri content
+                    //Uri file = Uri.fromFile(new File(path));
+                    cargarDocumentoProcess(file, db);
                 }
 
-                //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-                cargarDocumentoProcess(file);
-
-                db.execSQL("DELETE FROM Documentos");
             }
-
-            listDocumentos();
         }
     }
 
-    public void cargarDocumentoProcess(Uri file){
+    public void cargarDocumentoProcess(Uri file, final SQLiteDatabase db){
         final StorageReference riversRef = storageRef.child(USUARIO + "/" + ARCHIVO);
         final ProgressDialog progressDialog = new ProgressDialog(documentosElegir.this);
 
@@ -218,10 +217,19 @@ public class documentosElegir extends AppCompatActivity {
             storageRef.child(USUARIO + "/" + ARCHIVO).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    // Got the download URL for 'users/me/profile.png'
-                    myRef = database.getReference("DOCUMENTS/" + USUARIO + "/" + ARCHIVO + "/urlDocumento");
+                    String reference = "DOCUMENTS/" + USUARIO;
+                    myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    Date date = new Date();
+                    String fecha = dateFormat.format(date);
+                    myRef.setValue(fecha);
+
+                    myRef = database.getReference(reference + "/" + ARCHIVO + "/urlDocumento");
                     myRef.setValue(uri.toString());
                     progressDialog.dismiss();
+                    listDocumentos();
+                    db.execSQL("DELETE FROM Documentos");
                     Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -233,14 +241,6 @@ public class documentosElegir extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
             }
         });
-
-        String reference = "DOCUMENTS/" + USUARIO;
-        myRef = database.getReference(reference + "/" + ARCHIVO + "/FechaCarga");
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        Date date = new Date();
-        String fecha = dateFormat.format(date);
-        myRef.setValue(fecha);
     }
 
     public void eliminarDocumento(final String usuario, final String documento, final Context context){
@@ -271,6 +271,7 @@ public class documentosElegir extends AppCompatActivity {
         final SQLiteDatabase db = bdUser.getWritableDatabase();
 
         if (db != null) {
+            db.execSQL("DELETE FROM Documentos");
             Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
 
             ContentValues editFile = new ContentValues();
@@ -347,9 +348,6 @@ public class documentosElegir extends AppCompatActivity {
                         break;
                 }
                 dialogInterface.cancel();
-
-                Documentos docX = new Documentos(ARCHIVO);
-                docX.setARCHIVO(ARCHIVO);
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");

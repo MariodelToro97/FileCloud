@@ -50,7 +50,7 @@ public class Registro extends AppCompatActivity {
         contrasena = findViewById(R.id.contrasenaText);
         confirmContrasena = findViewById(R.id.confirmContrasenaText);
         User = findViewById(R.id.userText);
-        correo = findViewById(R.id.phone);
+        correo = findViewById(R.id.correo);
         Telefono = findViewById(R.id.phone);
 
         btnRegistro.setOnClickListener(new View.OnClickListener() {
