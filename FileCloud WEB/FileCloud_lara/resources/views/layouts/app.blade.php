@@ -43,23 +43,17 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                           
-                            @endif
                         @else
-                            <li class="nav-item">
+                            @if(Auth::user()->name == "José Miguel")
+                            <li class="nav-item active">
                                 <a class="nav-link" href="#agregarAdmin" data-toggle="modal" data-target="#agregarAdmin" data-toggle="tooltip" data-placement="bottom" title="Crear">Registrar administrativo</a>
                             </li>
+                            @endif
                             <li class="nav-item active">
-                                <a class="nav-link" href="#modalRequisicion" data-toggle="modal" data-target="#modalRequisicion" data-toggle="tooltip" data-placement="bottom" title="Registrar">Solicitar documentos</a>
+                                <a class="nav-link" href="{{URL::to('/')}}/usersapprove" data-toggle="tooltip" data-placement="bottom" title="Aprobar alumnos">Aprobación de alumnos</a>
                             </li>
                             <li class="nav-item active">
-                                <form action="" method="post">
-                                <a class="nav-link" href="{{URL::to('/')}}/historialRequisiciones" data-toggle="tooltip" data-placement="bottom" title="Solicitud de documentos">
-                                Solicitudes enviadas
-                                </a>
-                                <input type="hidden" value="{{ Auth::user()->name }}" id="userSession" name="userSession">
-                                </form>
+                                <a class="nav-link" href="{{URL::to('/')}}/Requisicion" data-toggle="tooltip" data-placement="bottom" title="Registrar">Solicitar documentos</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

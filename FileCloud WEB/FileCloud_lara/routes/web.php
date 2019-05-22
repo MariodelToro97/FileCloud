@@ -20,15 +20,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/historialRequisiciones', 'HistorialRequisicionController@index');
-
 Route::get('/RegistrarAdmin','FirebaseController@index');
-
-Route::get('/Requisicion','FirebaseController@index');
 
 Route::get('/getDocuments','FirebaseController@index');
 
-Route::get('/phpfirebase_sdk','FirebaseController@prueba'); 
+Route::get('/usersapprove','FirebaseController@bringnewusers');
+
+Route::get('/Requisicion','FirebaseController@Requisicion');
+
+Route::get('/listUser','FirebaseController@list');
 
 
 #Post Routes
@@ -37,8 +37,8 @@ Route::post('/RegistrarAdmin','FirebaseController@InsertAdmin');
 
 Route::post('/Requisicion','FirebaseController@InsertReq');
 
-Route::post('/phpfirebase','FirebaseController@getDataReq');
-
 Route::post('/getDocuments','FirebaseController@getDataDocuments');
 
-Route::post('/historialRequisiciones', 'HistorialRequisicionController@historial');
+Route::post('/updateUser','FirebaseController@updateuser');
+
+Route :: post('/deleteUser','FirebaseController@deleteUser');

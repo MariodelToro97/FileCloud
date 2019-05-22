@@ -1,0 +1,13 @@
+html,body{
+    background-color: #fbfcfc;
+}
+
+ form {
+    color: transparent;
+    height: 80%;
+    width:  80%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
