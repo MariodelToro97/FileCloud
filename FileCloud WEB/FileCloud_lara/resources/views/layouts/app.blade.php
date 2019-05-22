@@ -47,19 +47,11 @@
                            
                             @endif
                         @else
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="#agregarAdmin" data-toggle="modal" data-target="#agregarAdmin" data-toggle="tooltip" data-placement="bottom" title="Crear">Registrar administrativo</a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="#modalRequisicion" data-toggle="modal" data-target="#modalRequisicion" data-toggle="tooltip" data-placement="bottom" title="Registrar">Solicitar documentos</a>
-                            </li>
-                            <li class="nav-item active">
-                                <form action="" method="post">
-                                <a class="nav-link" href="{{URL::to('/')}}/historialRequisiciones" data-toggle="tooltip" data-placement="bottom" title="Solicitud de documentos">
-                                Solicitudes enviadas
-                                </a>
-                                <input type="hidden" value="{{ Auth::user()->name }}" id="userSession" name="userSession">
-                                </form>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

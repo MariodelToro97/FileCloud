@@ -32,61 +32,13 @@ class FirebaseController extends Controller
     }
     public function prueba()
     {
-        //Esto es una prueba, no se debe utilizar en las funcionalidades del sistema
- /*        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-        $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-        $database = $firebase->getDatabase();
-        $db = $database
-        ->getReference('Documentos/Chomy/ACTA')
-        ->set([
-        'archivo1' => 'acta.pdf' ,
-        'fecha1' => '12/08/2018'
-        ]);
-
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-        $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-        $database = $firebase->getDatabase();
-        $db = $database
-        ->getReference('Documentos/Chomy/CURP')
-        ->set([
-        'archivo2' => 'curp.pdf' ,
-        'fecha2' => '20/11/2018'
-        ]);
-        
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-        $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-        $database = $firebase->getDatabase();
-        $db = $database
-        ->getReference('Documentos/Chomy/CERTIFICADO')
-        ->set([
-        'archivo3' => 'certificado.pdf' ,
-        'fecha3' => '23/03/2018'
-        ]);
-
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-        $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-        $database = $firebase->getDatabase();
-        $db = $database
-        ->getReference('Documentos/Chomy/RECIBO')
-        ->set([
-        'archivo4' => 'recibo.pdf' ,
-        'fecha4' => '23/03/2018'
-        ]); */
     }
 
     public function InsertAdmin(AdminRequest $request){
         $data = request()->all();
         if (!$this->verifyUser($data['firstName'])){
         $Referece = 'Users/'.$data['firstName'];
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
             ->withServiceAccount($serviceAccount)
             ->create();
@@ -100,7 +52,7 @@ class FirebaseController extends Controller
                 'Correo' => $data['email'],
                 'Telefono' => $data['address'],
                 'fechaRegistro' => date("d").'-'.date("m").'-'.date("Y"),
-                'TipoUsuario' => '0'
+                'tipoUsuario' => 0
             ]);
             $this->insert($data);
             $mensaje='El usuario se ha registrado correctamente.';
@@ -125,30 +77,18 @@ class FirebaseController extends Controller
         $data = request()->all();
         if ($this->verifyUser($data['user'])){
             if($this->verifyuserType($data['user'])){
-                $dataReference = 'Requisiciones/'.$data['user'].'/'.$data['documento'];
-                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-                $firebase = (new Factory)
-                ->withServiceAccount($serviceAccount)
-                ->create();
-                $database = $firebase->getDatabase();
-                $database->getReference($dataReference)->set([
-                'Usuario' => $data['user'],   
-                'Mensaje' => $data['message-text'],
-                'Fecha' => date("d").'-'.date("m").'-'.date("Y"),
-                'UsuarioCreador' => $data['creator-message']
-                ]);
 
-                $dataReference = 'HistorialReq/'.$data['creator-message'].'/'.$data['documento'];
-                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
+                $dataReference = 'Requisiciones/'.$data['user'].'/'.$data['documento'];
+                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
                 $firebase = (new Factory)
                 ->withServiceAccount($serviceAccount)
                 ->create();
                 $database = $firebase->getDatabase();
                 $database->getReference($dataReference)->set([
-                'Usuario' => $data['user'],   
-                'Mensaje' => $data['message-text'],
-                'Fecha' => date("d").'-'.date("m").'-'.date("Y"),
-                'UsuarioCreador' => $data['creator-message']
+                'usuario' => $data['user'],   
+                'mensaje' => $data['message-text'],
+                'fecha' => date("d").'-'.date("m").'-'.date("Y"),
+                'usuarioCreador' => $data['creator-message']
                 ]);
                 $mensaje='Se ha hecho la requisición correctamente';
                 return view('inicio')->with('mensaje',$mensaje); 
@@ -164,31 +104,17 @@ class FirebaseController extends Controller
 
     }
 
-    public function insertHistory($datos){
-        $dataReference = 'HistorialReq/'.$datos['creator-message'].'/'.$datos['documento'];
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-        $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-        $database = $firebase->getDatabase();
-        $database->getReference($dataReference)->set([
-        'Usuario' => $datos['user'],   
-        'Mensaje' => $datos['message-text'],
-        'Fecha' => date("d").'-'.date("m").'-'.date("Y"),
-        'UsuarioCreador' => $datos['creator-message']
-        ]);
-        print_r($datos);
-    }
+
 
     public function verifyuserType($user){
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
         ->withServiceAccount($serviceAccount)
         ->create();
         $database = $firebase->getDatabase();
         $db=$database->getReference('Users/'.$user);
         $comprobar = $db->getvalue();
-        if($comprobar['TipoUsuario']=='1'){
+        if($comprobar['tipoUsuario']==1){
             return true;
         }else{
             return false;
@@ -196,7 +122,7 @@ class FirebaseController extends Controller
     }
 
     public function verifyUser($user){
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
         ->withServiceAccount($serviceAccount)
         ->create();
@@ -210,43 +136,36 @@ class FirebaseController extends Controller
         }
     }
 
-    public function getDataReq(){
-        /* $data = request()->all(); */
-        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-        $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-        $database = $firebase->getDatabase();
-        $db=$database->getReference('Requisiciones/user');
-        print_r($db->getvalue());
-        $requisicion = $db->getvalue();
-        return view('/historialRequisiciones')->with('Requisicion',$requisicion);
-    }
-
     public function getDataDocuments(userSearchRequest $request){
         $data = request()->all();
         if($this->verifyUser($data['userSearch'])){
-            $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/pruebafilecloud-firebase-adminsdk-1eylc-10240bee9b.json');
-            $firebase = (new Factory)
-            ->withServiceAccount($serviceAccount)
-            ->create();
-            $database = $firebase->getDatabase();
-            $db=$database->getReference('Documentos/'.$data['userSearch'].'/ACTA');
-            $acta = $db->getvalue();
-            $db=$database->getReference('Documentos/'.$data['userSearch'].'/CURP');
-            $CURP = $db->getvalue();
-            $db=$database->getReference('Documentos/'.$data['userSearch'].'/CERTIFICADO');
-            $certificado = $db->getvalue();
-            $db=$database->getReference('Documentos/'.$data['userSearch'].'/RECIBO');
-            $recibo = $db->getvalue();
-            $usuario=$data['userSearch'];
-            $documentos    = array("archivo1" => $acta['archivo1'],"fecha1"=>$acta['fecha1'],"archivo2" => $CURP['archivo2'],"fecha2"=>$CURP['fecha2'],"archivo3" => $certificado['archivo3'],"fecha3"=>$certificado['fecha3'],"archivo4" => $recibo['archivo4'],"fecha4"=>$recibo['fecha4'], "usuario"=>$usuario);
-            return view('inicio')->with('documentos',$documentos);
+            if($this->verifyuserType($data['userSearch'])){
+                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+                $firebase = (new Factory)
+                ->withServiceAccount($serviceAccount)
+                ->create();
+                $database = $firebase->getDatabase();
+                $db=$database->getReference('DOCUMENTS/'.$data['userSearch'].'/ACTA');
+                $acta = $db->getvalue();
+                $db=$database->getReference('DOCUMENTS/'.$data['userSearch'].'/CURP');
+                $CURP = $db->getvalue();
+                $db=$database->getReference('DOCUMENTS/'.$data['userSearch'].'/CERTIFICADO');
+                $certificado = $db->getvalue();
+                $db=$database->getReference('DOCUMENTS/'.$data['userSearch'].'/RECIBO');
+                $recibo = $db->getvalue();
+                $usuario=$data['userSearch'];
+                $documentos    = array("url1"=>$acta['urlDocumento'],"fecha1"=>$acta['FechaCarga'],"url2" => $CURP['urlDocumento'],"fecha2"=>$CURP['FechaCarga'],"url3" => $certificado['urlDocumento'],"fecha3"=>$certificado['FechaCarga'],"url4" => $recibo['urlDocumento'],"fecha4"=>$recibo['FechaCarga'], "usuario"=>$usuario);
+                /* $documentos    = array("archivo1" => $acta['archivo1'],"fecha1"=>$acta['fecha1'],"archivo2" => $CURP['archivo2'],"fecha2"=>$CURP['fecha2'],"archivo3" => $certificado['archivo3'],"fecha3"=>$certificado['fecha3'],"archivo4" => $recibo['archivo4'],"fecha4"=>$recibo['fecha4'], "usuario"=>$usuario); */
+                return view('inicio')->with('documentos',$documentos);
+            }
+            else{
+                $mensaje='El usuario'.$data['userSearch'].' no se considera alumno, verifique bien el nombre.';
+                return view('inicio')->with('mensaje',$mensaje);   
+            }
         }else{
             $mensaje='El usuario "'.$data['userSearch'].'" no existe.';
             return view('inicio')->with('mensaje',$mensaje);
         }
-        /* return view('inicio')->with('acta',$acta); */
     }
 
 

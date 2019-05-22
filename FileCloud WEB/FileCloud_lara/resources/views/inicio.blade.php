@@ -46,7 +46,6 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Nombre documento</th>
-        <th scope="col">Achivo</th>
         <th scope="col">Fecha de subida</th>
         <th scope="col">Acción</th>
       </tr>
@@ -56,12 +55,10 @@
         <tr>
           <th scope="row">1</th>
           <td>Acta</td>
-          @if($documentos['archivo1']!=null)
-          <td>{{$documentos['archivo1']}}</td>
+          @if($documentos['fecha1']!=null)
           <td>{{$documentos['fecha1']}}</td>
-          <td><a href="#">Descargar</a></td>
+          <td><a href="{{$documentos['url1']}}">Descargar</a></td>
           @else
-          <td>No disponible</td>
           <td>No disponible</td>
           <td>Descarga no disponible</td>
           @endif
@@ -69,12 +66,10 @@
         <tr>
           <th scope="row">2</th>
           <td>CURP</td>
-          @if($documentos['archivo2']!=null)
-          <td>{{$documentos['archivo2']}}</td>
+          @if($documentos['fecha2']!=null)
           <td>{{$documentos['fecha2']}}</td>
-          <td><a href="#">Descargar</a></td>
+          <td><a href="{{$documentos['url2']}}">Descargar</a></td>
           @else
-          <td>No disponible</td>
           <td>No disponible</td>
           <td>Descarga no disponible</td>
           @endif
@@ -82,12 +77,10 @@
         <tr>
           <th scope="row">3</th>
           <td>Certificado de calificaciones</td>
-          @if($documentos['archivo3']!=null)
-          <td>{{$documentos['archivo3']}}</td>
+          @if($documentos['fecha3']!=null)
           <td>{{$documentos['fecha3']}}</td>
-          <td><a href="#">Descargar</a></td>
+          <td><a href="{{$documentos['url3']}}">Descargar</a></td>
           @else
-          <td>No disponible</td>
           <td>No disponible</td>
           <td>Descarga no disponible</td>
           @endif
@@ -95,18 +88,16 @@
         <tr>
           <th scope="row">4</th>
           <td>Recibo de Pago</td>
-          @if($documentos['archivo4']!=null)
-          <td>{{$documentos['archivo4']}}</td>
+          @if($documentos['fecha4']!=null)
           <td>{{$documentos['fecha4']}}</td>
-          <td><a href="#">Descargar</a></td>
+          <td><a href="{{$documentos['url4']}}">Descargar</a></td>
           @else
           <td>No disponible</td>
-          <td>No disponible</td>
-          <td>No es posible descargar</td>
+          <td>Descarga no disponible</td>
           @endif
         </tr>
       @else
-      <h1 class="text-center">¡No se ha eligido un usuario aún!.</h1>
+      <h1 class="text-center">¡No se ha elegido un usuario aún!.</h1>
       @endif
     </tbody>
   </table>
