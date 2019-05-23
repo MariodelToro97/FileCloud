@@ -71,7 +71,8 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
 
         @Override
         public void onClick(View view) {
-
+            solicitudes solicitudes = new solicitudes();
+            solicitudes.atenderSoli(txtNombre.getText().toString(), context);
         }
     }
 }
