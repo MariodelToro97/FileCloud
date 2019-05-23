@@ -210,6 +210,7 @@ public class solicitudes extends AppCompatActivity {
 
                     myRef = database.getReference(reference + "/" + ARCHIVO + "/urlDocumento");
                     myRef.setValue(uri.toString());
+                    eliminarRequisicion();
                     progressDialog.dismiss();
                     listDocumentos();
                     db.execSQL("DELETE FROM Documentos");
@@ -226,5 +227,11 @@ public class solicitudes extends AppCompatActivity {
         });
     }
 
-    public void 
+    public void eliminarRequisicion(){
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Requisiciones/");
+        DatabaseReference currentUserBD = mDatabase.child(USUARIO+"/"+ARCHIVO);
+        currentUserBD.removeValue();
+
+        Toast.makeText(getApplicationContext(), R.string.deleteFile, Toast.LENGTH_SHORT).show();
+    }
 }
