@@ -3,31 +3,25 @@ package com.example.filecloud;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 public class solicitudes extends AppCompatActivity {
 
@@ -52,7 +46,7 @@ public class solicitudes extends AppCompatActivity {
 
         Regresar = findViewById(R.id.Regresar);
 
-        mRecyclerView = findViewById(R.id.recyclerSolicitud);
+        mRecyclerView = findViewById(R.id.viewsSol);
 
         USUARIO = getIntent().getStringExtra("USUARIO");
         refreshLayout = findViewById(R.id.swipeRefreshLayout2);
@@ -94,6 +88,9 @@ public class solicitudes extends AppCompatActivity {
     }
 
     public void listDocumentos(){
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         myRef = database.getReference("Requisiciones/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -104,10 +101,10 @@ public class solicitudes extends AppCompatActivity {
                     mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        mDocumentosList.add(new SolicitudesClass(ds.child("UsuarioCreador").getValue().toString(), USUARIO, ds.child("Documento").getValue().toString(), ds.child("Fecha").getValue().toString(), Integer.parseInt(ds.child("Estado").getValue().toString())));
+                        mDocumentosList.add(new SolicitudesClass(ds.child("usuarioCreador").getValue().toString(), ds.getKey(), ds.child("fecha").getValue().toString(), ds.child("mensaje").getValue().toString()));
                     }
 
-                    mAdapter = new solicitudesAdapter(R.layout.solicitudes, mDocumentosList);
+                    mAdapter = new solicitudesAdapter(R.layout.prueba_solicitudes, mDocumentosList);
                     mRecyclerView.setAdapter(mAdapter);
                 }
             }

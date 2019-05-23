@@ -3,6 +3,7 @@ package com.example.filecloud;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,6 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
         this.solicitudLista = solicitudLista;
     }
 
-    public solicitudesAdapter() {
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -39,8 +37,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
         viewHolder.txtNombre.setText(solicitud.getDocumento());
         viewHolder.txtFecha.setText("Fecha de solicitud: " + solicitud.getFecha());
         viewHolder.txtSolicitante.setText(solicitud.getUsuarioRequisito());
-        viewHolder.txtReceptor.setText(solicitud.getUsuarioReceptor());
-        viewHolder.estado.setText(solicitud.getEstado());
+        viewHolder.mensaje.setText(solicitud.getMensaje());
 
         viewHolder.setOnClickListener();
     }
@@ -52,9 +49,8 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public View view;
-
         private Button btnAtencion;
-        private TextView txtNombre, txtFecha, txtSolicitante, txtReceptor, estado;
+        private TextView txtNombre, txtFecha, txtSolicitante, mensaje;
         private Context context;
 
         public ViewHolder(View view) {
@@ -65,8 +61,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
             this.txtFecha = view.findViewById(R.id.txtFechaSolicitud);
             this.txtNombre = view.findViewById(R.id.txtNombreDocumento);
             this.txtSolicitante = view.findViewById(R.id.txtNombreSolicitudes);
-            this.txtReceptor = view.findViewById(R.id.txtUsuarioReceptor);
-            this.estado = view.findViewById(R.id.txtEstadoSolicitud);
+            this.mensaje = view.findViewById(R.id.mensa);
             this.context = view.getContext();
         }
 
@@ -76,8 +71,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
 
         @Override
         public void onClick(View view) {
-            solicitudes solicitudes = new solicitudes();
-            solicitudes.atenderSoli(txtNombre.getText().toString(), context);
+
         }
     }
 }
