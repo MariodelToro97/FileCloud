@@ -44,21 +44,14 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                             @if (Route::has('register'))
-                           <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                                </li>
+                           
                             @endif
                         @else
-                            <li class="nav-item-active">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="#agregarAdmin" data-toggle="modal" data-target="#agregarAdmin" data-toggle="tooltip" data-placement="bottom" title="Crear">Registrar administrativo</a>
                             </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="#modalRequisicion" data-toggle="modal" data-target="#modalRequisicion" data-toggle="tooltip" data-placement="bottom" title="Registrar">Solicitar documentos</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{URL::to('/historialRequisiciones')}}" data-toggle="tooltip" data-placement="bottom" title="Solicitud de documentos">
-                                Solicitudes enviadas
-                                </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
