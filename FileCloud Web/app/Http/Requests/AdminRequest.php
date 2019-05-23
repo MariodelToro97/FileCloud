@@ -27,7 +27,6 @@ class AdminRequest extends FormRequest
             'firstName' => 'required',
             'lastName' => 'required',
             'secondLastName' => 'required',
-            'username' => 'required',
             'password' => 'required',
             'email' => 'required',
             'address' => 'required'

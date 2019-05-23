@@ -26,7 +26,8 @@ class RequisicionRequest extends FormRequest
         return [
             'user' => 'required',
             'message-text' => 'required',
-            'creator-message' => 'required'
+            'creator-message' => 'required',
+            'documento' =>'required'
         ];
     }
 }
