@@ -66,4 +66,5 @@
     <string name="CURP">CURP</string>
     <string name="documentoVerificacion">Documento de verificación</string>
     <string name="mensajeVerificacion">Para que su cuenta pueda ser verificada por los administradores, deberá subir un documento oficial que verifique la escolaridad de la que proviene (Credencial, comprobantes, certificado, etc.). ¿Desea proseguir con el proceso?</string>
+    <string name="noVerficada">Tu cuenta aún no ha sido verificada por un administrador, aún no puedes iniciar sesión</string>
 </resources>
