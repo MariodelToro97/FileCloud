@@ -66,7 +66,7 @@ public class inicioSesion extends AppCompatActivity {
 
     public void obtenerUsuario(String user){
         myRef = database.getReference("Users/" + user + "/Usuario");
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
@@ -81,33 +81,51 @@ public class inicioSesion extends AppCompatActivity {
         });
     }
 
-    boolean usuario = true;
+    public void checarPass(){
+        String user = Usuario.getText().toString();
+            myRef = database.getReference("Users/" + user + "/Password");
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = dataSnapshot.getValue(String.class);
+                    obtenerContra(value);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                }
+            });
+    }
+
     boolean contra = true;
 
     public void checarUsuario(String value){
         String user = Usuario.getText().toString();
 
         if (value != null){
-            if (value.equals(user) && usuario) {
-                usuario = false;
-                myRef = database.getReference("Users/" + user + "/Password");
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = dataSnapshot.getValue(String.class);
-                        obtenerContra(value);
-                    }
+            myRef = database.getReference("Users/" + user + "/cuentaVerificada");
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    int value = dataSnapshot.getValue(Integer.class);
 
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                    if (value == 0) {
+                        Toast.makeText(getApplicationContext(), R.string.noVerficada, Toast.LENGTH_LONG).show();
+                    } else {
+                        checarPass();
                     }
-                });
-            }
-        } else if (usuario){
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
             contra = true;
-            usuario = true;
             Toast.makeText(getApplicationContext(), R.string.noExisteUsuario, Toast.LENGTH_SHORT).show();
             Usuario.setText("");
             Password.setText("");
@@ -139,7 +157,6 @@ public class inicioSesion extends AppCompatActivity {
                         rbRecuerdame.setChecked(false);
                         Usuario.requestFocus();
                         contra = true;
-                        usuario = true;
                     } else {
                         if (db != null){
 
@@ -176,7 +193,6 @@ public class inicioSesion extends AppCompatActivity {
 
         } else if (contra){
             contra = true;
-            usuario = true;
             Toast.makeText(getApplicationContext(), R.string.contraIncorrecta, Toast.LENGTH_SHORT).show();
             Password.setText("");
             Password.requestFocus();
