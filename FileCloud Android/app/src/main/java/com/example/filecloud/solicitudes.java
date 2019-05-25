@@ -36,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class solicitudes extends AppCompatActivity {
 
@@ -118,7 +119,7 @@ public class solicitudes extends AppCompatActivity {
                     mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        mDocumentosList.add(new SolicitudesClass(ds.child("usuarioCreador").getValue().toString(), ds.getKey(), ds.child("fecha").getValue().toString(), ds.child("mensaje").getValue().toString()));
+                        mDocumentosList.add(new SolicitudesClass(Objects.requireNonNull(ds.child("usuarioCreador").getValue()).toString(), ds.getKey(), ds.child("fecha").getValue().toString(), ds.child("mensaje").getValue().toString()));
                     }
 
                     mAdapter = new solicitudesAdapter(R.layout.prueba_solicitudes, mDocumentosList);
@@ -127,7 +128,7 @@ public class solicitudes extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }
