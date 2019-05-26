@@ -72,7 +72,9 @@
     <list default="true" id="fab06bc4-4d55-49cb-bc40-a7ffc9085804" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -92,21 +94,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="64" column="78" selection-start-line="64" selection-start-column="78" selection-end-line="64" selection-end-column="78" />
+            <state relative-caret-position="437">
+              <caret line="67" column="73" selection-start-line="67" selection-start-column="73" selection-end-line="67" selection-end-column="73" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
+            <state relative-caret-position="1034">
+              <caret line="265" column="52" selection-start-line="265" selection-start-column="52" selection-end-line="265" selection-end-column="52" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1598">
+              <caret line="208" column="106" selection-start-line="208" selection-start-column="106" selection-end-line="208" selection-end-column="106" />
               <folding>
-                <element signature="e#3606#3622#0" expanded="true" />
-                <element signature="e#4469#4489#0" expanded="true" />
-                <element signature="e#4823#4839#0" expanded="true" />
+                <element signature="e#2714#10102#0" expanded="true" />
+                <element signature="e#3944#3966#0" expanded="true" />
+                <element signature="e#4286#4308#0" expanded="true" />
+                <element signature="e#4665#4687#0" expanded="true" />
+                <element signature="e#5064#5086#0" expanded="true" />
+                <element signature="e#5463#5485#0" expanded="true" />
+                <element signature="e#5885#5907#0" expanded="true" />
+                <element signature="e#10101#10102#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,11 +182,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudesAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudes.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" />
       </list>
     </option>
   </component>
@@ -316,6 +333,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" weight="0.20121029" />
@@ -327,7 +345,7 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Resources Explorer" order="8" />
       <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.32872504" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.32872504" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32872504" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32872504" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5015129" side_tool="true" weight="0.32565284" />
@@ -608,56 +626,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="-544">
-          <caret line="73" column="52" selection-start-line="73" selection-start-column="52" selection-end-line="73" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-493">
-          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-          <folding>
-            <element signature="e#2586#6699#0" expanded="true" />
-            <element signature="e#4342#4370#0" expanded="true" />
-            <element signature="e#4424#4454#0" expanded="true" />
-            <element signature="e#4517#4528#0" expanded="true" />
-            <element signature="e#4638#5221#0" expanded="true" />
-            <element signature="e#5220#5221#0" expanded="true" />
-            <element signature="e#5201#5212#0" expanded="true" />
-            <element signature="e#5777#5795#0" expanded="true" />
-            <element signature="e#6219#6237#0" expanded="true" />
-            <element signature="e#6579#6595#0" expanded="true" />
-            <element signature="e#6698#6699#0" expanded="true" />
-            <element signature="e#10098#10120#0" expanded="true" />
-            <element signature="e#10599#10617#0" expanded="true" />
-            <element signature="e#11027#11044#0" expanded="true" />
-            <element signature="e#10981#12298#0" expanded="true" />
-            <element signature="e#12500#12522#0" expanded="true" />
-            <element signature="e#12297#12298#0" expanded="true" />
-            <element signature="e#12889#12912#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="145">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="64" column="78" selection-start-line="64" selection-start-column="78" selection-end-line="64" selection-end-column="78" />
+        <state relative-caret-position="437">
+          <caret line="67" column="73" selection-start-line="67" selection-start-column="73" selection-end-line="67" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="111" column="35" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
+        <state relative-caret-position="1034">
+          <caret line="265" column="52" selection-start-line="265" selection-start-column="52" selection-end-line="265" selection-end-column="52" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1598">
+          <caret line="208" column="106" selection-start-line="208" selection-start-column="106" selection-end-line="208" selection-end-column="106" />
           <folding>
-            <element signature="e#3606#3622#0" expanded="true" />
-            <element signature="e#4469#4489#0" expanded="true" />
-            <element signature="e#4823#4839#0" expanded="true" />
+            <element signature="e#2714#10102#0" expanded="true" />
+            <element signature="e#3944#3966#0" expanded="true" />
+            <element signature="e#4286#4308#0" expanded="true" />
+            <element signature="e#4665#4687#0" expanded="true" />
+            <element signature="e#5064#5086#0" expanded="true" />
+            <element signature="e#5463#5485#0" expanded="true" />
+            <element signature="e#5885#5907#0" expanded="true" />
+            <element signature="e#10101#10102#0" expanded="true" />
           </folding>
         </state>
       </provider>

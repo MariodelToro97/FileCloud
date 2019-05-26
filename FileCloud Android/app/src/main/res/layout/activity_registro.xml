@@ -263,7 +263,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="@string/CURP"
-                android:inputType="textPersonName"
+                android:inputType="textCapCharacters"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
