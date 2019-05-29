@@ -38,6 +38,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
         viewHolder.txtFecha.setText("Fecha de solicitud: " + solicitud.getFecha());
         viewHolder.txtSolicitante.setText(solicitud.getUsuarioRequisito());
         viewHolder.mensaje.setText(solicitud.getMensaje());
+        viewHolder.usuario.setText(solicitud.getUser());
 
         viewHolder.setOnClickListener();
     }
@@ -50,7 +51,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public View view;
         private Button btnAtencion;
-        private TextView txtNombre, txtFecha, txtSolicitante, mensaje;
+        private TextView txtNombre, txtFecha, txtSolicitante, mensaje, usuario;
         private Context context;
 
         public ViewHolder(View view) {
@@ -63,6 +64,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
             this.txtSolicitante = view.findViewById(R.id.txtNombreSolicitudes);
             this.mensaje = view.findViewById(R.id.mensa);
             this.context = view.getContext();
+            this.usuario = view.findViewById(R.id.usuarioSolicitud);
         }
 
         void setOnClickListener() {
@@ -72,7 +74,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
         @Override
         public void onClick(View view) {
             solicitudes solicitudes = new solicitudes();
-            solicitudes.atenderSoli(txtNombre.getText().toString(), context);
+            solicitudes.atenderSoli(txtNombre.getText().toString(), context, usuario.getText().toString());
         }
     }
 }

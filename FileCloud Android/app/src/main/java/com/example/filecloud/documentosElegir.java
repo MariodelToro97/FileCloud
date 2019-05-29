@@ -193,7 +193,6 @@ public class documentosElegir extends AppCompatActivity {
                     //Uri file = Uri.fromFile(new File(path));
                     cargarDocumentoProcess(file, db);
                 }
-
             }
         }
     }
@@ -248,6 +247,12 @@ public class documentosElegir extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 eliminarDocumento eliminarDocumento = new eliminarDocumento();
                 eliminarDocumento.eliminar(usuario, documento, context);
+
+                Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context, documentosElegir.class);
+                ((Activity) context).finish();
+                ((Activity) context).startActivity(intent);
             }
         });
         alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -341,7 +346,6 @@ public class documentosElegir extends AppCompatActivity {
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "El documento que subirás es " + items[i], Toast.LENGTH_SHORT).show();
                 switch (i) {
                     case 0:
                         ARCHIVO = "ACTA";
@@ -361,12 +365,58 @@ public class documentosElegir extends AppCompatActivity {
                 }
                 dialogInterface.cancel();
 
+                documentosSubidos();
+            }
+        });
+        AlertDialog a = builder.create();
+        a.show();
+    }
+
+    public void documentosSubidos(){
+        myRef = database.getReference("DOCUMENTS/"+USUARIO + "/" + ARCHIVO);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    saltoCarga();
+                } else {
+                    Toast.makeText(getApplicationContext(), "El documento que subirás es " + ARCHIVO, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("application/pdf");
+                    startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void saltoCarga(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage(R.string.alertEditFile);
+        alert.setTitle(R.string.confirmEditFile);
+        alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "El documento que subirás es " + ARCHIVO, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
                 startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
             }
         });
-        AlertDialog a = builder.create();
-        a.show();
+        alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
     }
 }

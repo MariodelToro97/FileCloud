@@ -4,17 +4,26 @@ import android.util.Log;
 
 public class SolicitudesClass {
 
-    private String usuarioRequisito, Documento, Fecha, mensaje;
+    private String usuarioRequisito, Documento, Fecha, mensaje, user;
 
-    public SolicitudesClass(String usuarioRequisito, String documento, String Fecha, String mensaje) {
+    public SolicitudesClass(String usuarioRequisito, String documento, String Fecha, String mensaje, String user) {
         this.usuarioRequisito = usuarioRequisito;
         Documento = documento;
         this.Fecha = Fecha;
         this.mensaje = mensaje;
+        this.user = user;
     }
 
     public String getMensaje() {
         return mensaje;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public void setMensaje(String mensaje) {

@@ -12,9 +12,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class eliminarDocumento extends AppCompatActivity {
 
-    //private StorageReference storageRef;
+public class eliminarDocumento extends AppCompatActivity {
 
     FirebaseStorage storageRef = FirebaseStorage.getInstance();
 
@@ -42,10 +41,5 @@ public class eliminarDocumento extends AppCompatActivity {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("DOCUMENTS/");
         DatabaseReference currentUserBD = mDatabase.child(user+"/"+documento);
         currentUserBD.removeValue();
-
-        documentosElegir doc = new documentosElegir();
-        doc.listDocumentos();
-
-        Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
     }
 }

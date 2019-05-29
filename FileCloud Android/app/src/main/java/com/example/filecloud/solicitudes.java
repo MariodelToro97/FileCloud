@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -119,7 +121,7 @@ public class solicitudes extends AppCompatActivity {
                     mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        mDocumentosList.add(new SolicitudesClass(Objects.requireNonNull(ds.child("usuarioCreador").getValue()).toString(), ds.getKey(), ds.child("fecha").getValue().toString(), ds.child("mensaje").getValue().toString()));
+                        mDocumentosList.add(new SolicitudesClass(Objects.requireNonNull(ds.child("usuarioCreador").getValue()).toString(), ds.getKey(), ds.child("fecha").getValue().toString(), ds.child("mensaje").getValue().toString(), ds.child("usuario").getValue().toString()));
                     }
 
                     mAdapter = new solicitudesAdapter(R.layout.prueba_solicitudes, mDocumentosList);
@@ -135,25 +137,8 @@ public class solicitudes extends AppCompatActivity {
         });
     }
 
-    public void atenderSoli(String documento, Context context){
-        BDUser bdUser = new BDUser(context, "personasBD", null, 1);
-        final SQLiteDatabase db = bdUser.getWritableDatabase();
-
-        if (db != null) {
-            db.execSQL("DELETE FROM Documentos");
-            Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
-
-            ContentValues editFile = new ContentValues();
-            editFile.put("Nombre", documento);
-
-            long h = db.insert("Documentos", null, editFile);
-
-            if (h > 0) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("application/pdf");
-                ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
-            }
-        }
+    public void atenderSoli(String documento, Context context, String user){
+        documentosSubidos(documento, context, user);
     }
 
     @Override
@@ -216,6 +201,11 @@ public class solicitudes extends AppCompatActivity {
                     listDocumentos();
                     db.execSQL("DELETE FROM Documentos");
                     Toast.makeText(getApplicationContext(), R.string.cargaCompleta, Toast.LENGTH_SHORT).show();
+
+                    Intent regresar = new Intent(solicitudes.this, documentosElegir.class);
+                    regresar.putExtra("USUARIO", USUARIO);
+                    startActivity(regresar);
+                    finish();
                     }
                 });
             }
@@ -234,5 +224,67 @@ public class solicitudes extends AppCompatActivity {
         currentUserBD.removeValue();
 
         Toast.makeText(getApplicationContext(), R.string.deleteFile, Toast.LENGTH_SHORT).show();
+    }
+
+    public void documentosSubidos(final String documento, final Context context, String user){
+        myRef = database.getReference("DOCUMENTS/"+user + "/" + documento);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    saltoCarga(documento, context);
+                } else {
+                    guardadoDocuLocal(documento, context);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void saltoCarga(final String documento, final Context context){
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setMessage(R.string.alertEditFile);
+        alert.setTitle(R.string.confirmEditFile);
+        alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                guardadoDocuLocal(documento, context);
+            }
+        });
+        alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
+    }
+
+    public void guardadoDocuLocal(final String documento, final Context context){
+        BDUser bdUser = new BDUser(context, "personasBD", null, 1);
+        final SQLiteDatabase db = bdUser.getWritableDatabase();
+
+        if (db != null) {
+            db.execSQL("DELETE FROM Documentos");
+            Toast.makeText(context, "El documento que subirás es " + documento, Toast.LENGTH_SHORT).show();
+
+            ContentValues editFile = new ContentValues();
+            editFile.put("Nombre", documento);
+
+            long h = db.insert("Documentos", null, editFile);
+
+            if (h > 0) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/pdf");
+                ((Activity) context).startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+            }
+        }
     }
 }
