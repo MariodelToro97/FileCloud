@@ -3,7 +3,6 @@ html,body{
 }
 
  form {
-    color: transparent;
     height: 80%;
     width:  80%;
     margin-top: auto;
@@ -11,3 +10,4 @@ html,body{
     margin-right: auto;
     margin-bottom: auto;
 }
+

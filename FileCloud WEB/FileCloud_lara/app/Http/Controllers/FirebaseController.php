@@ -127,7 +127,7 @@ class FirebaseController extends Controller
         $database = $firebase->getDatabase();
         $db=$database->getReference('Users/'.$user);
         $comprobar = $db->getvalue();
-        if($comprobar['tipoUsuario']==1){
+        if($comprobar['tipoUsuario']==1 || $comprobar['tipoUsuario']==2){
             return true;
         }else{
             return false;
@@ -212,6 +212,13 @@ class FirebaseController extends Controller
         $database = $firebase->getDatabase();
         $database->getReference($dataReference)->remove();
 
+        /* $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+        $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->create();
+        $database = $firebase->getDatabase();
+        $database->getStorageRef('nuevosUsuarios/'.$data['usuarioNew'].'.pdf')->remove(); */
+
         return redirect ('/usersapprove');
     }
 
@@ -246,6 +253,13 @@ class FirebaseController extends Controller
         ->create();
         $database = $firebase->getDatabase();
         $database->getReference($dataReference)->remove();
+
+/*         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+        $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->create();
+        $database = $firebase->getDatabase();
+        $database->storage.ref('nuevosUsuarios/'.$data['usuarioNew'].'.pdf')->remove(); */
 
         return redirect ('/usersapprove');
     }

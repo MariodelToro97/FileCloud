@@ -148,13 +148,13 @@
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <label for="email">Correo </label>
-                  <span id="correoCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca un correo valido</span>
+                  <span id="correoCheck" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">Introduzca un correo válido</span>
                   <input type="text" onkeyup="checkEmail(this)" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="email" name="email" pattern="[A-Z,a-z,-,_,.,0-9]+@[a-z]+\.[a-z]+" placeholder="Tu@ejemplo.com"  required>
                 </div>
                 <div class="col-md-6 mb-4">
                   <span>Contraseña</span>
                   <span id="contadorPassword" style="font-size: 12px; float: right;" class="text-success my-2 font-weight-bold">mínimo 8 caracteres</span>
-                  <input type="password"  onkeyup="contadorPassword(this)"  minlength="8" maxlength="20" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="password" name="password" placeholder="Tu contraseña" required>
+                  <input type="password"  onkeyup="contadorPassword(this)"  minlength="8" maxlength="20" class="form-control shadow-sm p-3 mb-2 bg-white rounded" id="password" pattern="[0-9a-zA-Z]+" name="password" placeholder="Tu contraseña" required>
                 </div>
                 <div class="col-md-3 mb-4">
                   <div>
