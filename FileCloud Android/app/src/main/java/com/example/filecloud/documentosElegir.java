@@ -132,6 +132,20 @@ public class documentosElegir extends AppCompatActivity {
         db.execSQL("DELETE FROM Documentos");
     }
 
+    private static final int INTERVALO = 2000; //2 segundos para salir
+    private long tiempoPrimerClick;
+
+    @Override
+    public void onBackPressed() {
+        if (tiempoPrimerClick + INTERVALO > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else {
+            Toast.makeText(this, R.string.reply, Toast.LENGTH_SHORT).show();
+        }
+        tiempoPrimerClick = System.currentTimeMillis();
+    }
+
     public void listDocumentos(){
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -203,6 +217,8 @@ public class documentosElegir extends AppCompatActivity {
 
         progressDialog.setTitle(R.string.loadFile);
         progressDialog.setMessage("Espere un momento, se está realizando la carga de su documento");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
         riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -260,7 +276,7 @@ public class documentosElegir extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
             }
-        });
+        }).setCancelable(false);
 
         AlertDialog dialog = alert.create();
         dialog.show();
@@ -298,7 +314,7 @@ public class documentosElegir extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
             }
-        });
+        }).setCancelable(false);
 
         AlertDialog dialog = alert.create();
         dialog.show();
@@ -332,7 +348,7 @@ public class documentosElegir extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
             }
-        });
+        }).setCancelable(false);
 
         AlertDialog dialog = alert.create();
         dialog.show();
@@ -415,6 +431,8 @@ public class documentosElegir extends AppCompatActivity {
                 dialogInterface.cancel();
             }
         });
+
+        alert.setCancelable(false);
 
         AlertDialog dialog = alert.create();
         dialog.show();

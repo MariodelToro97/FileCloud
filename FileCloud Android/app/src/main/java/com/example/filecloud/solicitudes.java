@@ -178,6 +178,8 @@ public class solicitudes extends AppCompatActivity {
 
         progressDialog.setTitle(R.string.loadFile);
         progressDialog.setMessage("Espere un momento, se está realizando la carga de su documento");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
         riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -261,7 +263,7 @@ public class solicitudes extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
             }
-        });
+        }).setCancelable(false);
 
         AlertDialog dialog = alert.create();
         dialog.show();

@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +29,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -47,6 +50,7 @@ public class Registro extends AppCompatActivity {
 
     private StorageReference storageRef;
 
+    private String corr = "NO";
 
     private int VALOR_RETORNO = 1;
 
@@ -81,116 +85,126 @@ public class Registro extends AppCompatActivity {
 
                 progressDialog.setTitle(R.string.datosRegistro);
                 progressDialog.setMessage("Los datos están siendo verificados");
+                progressDialog.setCancelable(false);
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
                 String name = nombre.getText().toString();
                 String materno = apelllidoMaterno.getText().toString();
                 String paterno = apellidoPaterno.getText().toString();
-                String usuario = User.getText().toString();
+                final String usuario = User.getText().toString();
                 String contra = contrasena.getText().toString();
                 String confirmCon = confirmContrasena.getText().toString();
-                String email = correo.getText().toString();
+                final String email = correo.getText().toString();
                 String tel = Telefono.getText().toString();
-                String CURP = curp.getText().toString();
+                final String CURP = curp.getText().toString();
 
                 if (usuario.isEmpty() || contra.isEmpty() || CURP.isEmpty() || confirmCon.isEmpty() || name.isEmpty() || materno.isEmpty() || paterno.isEmpty() || email.isEmpty() || tel.isEmpty()){
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), R.string.vacio, Toast.LENGTH_LONG).show();
 
                 } else {
                     if (usuario.length() == 8) {
                         if (contrasena.getText().toString().length() >= 8 || confirmContrasena.getText().toString().length() >= 8) {
-                            if (!validarPassword(contra)) {
-                                if (!validarPasswordDos(contra)) {
-                                    if (contrasena.getText().toString().equals(confirmContrasena.getText().toString())) {
-                                        if (!validarNombre(name)) {
-                                            progressDialog.dismiss();
-                                            Toast.makeText(getApplicationContext(), R.string.formatoCorreo, Toast.LENGTH_SHORT).show();
-                                            nombre.setError("Formato de nombre inválido");
-                                            nombre.requestFocus();
-                                        } else {
-                                            if (!validarNombre(paterno)) {
+                            if (rbAlumnoInscrito.isChecked() && !validarPasswordDos(usuario) || rbNuevoIngreso.isChecked()) {
+                                if (!validarPassword(contra)) {
+                                    if (!validarPasswordDos(contra)) {
+                                        if (contrasena.getText().toString().equals(confirmContrasena.getText().toString())) {
+                                            if (!validarNombre(name)) {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(getApplicationContext(), R.string.formatoCorreo, Toast.LENGTH_SHORT).show();
-                                                apellidoPaterno.setError("Formato de nombre inválido");
-                                                apellidoPaterno.requestFocus();
+                                                nombre.setError("Formato de nombre inválido");
+                                                nombre.requestFocus();
                                             } else {
-                                                if (!validarNombre(materno)) {
+                                                if (!validarNombre(paterno)) {
                                                     progressDialog.dismiss();
                                                     Toast.makeText(getApplicationContext(), R.string.formatoCorreo, Toast.LENGTH_SHORT).show();
-                                                    apelllidoMaterno.setError("Formato de nombre inválido");
-                                                    apelllidoMaterno.requestFocus();
+                                                    apellidoPaterno.setError("Formato de nombre inválido");
+                                                    apellidoPaterno.requestFocus();
                                                 } else {
-                                                    if (!validarEmail(email)) {
+                                                    if (!validarNombre(materno)) {
                                                         progressDialog.dismiss();
                                                         Toast.makeText(getApplicationContext(), R.string.formatoCorreo, Toast.LENGTH_SHORT).show();
-                                                        correo.setError("Formato de correo inválido");
-                                                        correo.requestFocus();
+                                                        apelllidoMaterno.setError("Formato de nombre inválido");
+                                                        apelllidoMaterno.requestFocus();
                                                     } else {
-                                                        if (!validarTelefono(tel)) {
+                                                        if (!validarEmail(email)) {
                                                             progressDialog.dismiss();
                                                             Toast.makeText(getApplicationContext(), R.string.formatoCorreo, Toast.LENGTH_SHORT).show();
-                                                            Telefono.setError("Formato de teléfono inválido");
-                                                            Telefono.requestFocus();
+                                                            correo.setError("Formato de correo inválido");
+                                                            correo.requestFocus();
                                                         } else {
-                                                            if (!validarCurp(CURP)) {
+                                                            if (!validarTelefono(tel)) {
                                                                 progressDialog.dismiss();
                                                                 Toast.makeText(getApplicationContext(), R.string.formatoCorreo, Toast.LENGTH_SHORT).show();
-                                                                curp.setError("Formato de CURP inválida");
-                                                                curp.requestFocus();
+                                                                Telefono.setError("Formato de teléfono inválido");
+                                                                Telefono.requestFocus();
                                                             } else {
-                                                                myRef = database.getReference("Users/" + User.getText().toString() + "/Usuario");
-                                                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                                    @Override
-                                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                                        final String value = dataSnapshot.getValue(String.class);
+                                                                if (!validarCurp(CURP)) {
+                                                                    progressDialog.dismiss();
+                                                                    Toast.makeText(getApplicationContext(), R.string.formatoCorreo, Toast.LENGTH_SHORT).show();
+                                                                    curp.setError("Formato de CURP inválida");
+                                                                    curp.requestFocus();
+                                                                } else {
+                                                                    myRef = database.getReference("Users/" + User.getText().toString() + "/Usuario");
+                                                                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                        @Override
+                                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                            final String value = dataSnapshot.getValue(String.class);
 
-                                                                        if (value == null) {
-                                                                            progressDialog.dismiss();
-                                                                            AlertDialog.Builder alert = new AlertDialog.Builder(Registro.this);
-                                                                            alert.setMessage(R.string.mensajeVerificacion);
-                                                                            alert.setTitle(R.string.documentoVerificacion);
-                                                                            alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
-                                                                                @Override
-                                                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                                                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                                                                                    intent.setType("application/pdf");
-                                                                                    startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
-                                                                                }
-                                                                            });
-                                                                            alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                                                                                @Override
-                                                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                                                    Toast.makeText(getApplicationContext(), R.string.cancelado, Toast.LENGTH_SHORT).show();
-                                                                                    dialogInterface.cancel();
-                                                                                }
-                                                                            });
+                                                                            if (value == null) {
+                                                                                progressDialog.dismiss();
+                                                                                AlertDialog.Builder alert = new AlertDialog.Builder(Registro.this);
+                                                                                alert.setMessage(R.string.mensajeVerificacion);
+                                                                                alert.setTitle(R.string.documentoVerificacion);
+                                                                                alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+                                                                                    @Override
+                                                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                                                                                        intent.setType("application/pdf");
+                                                                                        startActivityForResult(Intent.createChooser(intent, "Escoge tu archivo"), VALOR_RETORNO);
+                                                                                    }
+                                                                                });
+                                                                                alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                                                    @Override
+                                                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                                                        Toast.makeText(getApplicationContext(), R.string.cancelado, Toast.LENGTH_SHORT).show();
+                                                                                        dialogInterface.cancel();
+                                                                                    }
+                                                                                }).setCancelable(false);
 
-                                                                            AlertDialog dialog = alert.create();
-                                                                            dialog.show();
-                                                                        } else {
-                                                                            progressDialog.dismiss();
-                                                                            Toast.makeText(getApplicationContext(), R.string.userExist, Toast.LENGTH_LONG).show();
+                                                                                AlertDialog dialog = alert.create();
+                                                                                dialog.show();
+                                                                            } else {
+                                                                                progressDialog.dismiss();
+                                                                                Toast.makeText(getApplicationContext(), R.string.userExist, Toast.LENGTH_LONG).show();
+                                                                            }
                                                                         }
-                                                                    }
 
-                                                                    @Override
-                                                                    public void onCancelled(@NonNull DatabaseError error) {
-                                                                        // Failed to read value
-                                                                        progressDialog.dismiss();
-                                                                        Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
-                                                                    }
-                                                                });
+                                                                        @Override
+                                                                        public void onCancelled(@NonNull DatabaseError error) {
+                                                                            // Failed to read value
+                                                                            progressDialog.dismiss();
+                                                                            Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                                                                        }
+                                                                    });
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
                                             }
+                                        } else {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(getApplicationContext(), R.string.noCoincidden, Toast.LENGTH_LONG).show();
+                                            confirmContrasena.requestFocus();
+                                            confirmContrasena.setError("Las contraseñas insertadas no coinciden");
                                         }
                                     } else {
                                         progressDialog.dismiss();
-                                        Toast.makeText(getApplicationContext(), R.string.noCoincidden, Toast.LENGTH_LONG).show();
-                                        confirmContrasena.requestFocus();
-                                        confirmContrasena.setError("Las contraseñas insertadas no coinciden");
+                                        Toast.makeText(getApplicationContext(), R.string.formatoPassword, Toast.LENGTH_LONG).show();
+                                        contrasena.requestFocus();
+                                        contrasena.setError("La contraseña debe contener valores alfanuméricos");
                                     }
                                 } else {
                                     progressDialog.dismiss();
@@ -200,9 +214,9 @@ public class Registro extends AppCompatActivity {
                                 }
                             } else {
                                 progressDialog.dismiss();
-                                Toast.makeText(getApplicationContext(), R.string.formatoPassword, Toast.LENGTH_LONG).show();
-                                contrasena.requestFocus();
-                                contrasena.setError("La contraseña debe contener valores alfanuméricos");
+                                Toast.makeText(getApplicationContext(), R.string.formatoUserInscrito, Toast.LENGTH_LONG).show();
+                                User.requestFocus();
+                                User.setError("El formato no coincide con el de un alumno inscrito");
                             }
                         } else {
                             progressDialog.dismiss();
@@ -244,6 +258,7 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 User.setHint(R.string.usuario);
+                User.setError(null);
                 User.setInputType(InputType.TYPE_CLASS_TEXT);
                 User.setVisibility(View.VISIBLE);
                 contrasena.setVisibility(View.VISIBLE);
@@ -354,6 +369,8 @@ public class Registro extends AppCompatActivity {
 
             progressDialog.setTitle(R.string.loadFile);
             progressDialog.setMessage("Espere un momento, se está realizando la carga de su documento");
+            progressDialog.setCancelable(false);
+            progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
 
             riversRef.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

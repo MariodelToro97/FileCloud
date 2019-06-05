@@ -21,6 +21,10 @@
     <string name="cerrarSes">Cerrar Sesión</string>
     <string name="cargarDocu">Cargar/Editar documento</string>
     <string name="docuCarga">Documentos cargados</string>
+    <string name="emailUso">El correo que insertó ya está en uso</string>
+    <string name="curpUso">La CURP que insertó ya está en uso</string>
+    <string name="reply">Vuelve a presionar para salir</string>
+    <string name="formatoUserInscrito">El formato del usuario ingresado no coincide con el de un alumno inscrito</string>
     <string name="solicitud">Solicitudes</string>
     <string name="regresar">Regresar</string>
     <string name="borradoExitoso">Archivo borrado exitosamente</string>
