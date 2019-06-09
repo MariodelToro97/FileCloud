@@ -1,6 +1,3 @@
-$(document).ready(function(){
-alert("pagina cargada");
-});
 
 function checkEmail(obj) {
   var inputText = obj.value;
@@ -85,7 +82,7 @@ function contadorPassword(obj) {
       document.getElementById("contadorPassword").innerHTML = '<span id="contadorPassword" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Ha excedido el limite de 20 caracteres.</span>';
     }
   }else{
-    document.getElementById("contadorPassword").innerHTML = '<span id="contadorPassword" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Contraseña debe contra solo con letras y números</span>';
+    document.getElementById("contadorPassword").innerHTML = '<span id="contadorPassword" style="font-size: 12px; float: right;" class="text-danger font-weight-bold">Contraseña debe contar solo con letras y números</span>';
   }
   }
 }

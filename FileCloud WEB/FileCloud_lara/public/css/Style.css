@@ -12,9 +12,13 @@
 
 div #Title{
     margin: auto;
-  text-align: center;
+    text-align: center;
 }
 h1 {
   margin: auto;
   text-align: center; 
 }
+div #mdialTamanio{
+  width: 80% !important;
+}
+

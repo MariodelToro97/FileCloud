@@ -47,7 +47,7 @@ class FirebaseController extends Controller
 
     public function InsertAdmin(AdminRequest $request){
         $data = request()->all();
-        if (!$this->verifyUser($data['firstName'])){
+        if (!$this->verifyUser($data)){
         $Referece = 'Users/'.$data['firstName'];
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
@@ -65,22 +65,32 @@ class FirebaseController extends Controller
                 'fechaRegistro' => date("d").'-'.date("m").'-'.date("Y"),
                 'tipoUsuario' => 0
             ]);
-            $this->insert($data);
+            if($this->insert($data)){
             $mensaje='El usuario se ha registrado correctamente.';
             return redirect('/home')->with('mensaje',$mensaje);
+            }else{
+            $mensaje='El usuario que intenta registrar ya existe';
+            return redirect('/home')->with('mensaje',$mensaje);
+            }
         }else{
-                $mensaje='No se ha pudido completar la operación,el usuario que intenta registra ya existe en la base de datos.';
+                $mensaje='No se ha podido completar la operación,el usuario que intenta registra ya existe en la base de datos.';
                 return view('inicio')->with('mensaje',$mensaje);
         } 
     }
 
     public function insert(array $data){
+        $bandera = True;
+        try{
         $nombre = $data['firstName'].' '.$data['lastName'].' '.$data['secondLastName'];
           return User::create([
             'name' => $nombre,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+          } catch(Exception $e){
+         $bandera = False;
+         return $bandera;
+          }
     }
 
     public function InsertReq(RequisicionRequest $request){
@@ -134,7 +144,39 @@ class FirebaseController extends Controller
         }
     }
 
-    public function verifyUser($user){
+    public function verifyUser(array $user){
+        $bandera = false;
+        $contar = 0;
+        $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+        $firebase = (new Factory)
+        ->withServiceAccount($serviceAccount)
+        ->create();
+        $database = $firebase->getDatabase();
+        $db=$database->getReference('Users/'.$user['firstName']);
+        $comprobar = $db->getvalue();
+        if($comprobar['Nombre']==$user['firstName'].' '.$user['lastName'].' '.$user['secondLastName']){
+            $bandera = false;
+            
+        }else{
+            $bandera =  true;
+            $contar +=1;
+        }
+
+        if($comprobar['Correo']==$user['email']){
+            $bandera = false;
+        }else{
+            $bandera =  true;
+            $contar +=1;
+        }
+
+        if($contar = 2){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    public function verifyUserReq($user){
         $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
         $firebase = (new Factory)
         ->withServiceAccount($serviceAccount)
@@ -149,9 +191,82 @@ class FirebaseController extends Controller
         }
     }
 
+
+    public function reqacta(RequisicionRequest $request){
+        $data = request()->all();
+        $dataReference = 'Requisiciones/'.$data['user'].'/'.$data['documento'];
+                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+                $firebase = (new Factory)
+                ->withServiceAccount($serviceAccount)
+                ->create();
+                $database = $firebase->getDatabase();
+                $database->getReference($dataReference)->set([
+                'usuario' => $data['user'],   
+                'mensaje' => $data['message-text'],
+                'fecha' => date("d").'-'.date("m").'-'.date("Y"),
+                'usuarioCreador' => $data['creator-message']
+                ]);
+                $mensaje='Se ha solicitado el documento "Acta de nacimiento" correctamente';
+                return view('inicio')->with('mensaje',$mensaje);
+    }
+
+    public function reqcurp(RequisicionRequest $request){
+        $data = request()->all();
+        $dataReference = 'Requisiciones/'.$data['user'].'/'.$data['documento'];
+                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+                $firebase = (new Factory)
+                ->withServiceAccount($serviceAccount)
+                ->create();
+                $database = $firebase->getDatabase();
+                $database->getReference($dataReference)->set([
+                'usuario' => $data['user'],   
+                'mensaje' => $data['message-text'],
+                'fecha' => date("d").'-'.date("m").'-'.date("Y"),
+                'usuarioCreador' => $data['creator-message']
+                ]);
+                $mensaje='Se ha solicitado el documento "CURP" correctamente';
+                    return view('inicio')->with('mensaje',$mensaje);
+    }
+
+    public function reqcert(RequisicionRequest $request){
+        $data = request()->all();
+        $dataReference = 'Requisiciones/'.$data['user'].'/'.$data['documento'];
+                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+                $firebase = (new Factory)
+                ->withServiceAccount($serviceAccount)
+                ->create();
+                $database = $firebase->getDatabase();
+                $database->getReference($dataReference)->set([
+                'usuario' => $data['user'],   
+                'mensaje' => $data['message-text'],
+                'fecha' => date("d").'-'.date("m").'-'.date("Y"),
+                'usuarioCreador' => $data['creator-message']
+                ]);
+                $mensaje='Se ha solicitado el documento "Certificado" correctamente';
+                return view('inicio')->with('mensaje',$mensaje);
+    }
+    
+    public function reqrecibp(RequisicionRequest $request){
+        $data = request()->all();
+        $dataReference = 'Requisiciones/'.$data['user'].'/'.$data['documento'];
+                $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
+                $firebase = (new Factory)
+                ->withServiceAccount($serviceAccount)
+                ->create();
+                $database = $firebase->getDatabase();
+                $database->getReference($dataReference)->set([
+                'usuario' => $data['user'],   
+                'mensaje' => $data['message-text'],
+                'fecha' => date("d").'-'.date("m").'-'.date("Y"),
+                'usuarioCreador' => $data['creator-message']
+                ]);
+                $mensaje='Se ha solicitado el documento "Recibo" correctamente';
+                    return view('inicio')->with('mensaje',$mensaje);
+    }
+
     public function getDataDocuments(userSearchRequest $request){
         $data = request()->all();
-        if($this->verifyUser($data['userSearch'])){
+        if($this->verifyUserReq($data['userSearch'])){
             if($this->verifyuserType($data['userSearch'])){
                 $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
                 $firebase = (new Factory)
@@ -211,14 +326,6 @@ class FirebaseController extends Controller
         ->create();
         $database = $firebase->getDatabase();
         $database->getReference($dataReference)->remove();
-
-        /* $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/DatabaseFirebase.json');
-        $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-        $database = $firebase->getDatabase();
-        $database->getStorageRef('nuevosUsuarios/'.$data['usuarioNew'].'.pdf')->remove(); */
-
         return redirect ('/usersapprove');
     }
 
@@ -230,8 +337,6 @@ class FirebaseController extends Controller
         $database = $firebase->getDatabase();
         $db=$database->getReference('Users/'.$user);
         $lista = $db->getvalue();
-
-        /* print_r($lista); */
         return $lista;
 
     }

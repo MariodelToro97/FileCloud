@@ -30,7 +30,6 @@ Route::get('/Requisicion','FirebaseController@Requisicion');
 
 Route::get('/listUser','FirebaseController@list');
 
-
 #Post Routes
 
 Route::post('/RegistrarAdmin','FirebaseController@InsertAdmin');
@@ -42,3 +41,11 @@ Route::post('/getDocuments','FirebaseController@getDataDocuments');
 Route::post('/updateUser','FirebaseController@updateuser');
 
 Route :: post('/deleteUser','FirebaseController@deleteUser');
+
+Route::post('/ACTA','FirebaseController@reqacta');
+
+Route::post('/CURP','FirebaseController@reqcurp');
+
+Route::post('/CERTIFICADO','FirebaseController@reqcert');
+
+Route::post('/RECIBO','FirebaseController@reqrecibp');

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{URL::to('/')}}/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{URL::to('/')}}/css/bootstrap.css">
   <link rel="stylesheet" href="{{URL::to('/')}}/css/Style.css">
+  <link rel="stylesheet" href="{{URL::to('/')}}/css/example.css">
   <script src="{{URL::to('/')}}/js/counters.js" type="text/javascript"></script>
 </head>
 
@@ -41,31 +42,54 @@
         </form>
         <br>
     </div>
-    <br>
-    <label for="btnlist">Lista de usuarios</label>
-    <br>
-    <a type="button" id="btnlist"href="{{URL::to('/')}}/listUser" class="btn btn-outline-primary">Lista</a>
   </div>
-  <table class="table">
-    <thead class="thead-dark">
+  <br>
+  <br>
+  @if(isset($documentos))
+  <table class="table shadow-lg p-3 mb-5 bg-white rounded">
+    <thead class="thead-light text-center">
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Nombre documento</th>
         <th scope="col">Fecha de subida</th>
-        <th scope="col">Acción</th>
+        <th scope="col" colspan="3" >Acciones</th>
       </tr>
     </thead>
-    <tbody>
-      @if(isset($documentos))
+    <tbody class="text-center">
         <tr>
           <th scope="row">1</th>
           <td>Acta</td>
           @if($documentos['fecha1']!=null)
           <td>{{$documentos['fecha1']}}</td>
-          <td><a target="_blank" href="{{$documentos['url1']}}">Descargar</a></td>
+          <td>
+          <a class="btn btn-success" target="_blank" href="{{$documentos['url1']}}">Descargar</a>
+          </td>
+          <td>
+          <form action="{{URL::to('/')}}/ACTA" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su acta de nacimiento de nuevo, ya que este puede estar mal, verifique su documento" id="message-text" name="message-text">
+          <input type="hidden" value="ACTA" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          </td>
+          <td>
+          <a class="btn btn-warning" href="#modalDocumento1" data-toggle="modal" data-target="#modalDocumento1" data-toggle="tooltip" data-placement="bottom" title="Vizualizar">Visualizar</a>
+          </td>
           @else
           <td>No disponible</td>
           <td>Descarga no disponible</td>
+          <td>
+          <form action="{{URL::to('/')}}/ACTA" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su acta de nacimeinto lo más pronto posible." id="message-text" name="message-text">
+          <input type="hidden" value="ACTA" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          <td>Vizualización no disponible</td>
           @endif
         </tr>
         <tr>
@@ -73,10 +97,36 @@
           <td>CURP</td>
           @if($documentos['fecha2']!=null)
           <td>{{$documentos['fecha2']}}</td>
-          <td><a target="_blank" href="{{$documentos['url2']}}">Descargar</a></td>
+          <td>
+          <a class="btn btn-success" target="_blank" href="{{$documentos['url2']}}">Descargar</a>
+          </td>
+          <td>
+          <form action="{{URL::to('/')}}/CURP" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su CURP de nuevo, ya que este puede estar mal, verifique su documento" id="message-text" name="message-text">
+          <input type="hidden" value="CURP" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          </td>
+          <td>
+          <a class="btn btn-warning" href="#modalDocumento2" data-toggle="modal" data-target="#modalDocumento2" data-toggle="tooltip" data-placement="bottom" title="Vizualizar">Visualizar</a>
+          </td>
           @else
           <td>No disponible</td>
           <td>Descarga no disponible</td>
+          <td>
+          <form action="{{URL::to('/')}}/CURP" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su CURP lo más pronto posible" id="message-text" name="message-text">
+          <input type="hidden" value="CURP" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          </td>
+          <td>Vizualización no disponible</td>
           @endif
         </tr>
         <tr>
@@ -84,10 +134,36 @@
           <td>Certificado de calificaciones</td>
           @if($documentos['fecha3']!=null)
           <td>{{$documentos['fecha3']}}</td>
-          <td><a target="_blank" href="{{$documentos['url3']}}">Descargar</a></td>
+          <td>
+          <a class="btn btn-success" target="_blank" href="{{$documentos['url3']}}">Descargar</a>
+          </td>
+          <td>
+          <form action="{{URL::to('/')}}/CERTIFICADO" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su certificado de calificaciones de nuevo, ya que este puede estar mal, verifique su documento" id="message-text" name="message-text">
+          <input type="hidden" value="CERTIFICADO" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          </td>
+          <td>
+          <a class="btn btn-warning" href="#modalDocumento3" data-toggle="modal" data-target="#modalDocumento3" data-toggle="tooltip" data-placement="bottom" title="Vizualizar">Visualizar</a>
+          </td>
           @else
           <td>No disponible</td>
           <td>Descarga no disponible</td>
+          <td>
+          <form action="{{URL::to('/')}}/CERTIFICADO" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su certificado de calificaciones lo más pronto posible" id="message-text" name="message-text">
+          <input type="hidden" value="CERTIFICADO" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          </td>
+          <td>Vizualización no disponible</td>
           @endif
         </tr>
         <tr>
@@ -95,14 +171,68 @@
           <td>Recibo de Pago</td>
           @if($documentos['fecha4']!=null)
           <td>{{$documentos['fecha4']}}</td>
-          <td><a target="_blank" href="{{$documentos['url4']}}">Descargar</a></td>
+          <td>
+          <a class="btn btn-success" target="_blank" href="{{$documentos['url4']}}">Descargar</a>
+          </td>
+          <td>
+          <form action="{{URL::to('/')}}/RECIBO" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su recibo de nuevo, ya que este puede estar mal, verifique su documento" id="message-text" name="message-text">
+          <input type="hidden" value="RECIBO" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          </td>
+          <td>
+          <a class="btn btn-warning" href="#modalDocumento4" data-toggle="modal" data-target="#modalDocumento4" data-toggle="tooltip" data-placement="bottom" title="Vizualizar">Visualizar</a>
+          </td>
           @else
           <td>No disponible</td>
           <td>Descarga no disponible</td>
+          <td>
+          <form action="{{URL::to('/')}}/RECIBO" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="user" id="user" value="{{$documentos['usuario']}}">
+          <input type="hidden" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
+          <input type="hidden" value="Se le avisa que debe subir su recibo lo más pronto posible" id="message-text" name="message-text">
+          <input type="hidden" value="RECIBO" name="documento" id="documento">
+          <button class="btn btn-warning"  type="submit">Solicitar</button>
+          </form>
+          </td>
+          <td>Vizualización no disponible</td>
           @endif
         </tr>
-      @else
-      <h1 class="text-center">¡No se ha elegido un usuario aún!.</h1>
+        <div class="modal fade bd-example-modal-lg" id="modalDocumento1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg" id="mdialTamanio" >
+              <div class="modal-content">
+                <embed src="{{$documentos['url1']}}">
+              </div>
+          </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg" id="modalDocumento2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="container">
+                <embed src="{{$documentos['url2']}}">
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg" id="modalDocumento3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <embed src="{{$documentos['url3']}}">
+              </div>
+          </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg" id="modalDocumento4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <embed src="{{$documentos['url4']}}">
+              </div>
+          </div>
+        </div>
       @endif
     </tbody>
   </table>
@@ -175,48 +305,6 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="modal fade" id="modalRequisicion" name="modalRequisicion" tabindex="-1" role="dialog"
-  aria-labelledby="modalRequisicionLabel" aria-hidden="true">
-  <div class="modal-dialog" role="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalRequisicionLabel">Nueva requisición</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="{{URL::to('/')}}/Requisicion">
-          {{ csrf_field() }}
-          <div class="form-group">
-            <label for="user" class="col-form-label">Usuario</label>
-            <input type="text" class="form-control shadow p-3 mb-5 bg-white rounded" id="user" name="user" required>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Mensaje:</label>
-            <textarea class="form-control shadow p-3 mb-5 bg-white rounded" id="message-text" name="message-text" required ></textarea>
-            <input type="hidden" minlenght="1" value="{{ Auth::user()->name }}" id="creator-message" name="creator-message">
-          </div>
-          <div class="form-group" >
-          <label for="documento">Elija el documento que desea solicitar</label>
-          <select class="form-control" name="documento" id="documento" required>
-            <option value="default" selected>Seleccionar...</option>
-            <option value="ACTA">Acta de nacimiento</option>
-            <option value="CURP">CURP</option>
-            <option value="CERTIFICADO">Certificado de calificaciones</option>
-            <option value="RECIBO">Recibo de pago</option>
-          </select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-success">Enviar requisición</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> -->
 </html>
 @endsection
 
@@ -227,4 +315,7 @@ alert("pagina cargada");
 });
 </script>
 @endsection
+
+
+
 
