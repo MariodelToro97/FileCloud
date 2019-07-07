@@ -1,5 +1,6 @@
 package com.example.filecloud;
 
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -38,6 +39,8 @@ public class inicioSesion extends AppCompatActivity {
         Usuario = findViewById(R.id.userSesion);
         Password = findViewById(R.id.passwordSesion);
 
+        final ProgressDialog progressDialog = new ProgressDialog(inicioSesion.this);
+
         rbRecuerdame = findViewById(R.id.rememberme);
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
@@ -55,22 +58,26 @@ public class inicioSesion extends AppCompatActivity {
                 String user = Usuario.getText().toString();
                 String contra = Password.getText().toString();
 
+                progressDialog.setTitle(R.string.datosRegistro);
+                progressDialog.setMessage("Los datos están siendo verificados");
+                progressDialog.show();
+
                 if (user.isEmpty() || contra.isEmpty()){
                     Toast.makeText(getApplicationContext(), R.string.vacio, Toast.LENGTH_SHORT).show();
                 } else {
-                    obtenerUsuario(user);
+                    obtenerUsuario(user, progressDialog);
                 }
             }
         });
     }
 
-    public void obtenerUsuario(String user){
+    public void obtenerUsuario(String user, final ProgressDialog progressDialog){
         myRef = database.getReference("Users/" + user + "/Usuario");
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
-                checarUsuario(value);
+                checarUsuario(value, progressDialog);
             }
 
             @Override
@@ -81,33 +88,51 @@ public class inicioSesion extends AppCompatActivity {
         });
     }
 
-    boolean usuario = true;
+    public void checarPass(final ProgressDialog progressDialog){
+        String user = Usuario.getText().toString();
+            myRef = database.getReference("Users/" + user + "/Password");
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = dataSnapshot.getValue(String.class);
+                    obtenerContra(value, progressDialog);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                }
+            });
+    }
+
     boolean contra = true;
 
-    public void checarUsuario(String value){
+    public void checarUsuario(String value, final ProgressDialog progressDialog){
         String user = Usuario.getText().toString();
 
         if (value != null){
-            if (value.equals(user) && usuario) {
-                usuario = false;
-                myRef = database.getReference("Users/" + user + "/Password");
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        String value = dataSnapshot.getValue(String.class);
-                        obtenerContra(value);
-                    }
+            myRef = database.getReference("Users/" + user + "/cuentaVerificada");
+            myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    int value = dataSnapshot.getValue(Integer.class);
 
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                    if (value == 0) {
+                        Toast.makeText(getApplicationContext(), R.string.noVerficada, Toast.LENGTH_LONG).show();
+                    } else {
+                        checarPass(progressDialog);
                     }
-                });
-            }
-        } else if (usuario){
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                }
+            });
+        } else {
             contra = true;
-            usuario = true;
             Toast.makeText(getApplicationContext(), R.string.noExisteUsuario, Toast.LENGTH_SHORT).show();
             Usuario.setText("");
             Password.setText("");
@@ -116,7 +141,7 @@ public class inicioSesion extends AppCompatActivity {
         }
     }
 
-    public void obtenerContra(String value) {
+    public void obtenerContra(String value, final ProgressDialog progressDialog) {
         String pass = Password.getText().toString();
         final String user = Usuario.getText().toString();
 
@@ -139,7 +164,6 @@ public class inicioSesion extends AppCompatActivity {
                         rbRecuerdame.setChecked(false);
                         Usuario.requestFocus();
                         contra = true;
-                        usuario = true;
                     } else {
                         if (db != null){
 
@@ -150,6 +174,7 @@ public class inicioSesion extends AppCompatActivity {
                                 long i = db.insert("Usuario", null, registronuevo);
 
                                 if (i > 0) {
+                                    progressDialog.dismiss();
                                     Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
 
                                     iniciar.putExtra("USUARIO", user);
@@ -157,6 +182,7 @@ public class inicioSesion extends AppCompatActivity {
                                     finish();
                                 }
                             } else {
+                                progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(), R.string.InicioCorrecto, Toast.LENGTH_SHORT).show();
 
                                 iniciar.putExtra("USUARIO", user);
@@ -176,7 +202,6 @@ public class inicioSesion extends AppCompatActivity {
 
         } else if (contra){
             contra = true;
-            usuario = true;
             Toast.makeText(getApplicationContext(), R.string.contraIncorrecta, Toast.LENGTH_SHORT).show();
             Password.setText("");
             Password.requestFocus();

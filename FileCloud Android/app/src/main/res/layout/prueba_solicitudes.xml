@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="190dp">
+    android:layout_height="220dp">
 
     <TextView
         android:id="@+id/txtNombreDocumento"
@@ -19,14 +20,14 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="105dp"
-        android:layout_height="126dp"
+        android:layout_width="wrap_content"
+        android:layout_height="138dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="278dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="274dp"
         android:background="@drawable/solicitudes"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/solicitudes" />
@@ -47,7 +48,7 @@
         android:id="@+id/txtNombreSolicitudes"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtFechaSolicitud"
+        android:layout_below="@+id/mensa"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="31dp"
@@ -73,24 +74,25 @@
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/txtUsuarioReceptor"
+        android:id="@+id/mensa"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtFechaSolicitud"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="31dp"
+        android:text="Mensaje"
+        android:textAlignment="center"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/usuarioSolicitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        android:text="TextView"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/txtEstadoSolicitud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="0dp"
-        android:text="TextView"
+        android:text="Usuario"
         android:visibility="invisible" />
 </RelativeLayout>

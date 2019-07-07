@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 public class BDUser extends SQLiteOpenHelper {
 
     String tabla = "CREATE TABLE Usuario (Nombre TEXT)";
+    String documento = "CREATE TABLE Documentos (Nombre TEXT)";
 
     public BDUser(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -16,6 +17,7 @@ public class BDUser extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(tabla);
+        db.execSQL(documento);
     }
 
     @Override
