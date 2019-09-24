@@ -1,12 +1,10 @@
 package com.example.filecloud;
 
-import android.util.Log;
-
 public class SolicitudesClass {
 
     private String usuarioRequisito, Documento, Fecha, mensaje, user;
 
-    public SolicitudesClass(String usuarioRequisito, String documento, String Fecha, String mensaje, String user) {
+    SolicitudesClass(String usuarioRequisito, String documento, String Fecha, String mensaje, String user) {
         this.usuarioRequisito = usuarioRequisito;
         Documento = documento;
         this.Fecha = Fecha;
@@ -14,11 +12,11 @@ public class SolicitudesClass {
         this.user = user;
     }
 
-    public String getMensaje() {
+    String getMensaje() {
         return mensaje;
     }
 
-    public String getUser() {
+    String getUser() {
         return user;
     }
 
@@ -30,7 +28,7 @@ public class SolicitudesClass {
         this.mensaje = mensaje;
     }
 
-    public String getFecha() {
+    String getFecha() {
         return Fecha;
     }
 
@@ -38,7 +36,7 @@ public class SolicitudesClass {
         Fecha = fecha;
     }
 
-    public String getUsuarioRequisito() {
+    String getUsuarioRequisito() {
         return usuarioRequisito;
     }
 
@@ -46,7 +44,7 @@ public class SolicitudesClass {
         this.usuarioRequisito = usuarioRequisito;
     }
 
-    public String getDocumento() {
+    String getDocumento() {
         return Documento;
     }
 

@@ -10,13 +10,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.swiperefreshlayout.widget.*;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.*;
 import android.view.View;
 import android.widget.Button;
 
@@ -37,12 +36,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class documentosElegir extends AppCompatActivity {
-
-    private Button btnCerrarSesion;
-    private Button btnSolicitudes;
-    private Button btnCargarDocumento;
 
     private SwipeRefreshLayout refreshLayout;
 
@@ -65,9 +61,9 @@ public class documentosElegir extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentos_elegir);
 
-        btnCerrarSesion = findViewById(R.id.CerrarSesion);
-        btnSolicitudes = findViewById(R.id.solicitudes);
-        btnCargarDocumento = findViewById(R.id.cargarDocumentos);
+        Button btnCerrarSesion = findViewById(R.id.CerrarSesion);
+        Button btnSolicitudes = findViewById(R.id.solicitudes);
+        Button btnCargarDocumento = findViewById(R.id.cargarDocumentos);
 
         mRecyclerView = findViewById(R.id.recyclerList);
         refreshLayout = findViewById(R.id.swipeRefreshLayout);
@@ -150,14 +146,14 @@ public class documentosElegir extends AppCompatActivity {
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
 
                     mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        mDocumentosList.add(new Documentos(ds.getKey(), ds.child("FechaCarga").getValue().toString(), USUARIO));
+                        mDocumentosList.add(new Documentos(ds.getKey(), Objects.requireNonNull(ds.child("FechaCarga").getValue()).toString(), USUARIO));
                     }
 
                     mAdapter = new documentoAdapter(mDocumentosList, R.layout.documentos);
@@ -166,7 +162,7 @@ public class documentosElegir extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }
@@ -261,14 +257,14 @@ public class documentosElegir extends AppCompatActivity {
         alert.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                eliminarDocumento eliminarDocumento = new eliminarDocumento();
-                eliminarDocumento.eliminar(usuario, documento, context);
+                eliminateDocument eliminateDocument = new eliminateDocument();
+                eliminateDocument.eliminar(usuario, documento, context);
 
                 Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, documentosElegir.class);
                 ((Activity) context).finish();
-                ((Activity) context).startActivity(intent);
+                context.startActivity(intent);
             }
         });
         alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -392,7 +388,7 @@ public class documentosElegir extends AppCompatActivity {
         myRef = database.getReference("DOCUMENTS/"+USUARIO + "/" + ARCHIVO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
                     saltoCarga();
@@ -405,7 +401,7 @@ public class documentosElegir extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }

@@ -1,9 +1,8 @@
 package com.example.filecloud;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
     private int resource;
     private ArrayList<SolicitudesClass> solicitudLista;
 
-    public solicitudesAdapter(int resource, ArrayList<SolicitudesClass> solicitudLista) {
+    solicitudesAdapter(int resource, ArrayList<SolicitudesClass> solicitudLista) {
         this.resource = resource;
         this.solicitudLista = solicitudLista;
     }
@@ -49,12 +48,12 @@ public class solicitudesAdapter extends RecyclerView.Adapter<solicitudesAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public View view;
+        View view;
         private Button btnAtencion;
         private TextView txtNombre, txtFecha, txtSolicitante, mensaje, usuario;
         private Context context;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
 
             this.view = view;
