@@ -21,10 +21,6 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
         this.resource = resource;
     }
 
-    public documentoAdapter(){
-
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -50,7 +46,7 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView nombre, fecha, usuario, estado;
+        private TextView nombre, fecha, usuario;
         View view;
         private Button btnEditarDocumento;
         private Button btnEliminarDocumento;
@@ -83,7 +79,7 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
 
                 case R.id.deleteRecycler:
                     elegir.eliminarDocumento(usuario.getText().toString(), nombre.getText().toString(), context);
-                    elegir.listDocumentos();
+                    //elegir.listDocumentos();
                     break;
             }
         }

@@ -10,6 +10,7 @@
     <string name="apellidoP">Apellido Paterno</string>
     <string name="apellidoM">Apellido Materno</string>
     <string name="app_name">FileCloud</string>
+    <string name="archivo">Imágen de un archivo</string>
     <string name="atender">Atender Solicitud</string>
 
     <string name="Bienvenido">Bienvenido</string>

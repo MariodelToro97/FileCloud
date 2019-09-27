@@ -83,4 +83,5 @@
     <string name="shortPassword">The password you inserted is too short</string>
     <string name="tipoUsuario">Enter the type of user you are</string>
     <string name="userExist">The user entered already exists in the database</string>
+    <string name="archivo">Image of a file</string>
 </resources>

@@ -18,7 +18,7 @@
         android:text="Prueba"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_marginEnd="38dp"
         android:text="Fecha"
         android:textAlignment="center"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="italic" />
 
     <ImageView
@@ -47,7 +47,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="280dp"
         android:background="@drawable/file3"
-        android:contentDescription="Archivo"
+        android:contentDescription="@string/archivo"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/file3" />
 
@@ -84,7 +84,7 @@
         android:id="@+id/usuarioDocumento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="----"
         android:visibility="invisible" />
 
 </RelativeLayout>

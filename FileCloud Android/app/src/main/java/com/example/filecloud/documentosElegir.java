@@ -11,11 +11,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.recyclerview.widget.*;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -172,10 +175,9 @@ public class documentosElegir extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_CANCELED) {
-            //Cancelado por el usuario
+        //Cancelado por el usuario
+        if (resultCode == RESULT_CANCELED)
             Toast.makeText(getApplicationContext(), R.string.cancelado, Toast.LENGTH_SHORT).show();
-        }
         if ((resultCode == RESULT_OK) && (requestCode == VALOR_RETORNO)) {
             //Procesar el resultado
 

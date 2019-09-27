@@ -24,8 +24,6 @@ import java.util.Objects;
 
 public class inicioSesion extends AppCompatActivity {
 
-    private Button btnCancelar;
-    private Button btnIniciarSesion;
     private EditText Usuario, Password;
     private RadioButton rbRecuerdame;
 
@@ -37,8 +35,8 @@ public class inicioSesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
-        btnCancelar = findViewById(R.id.Cancelar);
-        btnIniciarSesion = findViewById(R.id.iniciarSesionP);
+        Button btnCancelar = findViewById(R.id.Cancelar);
+        Button btnIniciarSesion = findViewById(R.id.iniciarSesionP);
 
         Usuario = findViewById(R.id.userSesion);
         Password = findViewById(R.id.passwordSesion);
