@@ -12,7 +12,7 @@
     <string name="no">No</string>
     <string name="actualizacionNo">Actualización no disponible</string>
     <string name="actualizar">Actualizar ahora</string>
-    <string name="actualizarDesp">Actualización pospuesta}</string>
+    <string name="actualizarDesp">Actualización pospuesta</string>
     <string name="actualizarDespues">Más tarde</string>
     <string name="admin">Usted tiene el rol de administrador, debe iniciar sesión en la aplicación WEB</string>
     <string name="alertEditFile">¿Está seguro de reemplazar el documento?</string>

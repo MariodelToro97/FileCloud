@@ -40,8 +40,6 @@ import java.util.Objects;
 
 public class solicitudes extends AppCompatActivity {
 
-    private Button Regresar;
-
     String USUARIO;
     String ARCHIVO;
     private int VALOR_RETORNO = 1;
@@ -60,7 +58,7 @@ public class solicitudes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solicitudes);
 
-        Regresar = findViewById(R.id.Regresar);
+        Button regresar = findViewById(R.id.Regresar);
 
         mRecyclerView = findViewById(R.id.viewsSol);
 
@@ -69,7 +67,7 @@ public class solicitudes extends AppCompatActivity {
         USUARIO = getIntent().getStringExtra("USUARIO");
         refreshLayout = findViewById(R.id.swipeRefreshLayout2);
 
-        Regresar.setOnClickListener(new View.OnClickListener() {
+        regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent regresar = new Intent(solicitudes.this, documentosElegir.class);
@@ -133,6 +131,16 @@ public class solicitudes extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent regresar = new Intent(solicitudes.this, documentosElegir.class);
+        regresar.putExtra("USUARIO", USUARIO);
+        startActivity(regresar);
+        finish();
+
     }
 
     public void atenderSoli(String documento, Context context, String user){

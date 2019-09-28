@@ -4,6 +4,8 @@ public class Documentos {
 
     private String Nombre, Fecha, Usuario, ARCHIVO;
 
+    public String URL = "https://github.com/MariodelToro97/FileCloud/releases/";
+
     public Documentos(){
 
     }

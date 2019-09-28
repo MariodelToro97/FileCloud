@@ -13,11 +13,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
-
-import com.github.javiersantos.appupdater.AppUpdater;
-import com.github.javiersantos.appupdater.enums.Display;
-import com.github.javiersantos.appupdater.enums.UpdateFrom;
-
 public class splashFileCloud extends AppCompatActivity {
 
     @Override
@@ -70,45 +65,5 @@ public class splashFileCloud extends AppCompatActivity {
             AlertDialog dialog = alert.create();
             dialog.show();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        actualizarApp();
-    }
-
-    private void actualizarApp () {
-        AppUpdater appUpdater = new AppUpdater(this)
-                .setDisplay(Display.DIALOG)
-                .setCancelable(false)
-                .setUpdateFrom(UpdateFrom.GITHUB)
-                .setGitHubUserAndRepo("MariodelToro97", "FileCloud")
-                .showEvery(1)
-                .setTitleOnUpdateAvailable(R.string.actualizacion)
-                .setTitleOnUpdateNotAvailable(R.string.actualizacionNo)
-                .setButtonUpdate(R.string.actualizar)
-                .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(splashFileCloud.this, R.string.descarga, Toast.LENGTH_LONG).show();
-                    }
-                })
-                .setButtonDismiss(R.string.actualizarDespues)
-                .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(splashFileCloud.this, R.string.actualizarDesp, Toast.LENGTH_LONG).show();
-                    }
-                })
-                .setButtonDoNotShowAgain(R.string.noInteresado)
-                .setButtonDoNotShowAgainClickListener(new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(splashFileCloud.this, R.string.cancelUpd, Toast.LENGTH_LONG).show();
-                    }
-                });
-        //.setIcon(R.drawable.ic_system_update_black_24dp);
-        appUpdater.start();
     }
 }

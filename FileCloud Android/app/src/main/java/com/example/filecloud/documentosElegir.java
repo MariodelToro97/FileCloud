@@ -24,6 +24,9 @@ import android.widget.Button;
 
 import android.widget.Toast;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -90,6 +93,7 @@ public class documentosElegir extends AppCompatActivity {
                 Intent solicitudes = new Intent(documentosElegir.this, solicitudes.class);
                 solicitudes.putExtra("USUARIO", USUARIO);
                 startActivity(solicitudes);
+                finish();
             }
         });
 
@@ -129,6 +133,51 @@ public class documentosElegir extends AppCompatActivity {
         BDUser sql = new BDUser(this, "personasBD", null, 1);
         SQLiteDatabase db = sql.getReadableDatabase();
         db.execSQL("DELETE FROM Documentos");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualizarApp();
+    }
+
+    private void actualizarApp () {
+        AppUpdater appUpdater = new AppUpdater(this)
+                .setDisplay(Display.DIALOG)
+                .setCancelable(false)
+                .setUpdateFrom(UpdateFrom.GITHUB)
+                .setGitHubUserAndRepo("MariodelToro97", "FileCloud")
+                .showEvery(1)
+                .setTitleOnUpdateAvailable(R.string.actualizacion)
+                .setTitleOnUpdateNotAvailable(R.string.actualizacionNo)
+                .setButtonUpdate(R.string.actualizar)
+                .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(documentosElegir.this, R.string.descarga, Toast.LENGTH_LONG).show();
+
+                        Documentos doc = new Documentos();
+
+                        Uri uri = Uri.parse(doc.URL);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                })
+                .setButtonDismiss(R.string.actualizarDespues)
+                .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(documentosElegir.this, R.string.actualizarDesp, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setButtonDoNotShowAgain(R.string.noInteresado)
+                .setButtonDoNotShowAgainClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(documentosElegir.this, R.string.cancelUpd, Toast.LENGTH_LONG).show();
+                    }
+                });
+        appUpdater.start();
     }
 
     private static final int INTERVALO = 2000; //2 segundos para salir
@@ -190,7 +239,6 @@ public class documentosElegir extends AppCompatActivity {
                 int i = c.getCount();
 
                 if (i == 0) {
-                    //Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
                     Uri file = data.getData(); //obtener el uri content
                     //Uri file = Uri.fromFile(new File(path));
                     cargarDocumentoProcess(file, db);
@@ -260,13 +308,17 @@ public class documentosElegir extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 eliminateDocument eliminateDocument = new eliminateDocument();
+
+                Intent splash = new Intent(context, splashFileCloud.class);
+                context.startActivity(splash);
+
                 eliminateDocument.eliminar(usuario, documento, context);
 
                 Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, documentosElegir.class);
                 ((Activity) context).finish();
-                context.startActivity(intent);
+                //context.startActivity(intent);
             }
         });
         alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
