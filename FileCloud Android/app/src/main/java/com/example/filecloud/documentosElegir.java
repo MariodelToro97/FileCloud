@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -309,16 +308,18 @@ public class documentosElegir extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 eliminateDocument eliminateDocument = new eliminateDocument();
 
-                Intent splash = new Intent(context, splashFileCloud.class);
-                context.startActivity(splash);
+                /*Intent splash = new Intent(context, splashFileCloud.class);
+                context.startActivity(splash);*/
 
                 eliminateDocument.eliminar(usuario, documento, context);
 
                 Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, documentosElegir.class);
+
                 ((Activity) context).finish();
-                //context.startActivity(intent);
+                intent.putExtra("USUARIO", usuario);
+                context.startActivity(intent);
             }
         });
         alert.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
