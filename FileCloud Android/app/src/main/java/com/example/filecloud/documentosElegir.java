@@ -194,6 +194,12 @@ public class documentosElegir extends AppCompatActivity {
     }
 
     public void listDocumentos(){
+        mDocumentosList.clear();
+        if (mDocumentosList.size() > 0)
+            mDocumentosList.remove(0);
+        mAdapter = new documentoAdapter(mDocumentosList, R.layout.documentos);
+        mRecyclerView.setAdapter(mAdapter);
+
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -307,10 +313,6 @@ public class documentosElegir extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 eliminateDocument eliminateDocument = new eliminateDocument();
-
-                /*Intent splash = new Intent(context, splashFileCloud.class);
-                context.startActivity(splash);*/
-
                 eliminateDocument.eliminar(usuario, documento, context);
 
                 Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();

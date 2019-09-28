@@ -49,7 +49,7 @@ public class splashFileCloud extends AppCompatActivity {
                         finish();
                     }
                 }
-            },4000);
+            },2500);
         } else {
             // No hay conexión a Internet en este momento
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
