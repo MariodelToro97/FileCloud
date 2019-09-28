@@ -1,8 +1,8 @@
 package com.example.filecloud;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.*;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +16,9 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
     private int resource;
     private ArrayList<Documentos> documentoLista;
 
-    public documentoAdapter(ArrayList<Documentos> documentoLista, int resource){
+    documentoAdapter(ArrayList<Documentos> documentoLista, int resource){
         this.documentoLista = documentoLista;
         this.resource = resource;
-    }
-
-    public documentoAdapter(){
-
     }
 
     @NonNull
@@ -50,13 +46,13 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView nombre, fecha, usuario, estado;
-        public View view;
+        private TextView nombre, fecha, usuario;
+        View view;
         private Button btnEditarDocumento;
         private Button btnEliminarDocumento;
         private Context context;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
 
             this.view = view;
@@ -83,7 +79,7 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
 
                 case R.id.deleteRecycler:
                     elegir.eliminarDocumento(usuario.getText().toString(), nombre.getText().toString(), context);
-                    elegir.listDocumentos();
+                    //elegir.listDocumentos();
                     break;
             }
         }

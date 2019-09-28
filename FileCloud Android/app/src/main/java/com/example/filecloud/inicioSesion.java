@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class inicioSesion extends AppCompatActivity {
 
-    private Button btnCancelar;
-    private Button btnIniciarSesion;
     private EditText Usuario, Password;
     private RadioButton rbRecuerdame;
 
@@ -33,8 +35,8 @@ public class inicioSesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
-        btnCancelar = findViewById(R.id.Cancelar);
-        btnIniciarSesion = findViewById(R.id.iniciarSesionP);
+        Button btnCancelar = findViewById(R.id.Cancelar);
+        Button btnIniciarSesion = findViewById(R.id.iniciarSesionP);
 
         Usuario = findViewById(R.id.userSesion);
         Password = findViewById(R.id.passwordSesion);
@@ -75,13 +77,13 @@ public class inicioSesion extends AppCompatActivity {
         myRef = database.getReference("Users/" + user + "/Usuario");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
                 checarUsuario(value, progressDialog);
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }
@@ -93,13 +95,13 @@ public class inicioSesion extends AppCompatActivity {
             myRef = database.getReference("Users/" + user + "/Password");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String value = dataSnapshot.getValue(String.class);
-                    obtenerContra(value, progressDialog);
+                    obtenerContra(Objects.requireNonNull(value), progressDialog);
                 }
 
                 @Override
-                public void onCancelled(DatabaseError error) {
+                public void onCancelled(@NonNull DatabaseError error) {
                     // Failed to read value
                     Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
                 }
@@ -115,7 +117,7 @@ public class inicioSesion extends AppCompatActivity {
             myRef = database.getReference("Users/" + user + "/cuentaVerificada");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     int value = dataSnapshot.getValue(Integer.class);
 
                     if (value == 0) {
@@ -126,7 +128,7 @@ public class inicioSesion extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError error) {
+                public void onCancelled(@NonNull DatabaseError error) {
                     // Failed to read value
                     Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
                 }
@@ -154,7 +156,7 @@ public class inicioSesion extends AppCompatActivity {
             myRef = database.getReference("Users/" + user + "/tipoUsuario");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     int value = dataSnapshot.getValue(Integer.class);
 
                     if (value == 0){
@@ -194,14 +196,13 @@ public class inicioSesion extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError error) {
+                public void onCancelled(@NonNull DatabaseError error) {
                     // Failed to read value
                     Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
                 }
             });
 
         } else if (contra){
-            contra = true;
             Toast.makeText(getApplicationContext(), R.string.contraIncorrecta, Toast.LENGTH_SHORT).show();
             Password.setText("");
             Password.requestFocus();

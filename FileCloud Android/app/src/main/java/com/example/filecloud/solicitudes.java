@@ -10,17 +10,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.swiperefreshlayout.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
+import androidx.recyclerview.widget.*;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -42,8 +40,6 @@ import java.util.Objects;
 
 public class solicitudes extends AppCompatActivity {
 
-    private Button Regresar;
-
     String USUARIO;
     String ARCHIVO;
     private int VALOR_RETORNO = 1;
@@ -62,7 +58,7 @@ public class solicitudes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solicitudes);
 
-        Regresar = findViewById(R.id.Regresar);
+        Button regresar = findViewById(R.id.Regresar);
 
         mRecyclerView = findViewById(R.id.viewsSol);
 
@@ -71,7 +67,7 @@ public class solicitudes extends AppCompatActivity {
         USUARIO = getIntent().getStringExtra("USUARIO");
         refreshLayout = findViewById(R.id.swipeRefreshLayout2);
 
-        Regresar.setOnClickListener(new View.OnClickListener() {
+        regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent regresar = new Intent(solicitudes.this, documentosElegir.class);
@@ -114,14 +110,14 @@ public class solicitudes extends AppCompatActivity {
         myRef = database.getReference("Requisiciones/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
 
                     mDocumentosList.clear();
 
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        mDocumentosList.add(new SolicitudesClass(Objects.requireNonNull(ds.child("usuarioCreador").getValue()).toString(), ds.getKey(), ds.child("fecha").getValue().toString(), ds.child("mensaje").getValue().toString(), ds.child("usuario").getValue().toString()));
+                        mDocumentosList.add(new SolicitudesClass(Objects.requireNonNull(ds.child("usuarioCreador").getValue()).toString(), ds.getKey(), Objects.requireNonNull(ds.child("fecha").getValue()).toString(), Objects.requireNonNull(ds.child("mensaje").getValue()).toString(), Objects.requireNonNull(ds.child("usuario").getValue()).toString()));
                     }
 
                     mAdapter = new solicitudesAdapter(R.layout.prueba_solicitudes, mDocumentosList);
@@ -135,6 +131,16 @@ public class solicitudes extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent regresar = new Intent(solicitudes.this, documentosElegir.class);
+        regresar.putExtra("USUARIO", USUARIO);
+        startActivity(regresar);
+        finish();
+
     }
 
     public void atenderSoli(String documento, Context context, String user){
@@ -232,7 +238,7 @@ public class solicitudes extends AppCompatActivity {
         myRef = database.getReference("DOCUMENTS/"+user + "/" + documento);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     saltoCarga(documento, context);
                 } else {
@@ -241,7 +247,7 @@ public class solicitudes extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }

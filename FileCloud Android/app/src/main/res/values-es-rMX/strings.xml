@@ -1,25 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="CURP" translatable="false">CURP</string>
+    <string name="Bienvenido">Bienvenido</string>
+    <string name="Huella">Seleccione una opción</string>
+    <string name="InicioCorrecto">Inicio de sesión correcto</string>
     <string name="actualizacion">Actualización disponible</string>
+    <string name="usuario">Usuario</string>
+    <string name="si">Si</string>
+    <string name="ok">Está bien</string>
+    <string name="nombre">Nombre</string>
+    <string name="no">No</string>
+    <string name="actualizacionNo">Actualización no disponible</string>
     <string name="actualizar">Actualizar ahora</string>
     <string name="actualizarDesp">Actualización pospuesta</string>
     <string name="actualizarDespues">Más tarde</string>
-    <string name="actualizacionNo">Actualización no disponible</string>
     <string name="admin">Usted tiene el rol de administrador, debe iniciar sesión en la aplicación WEB</string>
-    <string name="alertEditFile">¿Está seguro de remplazar el documento?</string>
+    <string name="alertEditFile">¿Está seguro de reemplazar el documento?</string>
     <string name="alumno">Alumno inscrito</string>
-    <string name="apellidoP">Apellido Paterno</string>
-    <string name="apellidoM">Apellido Materno</string>
+    <string name="apellidoM">Apellido materno</string>
+    <string name="apellidoP">Apellido paterno</string>
     <string name="app_name">FileCloud</string>
-    <string name="archivo">Imágen de un archivo</string>
-    <string name="atender">Atender Solicitud</string>
-
-    <string name="Bienvenido">Bienvenido</string>
+    <string name="atender">Atender solicitud</string>
     <string name="bienvenidoFile">Bienvenido a FileCloud</string>
-    <string name="borradoExitoso">Archivo borrado exitosamente</string>
-    <string name="borrarDocumento">Borrar Documento</string>
-
-    <string name="cancelado">Proceso Cancelado</string>
+    <string name="vacio">Dejó campos vacios</string>
+    <string name="titleNoInternte">Sin conexión a Internet</string>
+    <string name="solicitud">Solicitudes</string>
+    <string name="phone">Teléfono</string>
+    <string name="recuerdame">Recuérdame</string>
+    <string name="repContra">Confirmas contraseña</string>
+    <string name="regresar">Regresar</string>
+    <string name="registrar">Registrarse</string>
+    <string name="contraseña">Contraseña</string>
     <string name="cancelar">Cancelar</string>
+    <string name="cancelado">Proceso cancelado</string>
+    <string name="borrarDocumento">Borrar documento</string>
+    <string name="borradoExitoso">Archivo borrado exitosamente</string>
     <string name="cancelUpd">Actualización cancelada</string>
     <string name="cargaCompleta">Carga del documento completada</string>
     <string name="cargarDocu">Cargar/Editar documento</string>
@@ -27,19 +42,15 @@
     <string name="cerrarSesion">Se ha cerrado sesión de forma correcta</string>
     <string name="confirmCeraar">¿Está seguro de que desea cerrar sesión?</string>
     <string name="confirmDeleteFile">¿Está seguro de eliminar el documento?</string>
-    <string name="confirmEditFile">Remplazar Documento</string>
-    <string name="contraseña">Contraseña</string>
+    <string name="confirmEditFile">Reemplazar Documento</string>
     <string name="contraIncorrecta">La contraseña ingresada es incorrecta</string>
-    <string name="CURP">CURP</string>
     <string name="curpUso">La CURP que insertó ya está en uso</string>
-
-    <string name="datosRegistro">Validando datos </string>
+    <string name="datosRegistro">Validando datos</string>
     <string name="deleteFile">Archivo borrado con éxito</string>
     <string name="descarga">Favor de descargar e instalar el archivo APK de la página oficial</string>
     <string name="docuCarga">Documentos cargados</string>
     <string name="documentoEle">Documentos a elegir</string>
     <string name="documentoVerificacion">Documento de verificación</string>
-
     <string name="editar">Reemplazar</string>
     <string name="eliminar">Eliminar</string>
     <string name="email">Correo</string>
@@ -47,58 +58,30 @@
     <string name="errorBD">Error en la lectura de la base de datos</string>
     <string name="errorDeleteFile">Ha ocurrido un error en el borrado del documento</string>
     <string name="errorDocumento">Ha ocurrido un error en la carga del documento</string>
-
     <string name="formatoCorreo">El formato colocado es inválido</string>
-    <string name="formatoPassword">La constraseña insertada debe contener valores alfanuméricos</string>
+    <string name="formatoPassword">La contraseña insertada debe contener valores alfanuméricos</string>
     <string name="formatoUserInscrito">El formato del usuario ingresado no coincide con el de un alumno inscrito</string>
-
-    <string name="Huella">Seleccione una opción</string>
-
     <string name="ingresarHuella">Ingresar huella digital</string>
-    <string name="InicioCorrecto">Inicio de Sesión correcto</string>
     <string name="inicioSesion">Iniciar sesión</string>
     <string name="insertadoUser">Usuario ingresado de forma correcta</string>
-
-    <string name="linea" translatable="false">_________________________________________</string>
     <string name="listaSol">Listado de solicitudes</string>
     <string name="loadFile">Carga de Documentos</string>
     <string name="logo">Logo FileCloud</string>
-
     <string name="matriculaIncorrecta">El usuario debe contener 8 caracteres</string>
     <string name="mensajeVerificacion">Para que su cuenta pueda ser verificada por los administradores, deberá subir un documento oficial que verifique la escolaridad de la que proviene (Credencial, comprobantes, certificado, etc.). ¿Desea proseguir con el proceso?</string>
-    <string name="messageLoadFile">Favor de esperar, se está realizando la carga de su documento</string>
-
-    <string name="no">No</string>
+    <string name="messageLoadFile">Espere un momento, se está realizando la carga de su documento</string>
     <string name="noCoincidden">Las contraseñas insertadas no coinciden</string>
     <string name="noExisteUsuario">El usuario insertado no existe en la base de datos</string>
     <string name="noInteresado">No me interesa</string>
-    <string name="noInternet">En este instante el dispositivo no tiene Internet, lo invitamos a conectar su dispositivo a la red</string>
-    <string name="nombre">Nombre(s)</string>
+    <string name="noInternet">En este momento el dispositivo no tiene Internet, lo invitamos a conectar su dispositivo a la red</string>
     <string name="noVerficada">Tu cuenta aún no ha sido verificada por un administrador, aún no puedes iniciar sesión</string>
     <string name="nuevoIng">Nuevo ingreso</string>
     <string name="numControl">Número de matrícula</string>
-
-    <string name="ok">OK</string>
-
-    <string name="phone">Teléfono</string>
-
-    <string name="recuerdame">Recuérdame</string>
-    <string name="registrar">Registrarse</string>
-    <string name="regresar">Regresar</string>
     <string name="rellenoCampos">Favor de rellenar los campos que se solicitan a continuación</string>
-    <string name="repContra">Confirmar contraseña</string>
     <string name="reply">Vuelve a presionar para salir</string>
-
     <string name="seleccionFile">Selecciona que archivo vas a subir</string>
     <string name="shortPassword">La contraseña que insertó, es demasiada corta</string>
-    <string name="si">Si</string>
-    <string name="solicitud">Solicitudes</string>
-
     <string name="tipoUsuario">Ingresar el tipo de usuario que eres</string>
-    <string name="titleNoInternte">Sin conexión a Internet</string>
-
     <string name="userExist">El usuario ingresado ya existe en la base de datos</string>
-    <string name="usuario">Usuario</string>
-
-    <string name="vacio">Dejó campos vacios</string>
+    <string name="archivo">Imágen de un archivo</string>
 </resources>

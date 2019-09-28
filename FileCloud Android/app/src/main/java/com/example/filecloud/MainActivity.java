@@ -1,10 +1,18 @@
 package com.example.filecloud;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,5 +43,50 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualizarApp();
+    }
+
+    private void actualizarApp () {
+        AppUpdater appUpdater = new AppUpdater(this)
+                .setDisplay(Display.DIALOG)
+                .setCancelable(false)
+                .setUpdateFrom(UpdateFrom.GITHUB)
+                .setGitHubUserAndRepo("MariodelToro97", "FileCloud")
+                .showEvery(1)
+                .setTitleOnUpdateAvailable(R.string.actualizacion)
+                .setTitleOnUpdateNotAvailable(R.string.actualizacionNo)
+                .setButtonUpdate(R.string.actualizar)
+                .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, R.string.descarga, Toast.LENGTH_LONG).show();
+
+                        Documentos doc = new Documentos();
+
+                        Uri uri = Uri.parse(doc.URL);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                })
+                .setButtonDismiss(R.string.actualizarDespues)
+                .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, R.string.actualizarDesp, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setButtonDoNotShowAgain(R.string.noInteresado)
+                .setButtonDoNotShowAgainClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this, R.string.cancelUpd, Toast.LENGTH_LONG).show();
+                    }
+                });
+        appUpdater.start();
     }
 }
