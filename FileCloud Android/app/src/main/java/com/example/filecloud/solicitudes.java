@@ -140,7 +140,6 @@ public class solicitudes extends AppCompatActivity {
         regresar.putExtra("USUARIO", USUARIO);
         startActivity(regresar);
         finish();
-
     }
 
     public void atenderSoli(String documento, Context context, String user){
@@ -173,7 +172,6 @@ public class solicitudes extends AppCompatActivity {
                 //Uri file = Uri.fromFile(new File(path));
                 cargarDocumentoProcess(file, db);
             }
-
             listDocumentos();
         }
     }

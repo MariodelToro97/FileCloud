@@ -28,6 +28,7 @@ import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,6 +70,7 @@ public class documentosElegir extends AppCompatActivity {
         Button btnCerrarSesion = findViewById(R.id.CerrarSesion);
         Button btnSolicitudes = findViewById(R.id.solicitudes);
         Button btnCargarDocumento = findViewById(R.id.cargarDocumentos);
+        FloatingActionButton load = findViewById(R.id.loadFile);
 
         mRecyclerView = findViewById(R.id.recyclerList);
         refreshLayout = findViewById(R.id.swipeRefreshLayout);
@@ -80,6 +82,13 @@ public class documentosElegir extends AppCompatActivity {
         USUARIO = getIntent().getStringExtra("USUARIO");
 
         btnCargarDocumento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seleccionListaDocumentos();
+            }
+        });
+
+        load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 seleccionListaDocumentos();
