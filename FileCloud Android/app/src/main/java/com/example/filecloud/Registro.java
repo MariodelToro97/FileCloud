@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +44,7 @@ public class Registro extends AppCompatActivity {
     private Button btnRegistro;
     private RadioButton rbNuevoIngreso;
     private RadioButton rbAlumnoInscrito;
+    private TextInputLayout textUser, textPass, textPassCon;
     private EditText User, Telefono;
     private EditText nombre, apellidoPaterno, apelllidoMaterno, contrasena, confirmContrasena, correo, curp;
 
@@ -81,6 +83,10 @@ public class Registro extends AppCompatActivity {
         correo = findViewById(R.id.correo);
         Telefono = findViewById(R.id.phone);
         curp = findViewById(R.id.CURP);
+
+        textUser = findViewById(R.id.textInputLayout9);
+        textPass = findViewById(R.id.textInputLayout10);
+        textPassCon = findViewById(R.id.textInputLayout11);
 
         nombre.requestFocus();
 
@@ -254,9 +260,9 @@ public class Registro extends AppCompatActivity {
             public void onClick(View view) {
                 User.setHint(R.string.numControl);
                 User.setInputType(InputType.TYPE_CLASS_NUMBER);
-                User.setVisibility(View.VISIBLE);
-                contrasena.setVisibility(View.VISIBLE);
-                confirmContrasena.setVisibility(View.VISIBLE);
+                textUser.setVisibility(View.VISIBLE);
+                textPass.setVisibility(View.VISIBLE);
+                textPassCon.setVisibility(View.VISIBLE);
             }
         });
 
@@ -266,9 +272,9 @@ public class Registro extends AppCompatActivity {
                 User.setHint(R.string.usuario);
                 User.setError(null);
                 User.setInputType(InputType.TYPE_CLASS_TEXT);
-                User.setVisibility(View.VISIBLE);
-                contrasena.setVisibility(View.VISIBLE);
-                confirmContrasena.setVisibility(View.VISIBLE);
+                textUser.setVisibility(View.VISIBLE);
+                textPass.setVisibility(View.VISIBLE);
+                textPassCon.setVisibility(View.VISIBLE);
             }
         });
     }

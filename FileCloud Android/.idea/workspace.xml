@@ -10,34 +10,14 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f53fef39-4dca-4a38-bd19-c810ffb3f38c" name="Default Changelist" comment="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión.&#10;- Se evitó la opción de cancelar al presionar en la pantalla mientras se están verificando los datos en el inicio de sesión.&#10;- Se solucionó que se quedaba atorada la aplicación si se dejaban campos vacios en el inicio de sesión y se presionaba el botón de inicio de sesión.&#10;- Se cambió el radiobutton por un checkbox en el inicio de sesión.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gradiente.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_cancel_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_folder_shared_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_lock_outline_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_person_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_send_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/out.png" afterDir="false" />
+    <list default="true" id="f53fef39-4dca-4a38-bd19-c810ffb3f38c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_email_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_insert_drive_file_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_phone_black_24dp.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/splashFileCloud.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/splashFileCloud.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_solicitudes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_solicitudes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_file_cloud.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_file_cloud.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/door.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,62 +47,44 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml">
+          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="293">
-              <caret line="47" column="38" lean-forward="true" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+              <caret line="106" column="12" selection-start-line="106" selection-start-column="12" selection-end-line="107" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
+          <provider selected="true" editor-type-id="android-designer2" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="-105">
+              <caret line="298" column="49" selection-start-line="298" selection-start-column="49" selection-end-line="298" selection-end-column="49" />
               <folding>
-                <element signature="e#2465#2479#0" expanded="true" />
+                <element signature="e#4340#4360#0" expanded="true" />
+                <element signature="e#4439#4458#0" expanded="true" />
+                <element signature="e#12885#12904#0" expanded="true" />
+                <element signature="e#13162#13177#0" expanded="true" />
+                <element signature="e#13436#13451#0" expanded="true" />
+                <element signature="e#13831#13845#0" expanded="true" />
+                <element signature="e#15667#15686#0" expanded="true" />
               </folding>
             </state>
           </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="1360">
-              <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
+            <state relative-caret-position="295">
+              <caret line="276" column="56" selection-start-line="276" selection-start-column="56" selection-end-line="276" selection-end-column="56" />
+              <folding>
+                <element signature="e#4433#4602#1" />
+                <element signature="e#4657#15725#1" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,6 +108,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="Mario Josue del Toro Morales &lt;mario_chomy@outlook.com&gt;" />
         <option value="Mario del Toro &lt;mario_chomy@outlook.com&gt;" />
       </list>
     </option>
@@ -167,12 +130,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/splashFileCloud.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" />
       </list>
     </option>
   </component>
@@ -188,10 +151,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -292,10 +255,19 @@
       <option name="presentableId" value="Default" />
       <updated>1569680893491</updated>
     </task>
+    <task id="LOCAL-00001" summary="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión.&#10;- Se evitó la opción de cancelar al presionar en la pantalla mientras se están verificando los datos en el inicio de sesión.&#10;- Se solucionó que se quedaba atorada la aplicación si se dejaban campos vacios en el inicio de sesión y se presionaba el botón de inicio de sesión.&#10;- Se cambió el radiobutton por un checkbox en el inicio de sesión.">
+      <created>1570981423017</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1570981423017</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" weight="0.1913767" />
@@ -325,7 +297,7 @@
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="right" id="Codota" order="6" />
       <window_info anchor="right" id="Assistant" order="7" weight="0.32980332" />
-      <window_info active="true" anchor="right" id="Preview" order="8" visible="true" weight="0.32980332" />
+      <window_info anchor="right" id="Preview" order="8" weight="0.32980332" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -337,7 +309,8 @@
     <MESSAGE value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión." />
     <MESSAGE value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión" />
     <MESSAGE value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión." />
+    <MESSAGE value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión.&#10;- Se evitó la opción de cancelar al presionar en la pantalla mientras se están verificando los datos en el inicio de sesión.&#10;- Se solucionó que se quedaba atorada la aplicación si se dejaban campos vacios en el inicio de sesión y se presionaba el botón de inicio de sesión.&#10;- Se cambió el radiobutton por un checkbox en el inicio de sesión." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión.&#10;- Se evitó la opción de cancelar al presionar en la pantalla mientras se están verificando los datos en el inicio de sesión.&#10;- Se solucionó que se quedaba atorada la aplicación si se dejaban campos vacios en el inicio de sesión y se presionaba el botón de inicio de sesión.&#10;- Se cambió el radiobutton por un checkbox en el inicio de sesión." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/logofilecloud.png">
@@ -351,12 +324,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/door.png" />
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -366,36 +339,36 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/prueba_solicitudes.xml">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/documentos.xml">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_file_cloud.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_solicitudes.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -411,45 +384,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/splashFileCloud.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="53" column="93" selection-start-line="53" selection-start-column="93" selection-end-line="53" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_lock_outline_black_24dp.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_folder_shared_black_24dp.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -458,13 +394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="147" column="17" lean-forward="true" selection-start-line="144" selection-start-column="8" selection-end-line="147" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="311" column="32" lean-forward="true" selection-start-line="311" selection-start-column="32" selection-end-line="311" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -482,13 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -496,16 +418,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/splashFileCloud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="53" column="93" selection-start-line="53" selection-start-column="93" selection-end-line="53" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/buttonstyle.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="54" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="78" column="58" selection-start-line="78" selection-start-column="58" selection-end-line="78" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
-          <caret line="47" column="38" lean-forward="true" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+          <caret line="106" column="12" selection-start-line="106" selection-start-column="12" selection-end-line="107" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="276" column="56" selection-start-line="276" selection-start-column="56" selection-end-line="276" selection-end-column="56" />
           <folding>
-            <element signature="e#2465#2479#0" expanded="true" />
+            <element signature="e#4433#4602#1" />
+            <element signature="e#4657#15725#1" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="298" column="49" selection-start-line="298" selection-start-column="49" selection-end-line="298" selection-end-column="49" />
+          <folding>
+            <element signature="e#4340#4360#0" expanded="true" />
+            <element signature="e#4439#4458#0" expanded="true" />
+            <element signature="e#12885#12904#0" expanded="true" />
+            <element signature="e#13162#13177#0" expanded="true" />
+            <element signature="e#13436#13451#0" expanded="true" />
+            <element signature="e#13831#13845#0" expanded="true" />
+            <element signature="e#15667#15686#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
