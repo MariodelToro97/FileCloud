@@ -2,6 +2,7 @@ package com.example.filecloud;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +18,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -80,6 +85,51 @@ public class inicioSesion extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualizarApp();
+    }
+
+    private void actualizarApp () {
+        AppUpdater appUpdater = new AppUpdater(this)
+                .setDisplay(Display.DIALOG)
+                .setCancelable(false)
+                .setUpdateFrom(UpdateFrom.GITHUB)
+                .setGitHubUserAndRepo("MariodelToro97", "FileCloud")
+                .showEvery(1)
+                .setTitleOnUpdateAvailable(R.string.actualizacion)
+                .setTitleOnUpdateNotAvailable(R.string.actualizacionNo)
+                .setButtonUpdate(R.string.actualizar)
+                .setButtonUpdateClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(inicioSesion.this, R.string.descarga, Toast.LENGTH_LONG).show();
+
+                        Documentos doc = new Documentos();
+
+                        Uri uri = Uri.parse(doc.URL);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+                    }
+                })
+                .setButtonDismiss(R.string.actualizarDespues)
+                .setButtonDismissClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(inicioSesion.this, R.string.actualizarDesp, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setButtonDoNotShowAgain(R.string.noInteresado)
+                .setButtonDoNotShowAgainClickListener(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(inicioSesion.this, R.string.cancelUpd, Toast.LENGTH_LONG).show();
+                    }
+                });
+        appUpdater.start();
     }
 
     private static final int INTERVALO = 2000; //2 segundos para salir
