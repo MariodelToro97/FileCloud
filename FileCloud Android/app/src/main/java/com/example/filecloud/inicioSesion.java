@@ -7,11 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +27,7 @@ import java.util.Objects;
 public class inicioSesion extends AppCompatActivity {
 
     private EditText Usuario, Password;
-    private RadioButton rbRecuerdame;
+    private CheckBox rbRecuerdame;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -35,7 +37,12 @@ public class inicioSesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
-        Button btnCancelar = findViewById(R.id.Cancelar);
+        //Cambia el color de la barra de navegación
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAbajo));
+        //Cambia el color de la barra de notificaciones
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorArriba));
+
+        Button btnRegistrar = findViewById(R.id.registrarseLogin);
         Button btnIniciarSesion = findViewById(R.id.iniciarSesionP);
 
         Usuario = findViewById(R.id.userSesion);
@@ -45,10 +52,10 @@ public class inicioSesion extends AppCompatActivity {
 
         rbRecuerdame = findViewById(R.id.rememberme);
 
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sesion = new Intent(inicioSesion.this, MainActivity.class);
+                Intent sesion = new Intent(inicioSesion.this, Registro.class);
                 startActivity(sesion);
                 finish();
             }
@@ -62,15 +69,31 @@ public class inicioSesion extends AppCompatActivity {
 
                 progressDialog.setTitle(R.string.datosRegistro);
                 progressDialog.setMessage("Los datos están siendo verificados");
+                progressDialog.setCancelable(false);
                 progressDialog.show();
 
                 if (user.isEmpty() || contra.isEmpty()){
                     Toast.makeText(getApplicationContext(), R.string.vacio, Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 } else {
                     obtenerUsuario(user, progressDialog);
                 }
             }
         });
+    }
+
+    private static final int INTERVALO = 2000; //2 segundos para salir
+    private long tiempoPrimerClick;
+
+    @Override
+    public void onBackPressed() {
+        if (tiempoPrimerClick + INTERVALO > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else {
+            Toast.makeText(this, R.string.reply, Toast.LENGTH_SHORT).show();
+        }
+        tiempoPrimerClick = System.currentTimeMillis();
     }
 
     public void obtenerUsuario(String user, final ProgressDialog progressDialog){

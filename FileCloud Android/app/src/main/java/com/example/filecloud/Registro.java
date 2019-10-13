@@ -7,6 +7,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Patterns;
@@ -57,6 +59,11 @@ public class Registro extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+
+        //Cambia el color de la barra de navegación
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAbajo));
+        //Cambia el color de la barra de notificaciones
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorArriba));
 
         storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -236,7 +243,7 @@ public class Registro extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cancelar = new Intent(Registro.this, MainActivity.class);
+                Intent cancelar = new Intent(Registro.this, inicioSesion.class);
                 startActivity(cancelar);
                 finish();
             }
@@ -296,6 +303,14 @@ public class Registro extends AppCompatActivity {
     private boolean validarPasswordDos(String password) {
         Pattern pattern = Pattern.compile("^[a-z,A-Z]+");
         return pattern.matcher(password).matches();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent regresar = new Intent(Registro.this, inicioSesion.class);
+        startActivity(regresar);
+        finish();
     }
 
     public void insertadoDatos(){

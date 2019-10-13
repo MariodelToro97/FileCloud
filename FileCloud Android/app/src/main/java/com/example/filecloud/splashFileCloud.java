@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.widget.Toast;
 
 public class splashFileCloud extends AppCompatActivity {
@@ -19,6 +21,11 @@ public class splashFileCloud extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_file_cloud);
+
+        //Cambia el color de la barra de navegación
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAbajo));
+        //Cambia el color de la barra de notificaciones
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorArriba));
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -44,7 +51,7 @@ public class splashFileCloud extends AppCompatActivity {
                         }
 
                     } else {
-                        Intent intent = new Intent(splashFileCloud.this, MainActivity.class);
+                        Intent intent = new Intent(splashFileCloud.this, inicioSesion.class);
                         startActivity(intent);
                         finish();
                     }

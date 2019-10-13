@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.*;
@@ -66,6 +67,11 @@ public class documentosElegir extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentos_elegir);
+
+        //Cambia el color de la barra de navegación
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAbajo));
+        //Cambia el color de la barra de notificaciones
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorArriba));
 
         Button btnCerrarSesion = findViewById(R.id.CerrarSesion);
         Button btnSolicitudes = findViewById(R.id.solicitudes);
@@ -399,7 +405,7 @@ public class documentosElegir extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), R.string.cerrarSesion, Toast.LENGTH_SHORT).show();
 
-                    Intent cerrarSesion = new Intent(documentosElegir.this, MainActivity.class);
+                    Intent cerrarSesion = new Intent(documentosElegir.this, inicioSesion.class);
                     startActivity(cerrarSesion);
                     finish();
                 }

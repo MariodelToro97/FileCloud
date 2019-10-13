@@ -4,32 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiente"
     tools:context=".Registro">
 
     <Button
         android:id="@+id/cancelarRegistro"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/buttonstyle"
+        android:drawableStart="@drawable/ic_cancel_black_24dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="20dp"
         android:text="@string/cancelar"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/registrarse"
-        app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/registrarse"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/buttonstyle"
+        android:drawableStart="@drawable/ic_folder_shared_black_24dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="5dp"
         android:text="@string/registrar"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/cancelarRegistro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -59,17 +69,14 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="374dp"
-        android:layout_height="474dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="356dp"
+        android:layout_height="379dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/registrarse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.134">
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -77,7 +84,6 @@
 
             <EditText
                 android:id="@+id/nombreText"
-                android:importantForAutofill="no"
                 android:layout_width="280dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="8dp"
@@ -85,6 +91,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="@string/nombre"
+                android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,7 +100,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/paternoText"
                 android:layout_width="280dp"
                 android:layout_height="46dp"
@@ -102,6 +108,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="@string/apellidoP"
+                android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +117,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/nombreText" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/maternoText"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -119,6 +125,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="@string/apellidoM"
+                android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -176,9 +183,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:importantForAutofill="no"
                 android:ems="10"
                 android:hint="@string/usuario"
+                android:importantForAutofill="no"
                 android:inputType="textCapSentences"
                 android:textAlignment="center"
                 android:visibility="invisible"
@@ -194,9 +201,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:importantForAutofill="no"
                 android:ems="10"
                 android:hint="@string/contraseña"
+                android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:visibility="invisible"
@@ -213,9 +220,9 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="24dp"
-                android:importantForAutofill="no"
                 android:ems="10"
                 android:hint="@string/repContra"
+                android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:visibility="invisible"
@@ -226,7 +233,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/contrasenaText" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/correo"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -235,6 +241,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="@string/email"
+                android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -243,7 +250,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/maternoText" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/phone"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -252,6 +258,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="@string/phone"
+                android:importantForAutofill="no"
                 android:inputType="phone"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -259,7 +266,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/correo" />
 
             <EditText
-                android:importantForAutofill="no"
                 android:id="@+id/CURP"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -268,6 +274,7 @@
                 android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:hint="@string/CURP"
+                android:importantForAutofill="no"
                 android:inputType="textCapCharacters"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"

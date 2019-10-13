@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <!--<color name="colorPrimaryDark">#00574B</color>-->
+    <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!--Color de la parte superior de la pantalla-->
+    <color name="colorArriba">#FFFFFF</color>
+    <!--Color de la parte inferior de la pantalla-->
+    <color name="colorAbajo">#0078FF</color>
+
+    <!--Colores del SwipeRefreshLayour-->
     <color name="s1">#E91E63</color>
     <color name="s2">#009688</color>
     <color name="s3">#3F51B5</color>
