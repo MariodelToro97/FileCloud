@@ -7,6 +7,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Patterns;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +44,7 @@ public class Registro extends AppCompatActivity {
     private Button btnRegistro;
     private RadioButton rbNuevoIngreso;
     private RadioButton rbAlumnoInscrito;
+    private TextInputLayout textUser, textPass, textPassCon;
     private EditText User, Telefono;
     private EditText nombre, apellidoPaterno, apelllidoMaterno, contrasena, confirmContrasena, correo, curp;
 
@@ -58,6 +62,11 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
+        //Cambia el color de la barra de navegación
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAbajo));
+        //Cambia el color de la barra de notificaciones
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorArriba));
+
         storageRef = FirebaseStorage.getInstance().getReference();
 
         btnCancelar = findViewById(R.id.cancelarRegistro);
@@ -74,6 +83,10 @@ public class Registro extends AppCompatActivity {
         correo = findViewById(R.id.correo);
         Telefono = findViewById(R.id.phone);
         curp = findViewById(R.id.CURP);
+
+        textUser = findViewById(R.id.textInputLayout9);
+        textPass = findViewById(R.id.textInputLayout10);
+        textPassCon = findViewById(R.id.textInputLayout11);
 
         nombre.requestFocus();
 
@@ -236,7 +249,7 @@ public class Registro extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent cancelar = new Intent(Registro.this, MainActivity.class);
+                Intent cancelar = new Intent(Registro.this, inicioSesion.class);
                 startActivity(cancelar);
                 finish();
             }
@@ -247,9 +260,9 @@ public class Registro extends AppCompatActivity {
             public void onClick(View view) {
                 User.setHint(R.string.numControl);
                 User.setInputType(InputType.TYPE_CLASS_NUMBER);
-                User.setVisibility(View.VISIBLE);
-                contrasena.setVisibility(View.VISIBLE);
-                confirmContrasena.setVisibility(View.VISIBLE);
+                textUser.setVisibility(View.VISIBLE);
+                textPass.setVisibility(View.VISIBLE);
+                textPassCon.setVisibility(View.VISIBLE);
             }
         });
 
@@ -259,9 +272,9 @@ public class Registro extends AppCompatActivity {
                 User.setHint(R.string.usuario);
                 User.setError(null);
                 User.setInputType(InputType.TYPE_CLASS_TEXT);
-                User.setVisibility(View.VISIBLE);
-                contrasena.setVisibility(View.VISIBLE);
-                confirmContrasena.setVisibility(View.VISIBLE);
+                textUser.setVisibility(View.VISIBLE);
+                textPass.setVisibility(View.VISIBLE);
+                textPassCon.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -296,6 +309,14 @@ public class Registro extends AppCompatActivity {
     private boolean validarPasswordDos(String password) {
         Pattern pattern = Pattern.compile("^[a-z,A-Z]+");
         return pattern.matcher(password).matches();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent regresar = new Intent(Registro.this, inicioSesion.class);
+        startActivity(regresar);
+        finish();
     }
 
     public void insertadoDatos(){

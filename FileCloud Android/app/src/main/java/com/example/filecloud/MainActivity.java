@@ -3,6 +3,7 @@ package com.example.filecloud;
 import android.content.DialogInterface;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Cambia el color de la barra de navegación
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAbajo));
+        //Cambia el color de la barra de notificaciones
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorArriba));
 
         btnRegistro = findViewById(R.id.Registro);
         btnInicioSesion = findViewById(R.id.inicioSesion);

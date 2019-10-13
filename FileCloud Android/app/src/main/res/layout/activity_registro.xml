@@ -4,39 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiente"
     tools:context=".Registro">
 
     <Button
         android:id="@+id/cancelarRegistro"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/buttonstyle"
+        android:drawableStart="@drawable/ic_cancel_black_24dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="20dp"
         android:text="@string/cancelar"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/registrarse"
-        app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/registrarse"
-        android:layout_width="180dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/buttonstyle"
+        android:drawableStart="@drawable/ic_folder_shared_black_24dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="5dp"
         android:text="@string/registrar"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/cancelarRegistro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:text="@string/Bienvenido"
         android:textSize="36sp"
@@ -49,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:text="@string/rellenoCampos"
         android:textSize="14sp"
@@ -59,86 +69,81 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="374dp"
-        android:layout_height="474dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/registrarse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.134">
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/nombreText"
-                android:importantForAutofill="no"
-                android:layout_width="280dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="@string/nombre"
-                android:inputType="textCapWords"
-                android:textAlignment="center"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout11"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout9"
+                app:passwordToggleEnabled="true">
 
-            <EditText
-                android:importantForAutofill="no"
-                android:id="@+id/paternoText"
-                android:layout_width="280dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="@string/apellidoP"
-                android:inputType="textCapWords"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.434"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nombreText" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/contrasenaText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/contraseña"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:importantForAutofill="no"
-                android:id="@+id/maternoText"
-                android:layout_width="280dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="@string/apellidoM"
-                android:inputType="textCapWords"
-                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/paternoText" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/paternoText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/apellidoP"
+                    android:inputType="textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/tipoUsuario"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CURP" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -169,110 +174,158 @@
                     android:textSize="18sp" />
             </RadioGroup>
 
-            <EditText
-                android:id="@+id/userText"
-                android:layout_width="280dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout3"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:importantForAutofill="no"
-                android:ems="10"
-                android:hint="@string/usuario"
-                android:inputType="textCapSentences"
+                android:background="?attr/colorControlHighlight"
                 android:textAlignment="center"
-                android:visibility="invisible"
+                android:theme="@style/TextLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/contrasenaText"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:importantForAutofill="no"
-                android:ems="10"
-                android:hint="@string/contraseña"
-                android:inputType="textPassword"
-                android:textAlignment="center"
-                android:visibility="invisible"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nombreText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/nombre"
+                    android:inputType="textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout5"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userText" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
-            <EditText
-                android:id="@+id/confirmContrasenaText"
-                android:layout_width="280dp"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/maternoText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/apellidoM"
+                    android:inputType="textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout6"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="24dp"
-                android:importantForAutofill="no"
-                android:ems="10"
-                android:hint="@string/repContra"
-                android:inputType="textPassword"
-                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawableStart="@drawable/ic_phone_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/phone"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/CURP"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawableStart="@drawable/ic_insert_drive_file_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/CURP"
+                    android:inputType="textCapCharacters" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/userText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:inputType="textCapCharacters" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="?attr/colorControlHighlight"
+                android:theme="@style/TextLabel"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contrasenaText" />
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout11"
+                app:layout_constraintVertical_bias="1.0"
+                app:passwordToggleEnabled="true">
 
-            <EditText
-                android:importantForAutofill="no"
-                android:id="@+id/correo"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.487"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/maternoText" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmContrasenaText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+                    android:drawablePadding="8dp"
+                    android:hint="@string/repContra"
+                    android:inputType="textPassword" />
 
-            <EditText
-                android:importantForAutofill="no"
-                android:id="@+id/phone"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="@string/phone"
-                android:inputType="phone"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/correo" />
-
-            <EditText
-                android:importantForAutofill="no"
-                android:id="@+id/CURP"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:hint="@string/CURP"
-                android:inputType="textCapCharacters"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phone" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

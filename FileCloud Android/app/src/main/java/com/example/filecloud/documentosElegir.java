@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.*;
@@ -28,6 +29,7 @@ import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,9 +68,15 @@ public class documentosElegir extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documentos_elegir);
 
+        //Cambia el color de la barra de navegación
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorAbajo));
+        //Cambia el color de la barra de notificaciones
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorArriba));
+
         Button btnCerrarSesion = findViewById(R.id.CerrarSesion);
         Button btnSolicitudes = findViewById(R.id.solicitudes);
         Button btnCargarDocumento = findViewById(R.id.cargarDocumentos);
+        FloatingActionButton load = findViewById(R.id.loadFile);
 
         mRecyclerView = findViewById(R.id.recyclerList);
         refreshLayout = findViewById(R.id.swipeRefreshLayout);
@@ -80,6 +88,13 @@ public class documentosElegir extends AppCompatActivity {
         USUARIO = getIntent().getStringExtra("USUARIO");
 
         btnCargarDocumento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seleccionListaDocumentos();
+            }
+        });
+
+        load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 seleccionListaDocumentos();
@@ -194,6 +209,12 @@ public class documentosElegir extends AppCompatActivity {
     }
 
     public void listDocumentos(){
+        mDocumentosList.clear();
+        if (mDocumentosList.size() > 0)
+            mDocumentosList.remove(0);
+        mAdapter = new documentoAdapter(mDocumentosList, R.layout.documentos);
+        mRecyclerView.setAdapter(mAdapter);
+
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -307,10 +328,6 @@ public class documentosElegir extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 eliminateDocument eliminateDocument = new eliminateDocument();
-
-                /*Intent splash = new Intent(context, splashFileCloud.class);
-                context.startActivity(splash);*/
-
                 eliminateDocument.eliminar(usuario, documento, context);
 
                 Toast.makeText(context, R.string.deleteFile, Toast.LENGTH_SHORT).show();
@@ -388,7 +405,7 @@ public class documentosElegir extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), R.string.cerrarSesion, Toast.LENGTH_SHORT).show();
 
-                    Intent cerrarSesion = new Intent(documentosElegir.this, MainActivity.class);
+                    Intent cerrarSesion = new Intent(documentosElegir.this, inicioSesion.class);
                     startActivity(cerrarSesion);
                     finish();
                 }
