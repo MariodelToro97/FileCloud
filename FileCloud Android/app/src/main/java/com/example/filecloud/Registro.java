@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -161,7 +160,7 @@ public class Registro extends AppCompatActivity {
                                                                     myRef = database.getReference("Users/" + User.getText().toString() + "/Usuario");
                                                                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                                                         @Override
-                                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                        public void onDataChange(DataSnapshot dataSnapshot) {
                                                                             final String value = dataSnapshot.getValue(String.class);
 
                                                                             if (value == null) {
@@ -194,7 +193,7 @@ public class Registro extends AppCompatActivity {
                                                                         }
 
                                                                         @Override
-                                                                        public void onCancelled(@NonNull DatabaseError error) {
+                                                                        public void onCancelled(DatabaseError error) {
                                                                             // Failed to read value
                                                                             progressDialog.dismiss();
                                                                             Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
@@ -420,7 +419,7 @@ public class Registro extends AppCompatActivity {
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public void onFailure(@NonNull Exception exception) {
+                public void onFailure(Exception exception) {
                     // Handle unsuccessful uploads
                     Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
                 }

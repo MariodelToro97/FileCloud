@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.*;
@@ -116,7 +115,7 @@ public class solicitudes extends AppCompatActivity {
         myRef = database.getReference("Requisiciones/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
 
@@ -132,7 +131,7 @@ public class solicitudes extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }
@@ -223,7 +222,7 @@ public class solicitudes extends AppCompatActivity {
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
+            public void onFailure(Exception exception) {
             // Handle unsuccessful uploads
             Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
             }
@@ -242,7 +241,7 @@ public class solicitudes extends AppCompatActivity {
         myRef = database.getReference("DOCUMENTS/"+user + "/" + documento);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     saltoCarga(documento, context);
                 } else {
@@ -251,7 +250,7 @@ public class solicitudes extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }

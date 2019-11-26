@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Handler;
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +38,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -210,15 +210,13 @@ public class documentosElegir extends AppCompatActivity {
 
     public void listDocumentos(){
         mDocumentosList.clear();
-        if (mDocumentosList.size() > 0)
-            mDocumentosList.remove(0);
         mAdapter = new documentoAdapter(mDocumentosList, R.layout.documentos);
         mRecyclerView.setAdapter(mAdapter);
 
         myRef = database.getReference("DOCUMENTS/"+USUARIO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
 
@@ -234,7 +232,7 @@ public class documentosElegir extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }
@@ -260,6 +258,11 @@ public class documentosElegir extends AppCompatActivity {
 
                 if (i == 0) {
                     Uri file = data.getData(); //obtener el uri content
+                    assert file != null;
+                    File archivo = new File(Objects.requireNonNull(file.getPath()));
+
+                    Toast.makeText(this, Long.toString(archivo.length()), Toast.LENGTH_SHORT).show();
+
                     //Uri file = Uri.fromFile(new File(path));
                     cargarDocumentoProcess(file, db);
 
@@ -312,7 +315,7 @@ public class documentosElegir extends AppCompatActivity {
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
+            public void onFailure(Exception exception) {
                 // Handle unsuccessful uploads
                 Toast.makeText(getApplicationContext(), R.string.errorDocumento, Toast.LENGTH_SHORT).show();
             }
@@ -460,7 +463,7 @@ public class documentosElegir extends AppCompatActivity {
         myRef = database.getReference("DOCUMENTS/"+USUARIO + "/" + ARCHIVO);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (dataSnapshot.exists()) {
                     saltoCarga();
@@ -473,7 +476,7 @@ public class documentosElegir extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
             }

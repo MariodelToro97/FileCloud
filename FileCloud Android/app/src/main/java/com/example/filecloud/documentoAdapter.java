@@ -1,7 +1,6 @@
 package com.example.filecloud;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.*;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +20,15 @@ public class documentoAdapter extends RecyclerView.Adapter<documentoAdapter.View
         this.resource = resource;
     }
 
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(resource, viewGroup, false);
 
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int index) {
+    public void onBindViewHolder(ViewHolder viewHolder, int index) {
         Documentos documento = documentoLista.get(index);
 
         viewHolder.nombre.setText(documento.getNombre());

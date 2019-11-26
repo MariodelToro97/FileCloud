@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -150,15 +149,16 @@ public class inicioSesion extends AppCompatActivity {
         myRef = database.getReference("Users/" + user + "/Usuario");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
                 checarUsuario(value, progressDialog);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
             }
         });
     }
@@ -168,15 +168,16 @@ public class inicioSesion extends AppCompatActivity {
             myRef = database.getReference("Users/" + user + "/Password");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                public void onDataChange(DataSnapshot dataSnapshot) {
                     String value = dataSnapshot.getValue(String.class);
                     obtenerContra(Objects.requireNonNull(value), progressDialog);
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                public void onCancelled(DatabaseError error) {
                     // Failed to read value
                     Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             });
     }
@@ -190,20 +191,22 @@ public class inicioSesion extends AppCompatActivity {
             myRef = database.getReference("Users/" + user + "/cuentaVerificada");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                public void onDataChange(DataSnapshot dataSnapshot) {
                     int value = dataSnapshot.getValue(Integer.class);
 
                     if (value == 0) {
                         Toast.makeText(getApplicationContext(), R.string.noVerficada, Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
                     } else {
                         checarPass(progressDialog);
                     }
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                public void onCancelled(DatabaseError error) {
                     // Failed to read value
                     Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             });
         } else {
@@ -213,6 +216,7 @@ public class inicioSesion extends AppCompatActivity {
             Password.setText("");
             rbRecuerdame.setChecked(false);
             Usuario.requestFocus();
+            progressDialog.dismiss();
         }
     }
 
@@ -229,7 +233,7 @@ public class inicioSesion extends AppCompatActivity {
             myRef = database.getReference("Users/" + user + "/tipoUsuario");
             myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                public void onDataChange(DataSnapshot dataSnapshot) {
                     int value = dataSnapshot.getValue(Integer.class);
 
                     if (value == 0){
@@ -239,6 +243,7 @@ public class inicioSesion extends AppCompatActivity {
                         rbRecuerdame.setChecked(false);
                         Usuario.requestFocus();
                         contra = true;
+                        progressDialog.dismiss();
                     } else {
                         if (db != null){
 
@@ -269,9 +274,10 @@ public class inicioSesion extends AppCompatActivity {
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                public void onCancelled(DatabaseError error) {
                     // Failed to read value
                     Toast.makeText(getApplicationContext(), R.string.errorBD, Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             });
 
@@ -279,6 +285,7 @@ public class inicioSesion extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), R.string.contraIncorrecta, Toast.LENGTH_SHORT).show();
             Password.setText("");
             Password.requestFocus();
+            progressDialog.dismiss();
         }
     }
 }
