@@ -10,27 +10,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f53fef39-4dca-4a38-bd19-c810ffb3f38c" name="Default Changelist" comment="- Se solucionó el error que no iniciaba sesión tras malos datos insertados en los input.&#10;- Se acomodaron las vistas de los input de las pantallas de valor fijo a un match_parent (Splash y Login).&#10;- Se reacomodaron los elementos de la pantalla de Login.">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/BDUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/BDUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/Registro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/documentosElegir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/eliminateDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/eliminateDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/inicioSesion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudes.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/filecloud/solicitudesAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_documentos_elegir.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_inicio_sesion.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_file_cloud.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash_file_cloud.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/documentos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/documentos.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-    </list>
+    <list default="true" id="f53fef39-4dca-4a38-bd19-c810ffb3f38c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +30,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
+            <state relative-caret-position="442">
               <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
             </state>
           </provider>
@@ -92,7 +72,7 @@
           <provider selected="true" editor-type-id="android-designer2" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/documentos.xml">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="541">
@@ -284,15 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570981423017</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="- Se solucionó el error que no iniciaba sesión tras malos datos insertados en los input.&#10;- Se acomodaron las vistas de los input de las pantallas de valor fijo a un match_parent (Splash y Login).&#10;- Se reacomodaron los elementos de la pantalla de Login.&#10;- Se reacomodaron los elementos que se visualizan dentro del RecyclerView.">
+      <created>1574794067466</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574794067466</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.1913767" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1913767" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -332,7 +318,8 @@
     <MESSAGE value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión" />
     <MESSAGE value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión." />
     <MESSAGE value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión.&#10;- Se evitó la opción de cancelar al presionar en la pantalla mientras se están verificando los datos en el inicio de sesión.&#10;- Se solucionó que se quedaba atorada la aplicación si se dejaban campos vacios en el inicio de sesión y se presionaba el botón de inicio de sesión.&#10;- Se cambió el radiobutton por un checkbox en el inicio de sesión." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Se agregó un botón flotante en la pantalla principal, primera fase de la eliminación del botón &quot;Cargar/Editar documento&quot;&#10;- Se aplicó un fondo de gradiente a todas las pantallas.&#10;- Se cambió el color de énfasis de la barra de navegación y la de notificaciones.&#10;- Se eliminó la visualización de la pantalla MainActivity, pusto que es irrelevante para el usuario&#10;- Se agregaron iconos a los botones y áreas dee texto.&#10;- Se implementó la funcionalidad del botón de retroceso en la activity de registro, puesto que se cerraba la aplicación al hacer dicha acción.&#10;- Se implementó la funcionalidad del botón de retroceso de la barra de navegación, ahora ya pide presionar dos veces para que salga desde la ventana de inicio de sesión.&#10;- Se agregó el Toggle al campo de la contraseña de la pantalla de inicio de sesión.&#10;- Se insertó un diseño en los input de la pantalla de inicio de sesión.&#10;- Se evitó la opción de cancelar al presionar en la pantalla mientras se están verificando los datos en el inicio de sesión.&#10;- Se solucionó que se quedaba atorada la aplicación si se dejaban campos vacios en el inicio de sesión y se presionaba el botón de inicio de sesión.&#10;- Se cambió el radiobutton por un checkbox en el inicio de sesión." />
+    <MESSAGE value="- Se solucionó el error que no iniciaba sesión tras malos datos insertados en los input.&#10;- Se acomodaron las vistas de los input de las pantallas de valor fijo a un match_parent (Splash y Login).&#10;- Se reacomodaron los elementos de la pantalla de Login.&#10;- Se reacomodaron los elementos que se visualizan dentro del RecyclerView." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Se solucionó el error que no iniciaba sesión tras malos datos insertados en los input.&#10;- Se acomodaron las vistas de los input de las pantallas de valor fijo a un match_parent (Splash y Login).&#10;- Se reacomodaron los elementos de la pantalla de Login.&#10;- Se reacomodaron los elementos que se visualizan dentro del RecyclerView." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/logofilecloud.png">
@@ -538,13 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_splash_file_cloud.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -590,6 +570,13 @@
         </state>
       </provider>
       <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
